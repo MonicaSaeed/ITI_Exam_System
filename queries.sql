@@ -155,6 +155,70 @@ WHERE
 
 
 
+
+----------------------------------------------------------------------------------
+--------------------Reports' Queries----------------------------------------
+
+-- Repor 1: Report that return student information based on a 'Department No' parameter.
+DECLARE @DepartmentNo AS INT
+SET @DepartmentNo = 1;
+
+SELECT 
+    S.st_id AS StudentID,
+    S.st_name AS StudentName,
+    S.st_email AS StudentEmail,
+    S.st_phoneNo AS StudentPhone,
+    T.track_name AS TrackName,
+    B.branch_name AS BranchName
+FROM 
+    Student S
+    JOIN Track T ON S.track_id = T.track_id
+    JOIN Branch B ON T.branch_id = B.branch_id
+WHERE 
+    B.branch_id = @DepartmentNo;
+
+
+-- Repor 2: Report that return the grades of a student in all courses based on a 'Student ID' parameter.
+DECLARE @StudentID AS INT
+SET @StudentID = 1;
+
+SELECT 
+    C.co_name AS CourseName,
+    SUM(Q.grade) AS TotalGrade
+FROM 
+    Student S
+    JOIN Student_Answer SA ON S.st_id = SA.st_id
+    JOIN [Option] O ON SA.op_id = O.op_id
+    JOIN Question Q ON SA.q_id = Q.q_id
+    JOIN Exam E ON Q.ex_id = E.ex_id
+    JOIN Course_Exam CE ON E.ex_id = CE.ex_id
+    JOIN Course C ON CE.co_id = C.co_id
+WHERE 
+    S.st_id = @StudentID AND O.is_correct = 1
+GROUP BY 
+    C.co_name;
+
+
+-- Report 3: Report that  return the courses taught by an instructor and the number of students per course based on an 'Instructor ID' parameter.
+DECLARE @InstructorID AS INT
+SET @InstructorID = 1;
+
+SELECT 
+    C.co_name AS CourseName,
+    COUNT(S.st_id) AS StudentCount
+FROM 
+    Instructor I
+    JOIN Instructor_Course IC ON I.ins_id = IC.ins_id
+    JOIN Course C ON IC.co_id = C.co_id
+    JOIN Track_Course TC ON C.co_id = TC.co_id
+    JOIN Track T ON TC.track_id = T.track_id
+    JOIN Student S ON T.track_id = S.track_id
+WHERE 
+    I.ins_id = @InstructorID
+GROUP BY 
+    C.co_name;
+
+
 -- Repor 4: Report that takes course ID and returns its topics  
 DECLARE @id AS INT
 SET @id = 1;
