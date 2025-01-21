@@ -1,0 +1,104 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{52B37B49-0EC4-4D79-AC24-AC05586C6960}|DBProject\\DBProject.csproj|c:\\users\\mr.genius\\downloads\\iti\\adv sql\\project\\iti_exam_system\\dbproject\\dbproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{52B37B49-0EC4-4D79-AC24-AC05586C6960}|DBProject\\DBProject.csproj|solutionrelative:dbproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{52B37B49-0EC4-4D79-AC24-AC05586C6960}|DBProject\\DBProject.csproj|c:\\users\\mr.genius\\downloads\\iti\\adv sql\\project\\iti_exam_system\\dbproject\\dbproject\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{52B37B49-0EC4-4D79-AC24-AC05586C6960}|DBProject\\DBProject.csproj|solutionrelative:dbproject\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{52B37B49-0EC4-4D79-AC24-AC05586C6960}|DBProject\\DBProject.csproj|c:\\users\\mr.genius\\downloads\\iti\\adv sql\\project\\iti_exam_system\\dbproject\\dbproject\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{52B37B49-0EC4-4D79-AC24-AC05586C6960}|DBProject\\DBProject.csproj|solutionrelative:dbproject\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{52B37B49-0EC4-4D79-AC24-AC05586C6960}|DBProject\\DBProject.csproj|c:\\users\\mr.genius\\downloads\\iti\\adv sql\\project\\iti_exam_system\\dbproject\\dbproject\\dbproject.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{52B37B49-0EC4-4D79-AC24-AC05586C6960}|DBProject\\DBProject.csproj|solutionrelative:dbproject\\dbproject.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{52B37B49-0EC4-4D79-AC24-AC05586C6960}|DBProject\\DBProject.csproj|c:\\users\\mr.genius\\downloads\\iti\\adv sql\\project\\iti_exam_system\\dbproject\\dbproject\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{52B37B49-0EC4-4D79-AC24-AC05586C6960}|DBProject\\DBProject.csproj|solutionrelative:dbproject\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\DBProject\\Program.cs",
+              "RelativeDocumentMoniker": "DBProject\\Program.cs",
+              "ToolTip": "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\DBProject\\Program.cs",
+              "RelativeToolTip": "DBProject\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-21T12:37:20.499Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\DBProject\\Form1.cs",
+              "RelativeDocumentMoniker": "DBProject\\Form1.cs",
+              "ToolTip": "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\DBProject\\Form1.cs",
+              "RelativeToolTip": "DBProject\\Form1.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-21T12:33:53.961Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Form1.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\DBProject\\Form1.Designer.cs",
+              "RelativeDocumentMoniker": "DBProject\\Form1.Designer.cs",
+              "ToolTip": "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\DBProject\\Form1.Designer.cs",
+              "RelativeToolTip": "DBProject\\Form1.Designer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-21T12:33:45.633Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DBProject",
+              "DocumentMoniker": "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\DBProject\\DBProject.csproj",
+              "RelativeDocumentMoniker": "DBProject\\DBProject.csproj",
+              "ToolTip": "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\DBProject\\DBProject.csproj",
+              "RelativeToolTip": "DBProject\\DBProject.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-01-21T12:33:42.001Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\DBProject\\Form1.cs",
+              "RelativeDocumentMoniker": "DBProject\\Form1.cs",
+              "ToolTip": "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\DBProject\\Form1.cs [Design]",
+              "RelativeToolTip": "DBProject\\Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-21T12:31:38.992Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
