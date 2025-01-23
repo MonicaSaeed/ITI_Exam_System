@@ -1,3 +1,6 @@
+
+-- DataBase Name ExaminationSystem 
+
 -- Table: Branch
 CREATE TABLE Branch (
     branch_id INT IDENTITY(1,1) PRIMARY KEY,
@@ -19,6 +22,7 @@ CREATE TABLE Student (
     st_email NVARCHAR(100) NOT NULL,
     st_phoneNo NVARCHAR(15) NOT NULL,
     track_id INT NOT NULL,
+	st_password NVARCHAR(50) NOT NULL,
     FOREIGN KEY (track_id) REFERENCES Track(track_id)
 );
 
@@ -26,7 +30,8 @@ CREATE TABLE Student (
 CREATE TABLE Instructor (
     ins_id INT IDENTITY(1,1) PRIMARY KEY,
     ins_name NVARCHAR(100) NOT NULL,
-    ins_email NVARCHAR(100) NOT NULL
+    ins_email NVARCHAR(100) NOT NULL,
+	ins_password NVARCHAR(50) NOT NULL,
 );
 
 -- Table: Instructor_Track

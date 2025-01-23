@@ -16,16 +16,16 @@ INSERT INTO Track (track_name, branch_id) VALUES ('Web & User Interface Developm
 INSERT INTO Track (track_name, branch_id) VALUES ('Professional Development & BI-infused CRM', 2);
 
 -- Insert data into Student
-INSERT INTO Student (st_name, st_email, st_phoneNo, track_id) VALUES ('Monica', 'monica@example.com', '1234567890', 1);
-INSERT INTO Student (st_name, st_email, st_phoneNo, track_id) VALUES ('Heba', 'heba@example.com', '1234567890', 1);
-INSERT INTO Student (st_name, st_email, st_phoneNo, track_id) VALUES ('Mai', 'mai@example.com', '1234567890', 1);
-INSERT INTO Student (st_name, st_email, st_phoneNo, track_id) VALUES ('Wafaa', 'wafaa@example.com', '1234567890', 1);
-INSERT INTO Student (st_name, st_email, st_phoneNo, track_id) VALUES ('Yasmin', 'yasmin@example.com', '1234567890', 1);
-INSERT INTO Student (st_name, st_email, st_phoneNo, track_id) VALUES ('Ali', 'ali@example.com', '0987654321', 2);
+INSERT INTO Student (st_name, st_email, st_phoneNo, track_id, st_password) VALUES ('Monica', 'monica@example.com', '1234567890', 1,'1234');
+INSERT INTO Student (st_name, st_email, st_phoneNo, track_id, st_password) VALUES ('Heba', 'heba@example.com', '1234567890', 1,'1234');
+INSERT INTO Student (st_name, st_email, st_phoneNo, track_id, st_password) VALUES ('Mai', 'mai@example.com', '1234567890', 1,'1234');
+INSERT INTO Student (st_name, st_email, st_phoneNo, track_id, st_password) VALUES ('Wafaa', 'wafaa@example.com', '1234567890', 1,'1234');
+INSERT INTO Student (st_name, st_email, st_phoneNo, track_id, st_password) VALUES ('Yasmin', 'yasmin@example.com', '1234567890', 1,'1234');
+INSERT INTO Student (st_name, st_email, st_phoneNo, track_id, st_password) VALUES ('Ali', 'ali@example.com', '0987654321', 2,'1234');
 
 -- Insert data into Instructor
-INSERT INTO Instructor (ins_name, ins_email) VALUES ('Rami', 'r.rami@example.com');
-INSERT INTO Instructor (ins_name, ins_email) VALUES ('Sheryhan', 's.sheryhan@example.com');
+INSERT INTO Instructor (ins_name, ins_email,ins_password) VALUES ('Rami', 'r.rami@example.com','1234');
+INSERT INTO Instructor (ins_name, ins_email,ins_password) VALUES ('Sheryhan', 's.sheryhan@example.com','1234');
 
 -- Insert data into Instructor_Track
 INSERT INTO Instructor_Track (ins_id, track_id) VALUES (1, 1);
