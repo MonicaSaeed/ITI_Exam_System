@@ -44,6 +44,7 @@
             label1.TabIndex = 0;
             label1.Text = "Log In";
             label1.TextAlign = ContentAlignment.TopCenter;
+            
             // 
             // textBox1
             // 
@@ -73,9 +74,7 @@
             label2.Name = "label2";
             label2.Size = new Size(64, 28);
             label2.TabIndex = 3;
-            label2.Text = "Email ";
-            label2.Click += label2_Click;
-            // 
+            label2.Text = "Email ";            // 
             // label4
             // 
             label4.AutoSize = true;
@@ -136,6 +135,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(500, 500);
+            FormBorderStyle = FormBorderStyle.FixedDialog; 
+            MaximizeBox = false;
+            MinimizeBox = false; 
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Log In";
             Controls.Add(button1);
             Controls.Add(buttonInstructor);
             Controls.Add(buttonStudent);
@@ -147,7 +151,6 @@
             Name = "LogIn";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Log In";
-            Load += LogIn_Load;
             ResumeLayout(false);
             PerformLayout();
         }

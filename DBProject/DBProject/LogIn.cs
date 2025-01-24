@@ -7,30 +7,10 @@ namespace DBProject
     {
 
         string connectionString = "Server=localhost\\SQLEXPRESS;Database=ExaminationSystem;Integrated Security=True;TrustServerCertificate=True;";
+        string selectedType = "student"; 
         public LogIn()
         {
             InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LogIn_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void ButtonStudent_Click(object sender, EventArgs e)
@@ -41,6 +21,7 @@ namespace DBProject
             buttonInstructor.BackColor = Color.White;
             buttonInstructor.ForeColor = Color.Teal;
 
+            selectedType = "student";
         }
 
         private void ButtonInstructor_Click(object sender, EventArgs e)
@@ -51,10 +32,12 @@ namespace DBProject
             buttonStudent.BackColor = Color.White;
             buttonStudent.ForeColor = Color.Teal;
 
+            selectedType = "instructor";
+
+
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            // Retrieve the email from textBox1
             string enteredEmail = textBox1.Text;
             string enteredPass = textBox2.Text;
 
@@ -69,15 +52,50 @@ namespace DBProject
                 MessageBox.Show("Please enter an password.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            // Check if the email exists in the database
             if (IsEmailExistsAndMatchPass(enteredEmail, enteredPass))
             {
-                MessageBox.Show("Email Founded.", "Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                /*
-                    if button student selected --> open and pass st_id to form student
-                    else if instructor button selected --> open and pass ins_id to form instructor
-                */
+                
+                string returnedId = string.Empty;
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query;
+
+                    if (selectedType == "student")
+                        query = "SELECT st_id FROM Student WHERE st_email = @Email AND st_password = @Pass";
+                    else
+                        query = "SELECT ins_id FROM Instructor WHERE ins_email = @Email AND ins_password = @Pass";
+
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@Email", enteredEmail);
+                        cmd.Parameters.AddWithValue("@Pass", enteredPass);
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.HasRows && reader.Read())
+                            {
+                                returnedId = reader[0].ToString() ?? " ";
+                            }
+                        }
+                    }
+                }
+                //if(selectedType == "student")
+                //{
+                //var studentForm = new StudentForm(returnedId);
+                //studentForm.Show();
+                //this.Hide();  
+                //}
+                //else
+                //{
+                //var instructorForm = new InstructorForm(returnedId);
+                //studentForm.Show();
+                //this.Hide();
+                //}
+                //
+                MessageBox.Show($"Login successful, ID: {returnedId}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -86,16 +104,19 @@ namespace DBProject
 
         }
 
-
+        SqlCommand command;
         private bool IsEmailExistsAndMatchPass(string email, string password)
         {
             bool foundcorrectly = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                /****also check which button and edit query ****/
-                string query = "SELECT st_email FROM Student WHERE st_email = @Email and st_password = @Pass";
+                string query;
+                if (selectedType == "student")
+                    query = "SELECT st_id FROM Student WHERE st_email = @Email and st_password = @Pass";
+                else
+                    query = "SELECT ins_id FROM Instructor WHERE ins_email = @Email and ins_password = @Pass";
 
-                using (SqlCommand command = new SqlCommand(query, connection))
+                using (command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Email", email);
                     command.Parameters.AddWithValue("@Pass", password);
