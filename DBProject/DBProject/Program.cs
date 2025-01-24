@@ -11,7 +11,7 @@ namespace DBProject
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Student_Courses(3));
+            Application.Run(new LogIn());
         }
     }
 }
