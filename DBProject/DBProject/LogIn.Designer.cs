@@ -152,26 +152,6 @@
             PerformLayout();
         }
 
-        private void ButtonStudent_Click(object sender, EventArgs e)
-        {
-            buttonStudent.BackColor = Color.Teal;
-            buttonStudent.ForeColor = Color.White;
-
-            buttonInstructor.BackColor = Color.White;
-            buttonInstructor.ForeColor = Color.Teal;
-
-        }
-
-        private void ButtonInstructor_Click(object sender, EventArgs e)
-        {
-            buttonInstructor.BackColor = Color.Teal;
-            buttonInstructor.ForeColor = Color.White;
-
-            buttonStudent.BackColor = Color.White;
-            buttonStudent.ForeColor = Color.Teal;
-
-        }
-
         private Label label1;
         private TextBox textBox1;
         private TextBox textBox2;
