@@ -95,7 +95,15 @@ namespace DBProject
                 //this.Hide();
                 //}
                 //
-                MessageBox.Show($"Login successful, ID: {returnedId}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Student_Courses form2 = new Student_Courses(int.Parse(returnedId));
+
+                // Show Form2
+                form2.Show();
+
+                // Optionally, hide or close Form1
+                this.Hide(); 
+                            //Student_Courses(returnedId);
+             //   MessageBox.Show($"Login successful, ID: {returnedId}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
