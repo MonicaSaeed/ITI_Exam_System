@@ -48,7 +48,7 @@ BEGIN TRY
 
     -- Insert into Course_Exam
     INSERT INTO Course_Exam (ex_id, co_id, track_id)
-    VALUES (@NewExamID, @CourseID, @TrackID);
+    VALUES (@NewExamID, @CourseID, @TrackID); -- more than 1 track id
 
     -- Commit Transaction
     COMMIT TRANSACTION;
