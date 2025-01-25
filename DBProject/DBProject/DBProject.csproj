@@ -9,6 +9,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="1.png" />
+    <None Remove="2.png" />
+    <None Remove="face.jpeg" />
+    <None Remove="Screenshot 2024-12-13 013031.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="1.png" />
+    <EmbeddedResource Include="2.png" />
+    <EmbeddedResource Include="face.jpeg" />
+    <EmbeddedResource Include="Screenshot 2024-12-13 013031.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
   </ItemGroup>
 

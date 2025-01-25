@@ -18,13 +18,13 @@ namespace DBProject
         public Student_Courses(int studentID)
         {
             this.studentID = studentID; // Store the student ID
+            baseFormSize = new Size(1246, 450); // Store the initial form size
 
             InitializeComponent();
             InitializeCourses();   // Call your custom method to initialize courses
-            baseFormSize = this.ClientSize; // Store the initial form size
-
-            this.Resize += Form1_Resize; // Subscribe to the Resize event
-            CenterLabel2(); // Center the label initially
+            CenterLabel2();
+            //this.Resize += Form1_Resize; // Subscribe to the Resize event
+            //CenterLabel2(); // Center the label initially
 
 
         }
