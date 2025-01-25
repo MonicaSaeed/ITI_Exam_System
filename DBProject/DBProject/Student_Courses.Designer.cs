@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System;
 using System.Collections.Generic;
+
 namespace DBProject
 {
     partial class Student_Courses
@@ -32,7 +33,7 @@ namespace DBProject
             base.Dispose(disposing);
         }
 
-        List<(string CourseName, DateTime? ExamDate, int? Grade)> courses = new List<(string, DateTime?, int?)>();
+        List<(string CourseName, DateTime? ExamDate, int? Grade, int CourseID)> courses = new List<(string, DateTime?, int?, int)>();
 
         private void InitializeComponent()
         {
@@ -149,9 +150,9 @@ namespace DBProject
 
         //    return courses;
         //}
-        private List<(string CourseName, DateTime? ExamDate, int? Grade)> GetStudentCourses(int studentID)
+        private List<(string CourseName, DateTime? ExamDate, int? Grade, int CourseID)> GetStudentCourses(int studentID)
         {
-            List<(string CourseName, DateTime? ExamDate, int? Grade)> courses = new List<(string, DateTime?, int?)>();
+            List<(string CourseName, DateTime? ExamDate, int? Grade, int CourseID)> courses = new List<(string, DateTime?, int?, int)>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -159,10 +160,11 @@ namespace DBProject
                 {
                     connection.Open();
                     string query = @"
-               SELECT 
+SELECT 
     c.co_name AS CourseName,
     e.start_date AS ExamDate,
-    ISNULL(SUM(CASE WHEN o.is_correct = 1 THEN q.grade ELSE 0 END), 0) AS Grade -- Only sum grades for correct answers
+    ISNULL(SUM(CASE WHEN o.is_correct = 1 THEN q.grade ELSE 0 END), 0) AS Grade,
+    c.co_id AS CourseID
 FROM 
     Student s
 INNER JOIN 
@@ -184,7 +186,7 @@ LEFT JOIN
 WHERE 
     s.st_id = @StudentID
 GROUP BY 
-    c.co_name, e.start_date;";
+    c.co_name, e.start_date, c.co_id;";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -196,8 +198,9 @@ GROUP BY
                                 string courseName = reader["CourseName"].ToString();
                                 DateTime? examDate = reader["ExamDate"] as DateTime?;
                                 int grade = reader["Grade"] as int? ?? 0; // Default to 0 if null
+                                int courseID = Convert.ToInt32(reader["CourseID"]);
 
-                                courses.Add((courseName, examDate, grade));
+                                courses.Add((courseName, examDate, grade, courseID));
                             }
                         }
                     }
@@ -282,9 +285,19 @@ GROUP BY
                     courseButton.Text += $"\nExam taken on {course.ExamDate.Value.ToShortDateString()}";
                     courseButton.Click += (sender, e) =>
                     {
-                       
-                        MessageBox.Show($"You have already taken the {course.CourseName} exam on {course.ExamDate.Value.ToShortDateString()}. Please wait for the results.", "Exam Taken");
+                        // Fetch exam results
+                        var (results, totalGrade) = GetExamResults(studentID, course.CourseID); // Replace courseID with the actual course ID
+
+                        // Show the exam results form
+                        ExamResultsForm examResultsForm = new ExamResultsForm( totalGrade,results);
+                        examResultsForm.ShowDialog();
                     };
+                    //courseButton.Text += $"\nExam taken on {course.ExamDate.Value.ToShortDateString()}";
+                    //courseButton.Click += (sender, e) =>
+                    //{
+
+                    //    MessageBox.Show($"You have already taken the {course.CourseName} exam on {course.ExamDate.Value.ToShortDateString()}. Please wait for the results.", "Exam Taken");
+                    //};
                 }
                 else
                 {
@@ -307,6 +320,138 @@ GROUP BY
                 this.Controls.Add(courseButton);
                 courseButtons.Add(courseButton);
             }
+        }
+        private (List<(string Question, List<string> Options, string StudentAnswer, string CorrectAnswer, bool IsCorrect, int QuestionGrade)>, int TotalGrade)
+ GetExamResults(int studentID, int courseID)
+        {
+            var results = new List<(string Question, List<string> Options, string StudentAnswer, string CorrectAnswer, bool IsCorrect, int QuestionGrade)>();
+            int totalGrade = 0;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Step 1: Fetch questions, student answers, and correct answers
+                string query = @"
+SELECT 
+    q.text AS Question,
+    sa.op_id AS StudentAnswerID,
+    correct_op.op_id AS CorrectAnswerID,
+    q.grade AS QuestionGrade
+FROM 
+    Student_Answer sa
+INNER JOIN 
+    Question q ON sa.q_id = q.q_id
+INNER JOIN 
+    [Option] correct_op ON q.q_id = correct_op.q_id AND correct_op.is_correct = 1
+WHERE 
+    sa.st_id = @StudentID AND q.ex_id IN (SELECT ex_id FROM Course_Exam WHERE co_id = @CourseID);";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@StudentID", studentID);
+                    command.Parameters.AddWithValue("@CourseID", courseID);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        // Store the results in memory
+                        var questions = new List<(string Question, int StudentAnswerID, int CorrectAnswerID, int QuestionGrade)>();
+                        while (reader.Read())
+                        {
+                            string question = reader["Question"]?.ToString() ?? "No Question";
+                            int studentAnswerID = Convert.ToInt32(reader["StudentAnswerID"]);
+                            int correctAnswerID = Convert.ToInt32(reader["CorrectAnswerID"]);
+                            int questionGrade = Convert.ToInt32(reader["QuestionGrade"]);
+
+                            questions.Add((question, studentAnswerID, correctAnswerID, questionGrade));
+                        }
+
+                        // Close the reader before executing additional queries
+                        reader.Close();
+
+                        // Process each question
+                        foreach (var question in questions)
+                        {
+                            // Step 2: Fetch options for the current question
+                            List<string> options = GetOptionsForQuestion(connection, question.Question);
+
+                            // Step 3: Fetch the student's answer and correct answer text
+                            string studentAnswer = GetOptionText(connection, question.StudentAnswerID);
+                            string correctAnswer = GetOptionText(connection, question.CorrectAnswerID);
+
+                            // Step 4: Determine if the student's answer is correct
+                            bool isCorrect = question.StudentAnswerID == question.CorrectAnswerID;
+
+                            // Add the result to the list
+                            results.Add((question.Question, options, studentAnswer, correctAnswer, isCorrect, question.QuestionGrade));
+
+                            // Update the total grade
+                            if (isCorrect)
+                            {
+                                totalGrade += question.QuestionGrade;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return (results, totalGrade);
+        }
+        private List<string> GetOptionsForQuestion(SqlConnection connection, string question)
+        {
+            var options = new List<string>();
+
+            string query = @"
+SELECT 
+    op_text AS OptionText
+FROM 
+    [Option]
+WHERE 
+    q_id = (SELECT q_id FROM Question WHERE text = @Question);";
+
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@Question", question);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string optionText = reader["OptionText"]?.ToString() ?? "No Option";
+                        options.Add(optionText);
+                    }
+                }
+            }
+
+            return options;
+        }
+
+        private string GetOptionText(SqlConnection connection, int optionID)
+        {
+            string optionText = "No Option";
+
+            string query = @"
+SELECT 
+    op_text AS OptionText
+FROM 
+    [Option]
+WHERE 
+    op_id = @OptionID;";
+
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@OptionID", optionID);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        optionText = reader["OptionText"]?.ToString() ?? "No Option";
+                    }
+                }
+            }
+
+            return optionText;
         }
         //private void Form1_Resize(object sender, EventArgs e)
         //{
