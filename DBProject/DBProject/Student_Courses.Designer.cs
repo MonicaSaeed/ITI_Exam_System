@@ -39,7 +39,7 @@ namespace DBProject
             SuspendLayout();
 
             // Label1
-            label1.Font = new Font("Showcard Gothic", baseFontSize + 10, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Segoe UI", baseFontSize + 10, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Teal;
             label1.Location = new Point(23, 18);
             label1.Name = "label1";
@@ -50,7 +50,7 @@ namespace DBProject
             // Label2
             label2.BorderStyle = BorderStyle.FixedSingle;
             label2.AutoSize = false;
-            label2.Font = new Font("Showcard Gothic", baseFontSize + 5, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Segoe UI", baseFontSize + 5, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.ActiveCaptionText;
             label2.Size = new Size(753, 50);
             label2.TabIndex = 1;
@@ -79,8 +79,24 @@ namespace DBProject
             courses = GetStudentCourses(studentID); // Fetch courses for the logged-in student
 
             InitializeCourses(); // Initialize courses after the form is loaded
-        }
 
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT st_name FROM Student WHERE st_id = @stID";
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@stID", studentID);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows && reader.Read())
+                        {
+                            label1.Text = "Wellcome, "+reader[0].ToString() ?? " ";
+                        }
+                    }
+                }
+            }
+        }
         private List<string> GetStudentCourses(int studentID)
         {
             List<string> courses = new List<string>();
@@ -174,7 +190,7 @@ namespace DBProject
                     // Reposition existing button
                     courseButtons[i].Location = new Point(x, y);
                     courseButtons[i].Size = new Size(buttonWidth, buttonHeight);
-                    courseButtons[i].Font = new Font("Showcard Gothic", newFontSize, FontStyle.Regular, GraphicsUnit.Point, 0);
+                    courseButtons[i].Font = new Font("Segoe UI", newFontSize, FontStyle.Regular, GraphicsUnit.Point, 0);
                 }
                 else
                 {
@@ -184,7 +200,7 @@ namespace DBProject
                         Text = courses[i],
                         Location = new Point(x, y),
                         Size = new Size(buttonWidth, buttonHeight),
-                        Font = new Font("Showcard Gothic", newFontSize, FontStyle.Regular, GraphicsUnit.Point, 0),
+                        Font = new Font("Segoe UI", newFontSize, FontStyle.Regular, GraphicsUnit.Point, 0),
                         BackColor = Color.Teal,
                         ForeColor = Color.White,
                         FlatStyle = FlatStyle.Flat
@@ -224,16 +240,16 @@ namespace DBProject
             }
 
             // Update label1 font and size
-            label1.Font = new Font("Showcard Gothic", newFontSize + 10, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Segoe UI", newFontSize + 10, FontStyle.Regular, GraphicsUnit.Point, 0);
 
             // Update label2 font and size
-            label2.Font = new Font("Showcard Gothic", newFontSize + 5, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Segoe UI", newFontSize + 5, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.Size = new Size((int)(753 * widthScale), (int)(50 * heightScale));
 
             // Update button fonts and sizes
             foreach (Button button in courseButtons)
             {
-                button.Font = new Font("Showcard Gothic", newFontSize, FontStyle.Regular, GraphicsUnit.Point, 0);
+                button.Font = new Font("Segoe UI", newFontSize, FontStyle.Regular, GraphicsUnit.Point, 0);
                 button.Size = new Size((int)(250 * widthScale), (int)(50 * heightScale));
             }
         }

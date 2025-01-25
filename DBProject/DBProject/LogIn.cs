@@ -7,7 +7,7 @@ namespace DBProject
     {
 
         string connectionString = "Server=localhost\\SQLEXPRESS;Database=ExaminationSystem;Integrated Security=True;TrustServerCertificate=True;";
-        string selectedType = "student"; 
+        string selectedType = "student";
         public LogIn()
         {
             InitializeComponent();
@@ -55,7 +55,7 @@ namespace DBProject
             if (IsEmailExistsAndMatchPass(enteredEmail, enteredPass))
             {
 
-                
+
                 string returnedId = string.Empty;
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -82,28 +82,26 @@ namespace DBProject
                         }
                     }
                 }
-                //if(selectedType == "student")
-                //{
-                //var studentForm = new StudentForm(returnedId);
-                //studentForm.Show();
-                //this.Hide();  
-                //}
-                //else
-                //{
-                //var instructorForm = new InstructorForm(returnedId);
-                //studentForm.Show();
-                //this.Hide();
-                //}
-                //
-                Student_Courses form2 = new Student_Courses(int.Parse(returnedId));
+                if (selectedType == "student")
+                {
+                    Student_Courses form2 = new Student_Courses(int.Parse(returnedId));
+                    form2.Show();
+                    this.Hide();
+                }
+                else
+                {
 
-                // Show Form2
-                form2.Show();
+                    //var instructorForm = new InstructorForm(returnedId);
+                    //studentForm.Show();
+                    //this.Hide();
 
-                // Optionally, hide or close Form1
-                this.Hide(); 
-                            //Student_Courses(returnedId);
-             //   MessageBox.Show($"Login successful, ID: {returnedId}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"Instructor id {returnedId}.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                }
+
+
+
             }
             else
             {
@@ -144,5 +142,6 @@ namespace DBProject
 
             return foundcorrectly;
         }
+
     }
 }

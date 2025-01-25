@@ -36,15 +36,14 @@
             // 
             label1.Anchor = AnchorStyles.Top;
             label1.AutoSize = true;
-            label1.Font = new Font("Stencil", 25.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Segoe UI", 25.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Teal;
             label1.Location = new Point(166, 27);
             label1.Name = "label1";
-            label1.Size = new Size(158, 52);
+            label1.Size = new Size(147, 60);
             label1.TabIndex = 0;
             label1.Text = "Log In";
             label1.TextAlign = ContentAlignment.TopCenter;
-            
             // 
             // textBox1
             // 
@@ -74,7 +73,8 @@
             label2.Name = "label2";
             label2.Size = new Size(64, 28);
             label2.TabIndex = 3;
-            label2.Text = "Email ";            // 
+            label2.Text = "Email ";
+            // 
             // label4
             // 
             label4.AutoSize = true;
@@ -135,11 +135,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(500, 500);
-            FormBorderStyle = FormBorderStyle.FixedDialog; 
-            MaximizeBox = false;
-            MinimizeBox = false; 
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "Log In";
             Controls.Add(button1);
             Controls.Add(buttonInstructor);
             Controls.Add(buttonStudent);
@@ -148,6 +143,9 @@
             Controls.Add(textBox2);
             Controls.Add(textBox1);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "LogIn";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Log In";
