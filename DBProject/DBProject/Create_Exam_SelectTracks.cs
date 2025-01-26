@@ -21,7 +21,7 @@ namespace DBProject
         private int _courseIdSelected;
         private List<int> _tracksIdsSelected;
 
-        int _examId;
+        int newExamId;
 
         string connectionString = "Server=localhost\\SQLEXPRESS;Database=ExaminationSystem;Integrated Security=True;TrustServerCertificate=True;";
 
@@ -70,86 +70,58 @@ namespace DBProject
             var startDate = dateTimePicker1.Value.Date;
             var duration = (int)numericUpDown1.Value;
 
-            // Convert _tracksIdsSelected list to a comma-separated string
-            string tracksIdsString = string.Join(", ", _tracksIdsSelected);
-            // Show all values in a message box
-            MessageBox.Show($"Selected Tracks: {tracksIdsString}, Start Date: {startDate:yyyy-MM-dd}, Duration: {duration} minutes, Selected Course ID: {_courseIdSelected}");
+            //// Convert _tracksIdsSelected list to a comma-separated string
+            //string tracksIdsString = string.Join(", ", _tracksIdsSelected);
+            //// Show all values in a message box
+            //MessageBox.Show($"Selected Tracks: {tracksIdsString}, Start Date: {startDate:yyyy-MM-dd}, Duration: {duration} minutes, Selected Course ID: {_courseIdSelected}");
 
-            #region
-            //using (SqlConnection connection = new SqlConnection(connectionString))
-            //{
-            //    try
-            //    {
-            //        connection.Open();
-            //        using (SqlTransaction transaction = connection.BeginTransaction())
-            //        {
-            //            try
-            //            {
-            //                // Insert Exam
-            //                string insertExamQuery = @"INSERT INTO Exam (start_date, duration)
-            //                               VALUES (@startDate, @duration);";
+            using (var scope = new TransactionScope())
+            {
+                try
+                {
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        connection.Open();
+                        string insertExamQuery = @"INSERT INTO Exam (start_date, duration) 
+                                           VALUES (@startDate, @duration);
+                                           SELECT SCOPE_IDENTITY();";
 
-            //                using (SqlCommand command = new SqlCommand(insertExamQuery, connection, transaction))
-            //                {
-            //                    command.Parameters.AddWithValue("@startDate", startDate);
-            //                    command.Parameters.AddWithValue("@duration", duration);
+                        using (SqlCommand command = new SqlCommand(insertExamQuery, connection))
+                        {
+                            command.Parameters.AddWithValue("@startDate", startDate);
+                            command.Parameters.AddWithValue("@duration", duration);
+                            newExamId = Convert.ToInt32(command.ExecuteScalar());
+                        }
+                    }
 
-            //                    command.ExecuteNonQuery();
-            //                }
+                    // Insert Course_Exam records for each selected track_id
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        connection.Open();
+                        foreach (int trackId in _tracksIdsSelected)
+                        {
+                            string insertCourseExamQuery = @"INSERT INTO Course_Exam (ex_id, co_id, track_id)
+                                                     VALUES (@examId, @courseId, @trackId)";
 
-            //                // Get the new Exam ID
-            //                string getExamIdQuery = "SELECT SCOPE_IDENTITY();";
-            //                int newExamId = -1; // Default value if no ID is returned
+                            using (SqlCommand command = new SqlCommand(insertCourseExamQuery, connection))
+                            {
+                                command.Parameters.AddWithValue("@examId", newExamId);
+                                command.Parameters.AddWithValue("@courseId", _courseIdSelected); // Assume course ID is set
+                                command.Parameters.AddWithValue("@trackId", trackId);
+                                command.ExecuteNonQuery();
+                            }
+                        }
+                    }
 
-            //                using (SqlCommand command = new SqlCommand(getExamIdQuery, connection, transaction))
-            //                {
-            //                    object result = command.ExecuteScalar();
-            //                    if (result != DBNull.Value)
-            //                    {
-            //                        newExamId = Convert.ToInt32(result); // Safely cast to int
-            //                    }
-            //                }
-
-            //                if (newExamId == -1)
-            //                {
-            //                    throw new Exception("Failed to retrieve the new Exam ID.");
-            //                }
-
-            //                // Insert into Course_Exam for each track
-            //                foreach (var trackId in _tracksIdsSelected)
-            //                {
-            //                    string insertCourseExamQuery = @"INSERT INTO Course_Exam (ex_id, co_id, track_id)
-            //                                         VALUES (@examId, @courseId, @trackId);";
-
-            //                    using (SqlCommand command = new SqlCommand(insertCourseExamQuery, connection, transaction))
-            //                    {
-            //                        command.Parameters.AddWithValue("@examId", newExamId);
-            //                        command.Parameters.AddWithValue("@courseId", _courseIdSelected);
-            //                        command.Parameters.AddWithValue("@trackId", trackId);
-
-            //                        command.ExecuteNonQuery();
-            //                    }
-            //                }
-            //                _examId = newExamId;
-            //                // Commit Transaction
-            //                transaction.Commit();
-            //                MessageBox.Show("Exam and tracks have been successfully created.");
-            //            }
-            //            catch (Exception ex)
-            //            {
-            //                // Rollback Transaction in case of an error
-            //                transaction.Rollback();
-            //                MessageBox.Show($"Error: {ex.Message}");
-            //            }
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show($"Database connection error: {ex.Message}");
-            //    }
-            //}
-            #endregion
-
+                    // Commit the transaction
+                    scope.Complete();
+                    MessageBox.Show("Exam created and tracks assigned successfully.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}");
+                }
+            }
         }
 
 
