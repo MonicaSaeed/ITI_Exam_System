@@ -36,6 +36,10 @@ namespace DBProject
             button2.BackColor = Color.Teal;
             button2.ForeColor = Color.White;
 
+            dateTimePicker1.Value = DateTime.Now; // Current date as default
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+
             var courses = coursessName();
             foreach (var course in courses)
             {
@@ -67,13 +71,13 @@ namespace DBProject
                 _tracksIdsSelected.Add(GetTrackId(item.ToString()));
             }
 
-            var startDate = dateTimePicker1.Value.Date;
+            var startDate = dateTimePicker1.Value;
             var duration = (int)numericUpDown1.Value;
 
             //// Convert _tracksIdsSelected list to a comma-separated string
             //string tracksIdsString = string.Join(", ", _tracksIdsSelected);
             //// Show all values in a message box
-            //MessageBox.Show($"Selected Tracks: {tracksIdsString}, Start Date: {startDate:yyyy-MM-dd}, Duration: {duration} minutes, Selected Course ID: {_courseIdSelected}");
+            //MessageBox.Show($"Selected Tracks: {tracksIdsString}, Start Date: {startDate:yyyy-MM-dd HH:mm:ss}, Duration: {duration} minutes, Selected Course ID: {_courseIdSelected}");
 
             using (var scope = new TransactionScope())
             {
@@ -288,7 +292,7 @@ namespace DBProject
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            checkedListBox1.Items.Clear(); 
+            checkedListBox1.Items.Clear();
             List<string> _tracksNames = tracksName();
             if (_tracksNames.Count > 0)
             {
@@ -304,6 +308,11 @@ namespace DBProject
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }

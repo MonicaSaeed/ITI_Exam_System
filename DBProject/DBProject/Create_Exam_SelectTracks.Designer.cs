@@ -37,6 +37,7 @@
             numericUpDown1 = new NumericUpDown();
             flowLayoutPanel1 = new FlowLayoutPanel();
             button2 = new Button();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
             // 
@@ -92,7 +93,7 @@
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(524, 273);
+            dateTimePicker1.Location = new Point(524, 295);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(250, 27);
             dateTimePicker1.TabIndex = 4;
@@ -102,7 +103,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F);
-            label3.Location = new Point(524, 367);
+            label3.Location = new Point(524, 355);
             label3.Name = "label3";
             label3.Size = new Size(273, 28);
             label3.TabIndex = 5;
@@ -111,7 +112,7 @@
             // 
             // numericUpDown1
             // 
-            numericUpDown1.Location = new Point(524, 413);
+            numericUpDown1.Location = new Point(530, 395);
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(150, 27);
             numericUpDown1.TabIndex = 6;
@@ -135,12 +136,22 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(530, 261);
+            label4.Name = "label4";
+            label4.Size = new Size(166, 20);
+            label4.TabIndex = 9;
+            label4.Text = "YYYY-MM-DD HH:MI:SS";
+            // 
             // Create_Exam_SelectTracks
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             ClientSize = new Size(982, 553);
+            Controls.Add(label4);
             Controls.Add(button2);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(numericUpDown1);
@@ -171,5 +182,6 @@
         private NumericUpDown numericUpDown1;
         private FlowLayoutPanel flowLayoutPanel1;
         private Button button2;
+        private Label label4;
     }
 }
