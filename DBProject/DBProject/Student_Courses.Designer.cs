@@ -45,7 +45,6 @@ namespace DBProject
             label1.Name = "label1";
             label1.AutoSize = true;
             label1.TabIndex = 0;
-            label1.Text = "Student";
 
             // Label2
             label2.BorderStyle = BorderStyle.FixedSingle;
@@ -66,7 +65,7 @@ namespace DBProject
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "Form1";
-            Text = "Student Test";
+            Text = "Student Courses";
             Load += Form1_Load;
             Resize += Form1_Resize; // Add Resize event handler
             ResumeLayout(false);

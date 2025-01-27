@@ -106,3 +106,4 @@ C:\ME\ITI-9\SQL\SQL_Final_Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\
 C:\ME\ITI-9\SQL\SQL_Final_Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.genruntimeconfig.cache
 C:\ME\ITI-9\SQL\SQL_Final_Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\ref\DBProject.dll
 C:\Users\MR.GENIUS\Downloads\ITI\Adv SQL\project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.Student_Courses.resources
+C:\Users\MR.GENIUS\Downloads\ITI\Adv SQL\project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.Take_Exam.resources

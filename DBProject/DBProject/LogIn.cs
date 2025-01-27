@@ -110,7 +110,7 @@ namespace DBProject
 
         }
 
-        SqlCommand command;
+
         private bool IsEmailExistsAndMatchPass(string email, string password)
         {
             bool foundcorrectly = false;
@@ -122,7 +122,7 @@ namespace DBProject
                 else
                     query = "SELECT ins_id FROM Instructor WHERE ins_email = @Email and ins_password = @Pass";
 
-                using (command = new SqlCommand(query, connection))
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Email", email);
                     command.Parameters.AddWithValue("@Pass", password);
@@ -143,5 +143,9 @@ namespace DBProject
             return foundcorrectly;
         }
 
+        private void LogIn_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
