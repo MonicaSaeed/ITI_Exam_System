@@ -126,6 +126,12 @@ namespace DBProject
                     MessageBox.Show($"Error: {ex.Message}");
                 }
             }
+
+            Create_Questions q = new Create_Questions();
+            q.ExamIdInQuestion = newExamId;
+            q.Show();
+            this.Hide();
+
         }
 
 

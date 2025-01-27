@@ -4,6 +4,9 @@
     <Compile Update="Create_Exam_SelectTracks.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Create_Questions.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

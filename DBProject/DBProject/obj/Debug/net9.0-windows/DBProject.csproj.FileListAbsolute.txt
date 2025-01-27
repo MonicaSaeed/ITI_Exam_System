@@ -105,3 +105,4 @@ D:\iti\mobile track\adv_sql\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0
 D:\iti\mobile track\adv_sql\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.genruntimeconfig.cache
 D:\iti\mobile track\adv_sql\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\ref\DBProject.dll
 D:\iti\mobile track\adv_sql\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.Create_Exam_SelectTracks.resources
+D:\iti\mobile track\adv_sql\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.Create_Questions.resources
