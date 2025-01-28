@@ -75,7 +75,7 @@ END CATCH;
 SELECT q.q_id, q.q_type, q.text, q.grade, o.op_text, o.is_correct
 FROM Question q
 INNER JOIN [Option] o ON q.q_id = o.q_id
-WHERE q.ex_id = 1
+WHERE q.ex_id = 10
 ORDER BY q.q_id
 
 

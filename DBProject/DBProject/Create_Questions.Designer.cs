@@ -35,27 +35,20 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 16F);
-            label1.ForeColor = Color.FromArgb(7, 62, 64);
-            label1.Location = new Point(33, 36);
+            label1.Location = new Point(78, 42);
             label1.Name = "label1";
-            label1.Size = new Size(285, 37);
-            label1.TabIndex = 3;
-            label1.Text = "Create Exam: Step Two";
-            label1.Click += label1_Click;
+            label1.Size = new Size(50, 20);
+            label1.TabIndex = 5;
+            label1.Text = "label1";
             // 
             // button1
             // 
-            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button1.BackColor = Color.FromArgb(2, 2, 2);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(745, 502);
+            button1.Location = new Point(844, 510);
             button1.Name = "button1";
-            button1.Size = new Size(213, 47);
-            button1.TabIndex = 4;
-            button1.Text = "Add Question";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 6;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
             // 
             // Create_Questions
             // 
@@ -72,7 +65,6 @@
         }
 
         #endregion
-
         private Label label1;
         private Button button1;
     }

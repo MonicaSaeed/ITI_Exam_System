@@ -32,6 +32,18 @@ namespace DBProject
 
         private void Create_Questions_Load(object sender, EventArgs e)
         {
+            //label1.Text = "Create Exam: Step Two";
+            //label1.ForeColor = Color.Teal;
+            //label1.Location = new Point(20, 20);
+            ////label1.Font = ("Microsoft Sans Serif", 15, 25);
+            //button1.ForeColor = Color.White;
+            //button1.BackColor = Color.Black;
+            //button1.Location = new Point(800, 500);
+            //button1.Text = "Add Question";
+            //button1.Width = 150;
+            //button1.Height = 50;
+            //this.button1.Click += new System.EventHandler(this.button1_Click);
+
             showQuestions();
         }
 
@@ -275,7 +287,6 @@ namespace DBProject
                     }
                     MessageBox.Show("Question and options saved successfully!");
                     popup.Close();
-                    ResetForm();
                     showQuestions();
                 }
             };
@@ -315,6 +326,8 @@ namespace DBProject
                                 int grade = reader.GetInt32(3);
                                 string optionText = reader.GetString(4);
                                 bool isCorrect = reader.GetBoolean(5);
+                                //MessageBox.Show ($"Question ID: {questionId}, Text: {questionText}, Grade: {grade}, optionText: {optionText}, isCorrect {isCorrect} ");
+
 
                                 if (!questionsMap.ContainsKey(questionId))
                                 {
@@ -346,13 +359,33 @@ namespace DBProject
 
             return questionsList;
         }
-
+        Panel scrollablePanel = new Panel
+        {
+            AutoScroll = true,
+            Dock = DockStyle.Fill, // Fill the entire form
+            BorderStyle = BorderStyle.FixedSingle, // Optional: adds a border around the panel
+        };
         private void showQuestions()
         {
+            label1.Text = "Create Exam: Step Two";
+            label1.ForeColor = Color.Teal;
+            label1.Location = new Point(20, 20);
+            label1.Font = new System.Drawing.Font("Arial", 12, FontStyle.Bold);
+            button1.ForeColor = Color.White;
+            button1.BackColor = Color.Black;
+            button1.Location = new Point(800, 500);
+            button1.Text = "Add Question";
+            button1.Width = 150;
+            button1.Height = 50;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+
             List<QuestionDetails> questions = getQuestions();
 
-            // Create a scrollable panel
-            Panel scrollablePanel = new Panel
+            if (this.Controls.Contains(scrollablePanel))
+            {
+                this.Controls.Remove(scrollablePanel);
+            }
+            scrollablePanel = new Panel
             {
                 AutoScroll = true,
                 Dock = DockStyle.Fill, // Fill the entire form
@@ -360,8 +393,9 @@ namespace DBProject
             };
             this.Controls.Add(scrollablePanel);
 
+
             // Set the initial position for dynamically created controls within the panel
-            int yOffset = 100; // Vertical space between controls
+            int yOffset = 80; // Starting offset, adjust as needed
             int xOffset = 20; // Horizontal space from the left
 
             foreach (var question in questions)
@@ -370,7 +404,7 @@ namespace DBProject
                 Label questionLabel = new Label
                 {
                     Text = $"Q{question.QuestionId}: {question.QuestionText} ({question.Grade} pts)",
-                    //Font = new Font("Arial", 10, FontStyle.Bold),
+                    AutoSize = true,
                     Location = new Point(xOffset, yOffset)
                 };
                 scrollablePanel.Controls.Add(questionLabel);
@@ -380,13 +414,12 @@ namespace DBProject
                 {
                     Text = question.QuestionType,
                     AutoSize = true,
-                    //Font = new Font("Arial", 9, FontStyle.Italic),
                     Location = new Point(scrollablePanel.Width - 150, yOffset), // Right side
                     ForeColor = Color.Gray
                 };
                 scrollablePanel.Controls.Add(questionTypeLabel);
 
-                yOffset += 30; // Move down for the options
+                yOffset += questionLabel.Height + 10; // Adjust yOffset for next question (add space)
 
                 foreach (var option in question.Options)
                 {
@@ -395,31 +428,18 @@ namespace DBProject
                     {
                         Text = $"- {option.OptionText}",
                         AutoSize = true,
-                        //Font = new Font("Arial", 9),
                         Location = new Point(xOffset + 20, yOffset), // Indented from the question
-                        ForeColor = option.IsCorrect ? Color.Green : Color.Black // Highlight correct options in green
+                        ForeColor = option.IsCorrect ? Color.Green : Color.Black
                     };
                     scrollablePanel.Controls.Add(optionLabel);
 
-                    yOffset += 25; // Space between options
+                    yOffset += optionLabel.Height + 5; // Space between options
                 }
+
                 yOffset += 15; // Extra space between questions
             }
         }
-        private void ResetForm()
-        {
-            // Clear existing controls in the main form if dynamically added
-            var controlsToRemove = this.Controls.OfType<Control>()
-                .Where(c => !(c is MenuStrip || c is ToolStrip)).ToList();
 
-            foreach (var control in controlsToRemove)
-            {
-                this.Controls.Remove(control);
-            }
-
-            // Reset specific properties or UI components as needed
-            // Example: TextBoxes, ComboBoxes, etc.
-        }
 
         private int insertQuestion(string q_type, string text, int grade, int ex_id)
         {

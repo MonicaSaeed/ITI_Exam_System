@@ -13,10 +13,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|d:\\iti\\mobile track\\adv_sql\\iti_exam_system\\dbproject\\dbproject\\create_exam_selecttracks.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|solutionrelative:dbproject\\create_exam_selecttracks.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|d:\\iti\\mobile track\\adv_sql\\iti_exam_system\\dbproject\\dbproject\\create_exam_selecttracks.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|solutionrelative:dbproject\\create_exam_selecttracks.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,23 +22,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Create_Exam_SelectTracks.cs [Design]",
-              "DocumentMoniker": "D:\\iti\\mobile track\\adv_sql\\ITI_Exam_System\\DBProject\\DBProject\\Create_Exam_SelectTracks.cs",
-              "RelativeDocumentMoniker": "DBProject\\Create_Exam_SelectTracks.cs",
-              "ToolTip": "D:\\iti\\mobile track\\adv_sql\\ITI_Exam_System\\DBProject\\DBProject\\Create_Exam_SelectTracks.cs [Design]",
-              "RelativeToolTip": "DBProject\\Create_Exam_SelectTracks.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-28T16:23:53.725Z",
-              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
@@ -52,7 +36,7 @@
               "RelativeDocumentMoniker": "DBProject\\Create_Questions.cs",
               "ToolTip": "D:\\iti\\mobile track\\adv_sql\\ITI_Exam_System\\DBProject\\DBProject\\Create_Questions.cs",
               "RelativeToolTip": "DBProject\\Create_Questions.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAAACIAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAG0BAAAAAAAAAAAAAHYBAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-27T10:50:01.833Z",
               "EditorCaption": ""
