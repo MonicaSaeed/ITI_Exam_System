@@ -21,15 +21,18 @@ namespace DBProject
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int ExamIdInQuestion { get; set; }
+        // set 10 for ExamIdInQuestion
 
         public Create_Questions()
         {
             InitializeComponent();
+            ExamIdInQuestion = 2; // Setting ExamIdInQuestion to 10
+
         }
 
         private void Create_Questions_Load(object sender, EventArgs e)
         {
-            
+            showQuestions();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -42,10 +45,26 @@ namespace DBProject
             Form popup = new Form
             {
                 Width = 800,
-                Height = 500,
+                Height = 700,
                 Text = "Question Details",
-                StartPosition = FormStartPosition.CenterScreen
+                StartPosition = FormStartPosition.CenterScreen,
+                AutoScroll = true // Enable scrolling for the form
             };
+
+            // Save Button
+            Button save = new Button
+            {
+                Location = new System.Drawing.Point(650, 550),
+                Text = "Save Question",
+                BackColor = Color.Teal,
+                ForeColor = Color.White,
+                Height = 50,
+                Width = 80,
+                Name = "SaveButton"
+            };
+
+
+            // Label for question text
             Label label = new Label
             {
                 Text = "Enter question text:",
@@ -53,12 +72,215 @@ namespace DBProject
                 AutoSize = true
             };
             popup.Controls.Add(label);
+
+            // TextBox for question text
             TextBox textBox = new TextBox
             {
                 Location = new System.Drawing.Point(20, 50),
-                Width = 200
+                Width = 500
             };
             popup.Controls.Add(textBox);
+
+            // Label for question grade
+            Label label2 = new Label
+            {
+                Text = "Enter question grade:",
+                Location = new System.Drawing.Point(20, 100),
+                AutoSize = true
+            };
+            popup.Controls.Add(label2);
+
+            // NumericUpDown for question grade
+            NumericUpDown numericUpDown1 = new NumericUpDown()
+            {
+                Location = new System.Drawing.Point(20, 130),
+                Width = 200
+            };
+            popup.Controls.Add(numericUpDown1);
+
+            // Label for question type
+            Label label3 = new Label
+            {
+                Text = "Select question type:",
+                Location = new System.Drawing.Point(20, 180),
+                AutoSize = true
+            };
+            popup.Controls.Add(label3);
+
+            // ComboBox for question type
+            ComboBox comboBox = new ComboBox
+            {
+                Location = new System.Drawing.Point(20, 210),
+                Width = 200
+            };
+            comboBox.Items.AddRange(new string[] { "T/F", "MCQ" });
+            popup.Controls.Add(comboBox);
+
+            int optionNumMCQ = 0;
+            int torf = 0;
+            // Event handler for ComboBox selection
+            comboBox.SelectedIndexChanged += (s, args) =>
+            {
+                // Clear previously added controls
+                var controlsToRemove = new System.Windows.Forms.Control[popup.Controls.Count];
+                popup.Controls.CopyTo(controlsToRemove, 0);
+                foreach (var control in controlsToRemove)
+                {
+                    if (control.Location.Y > 250 && control.Name != "SaveButton")
+                    {
+                        popup.Controls.Remove(control);
+                    }
+                }
+
+
+                if (comboBox.SelectedIndex == 0)
+                {
+                    // Add a dropdown to specify True or False
+                    Label tfLabel = new Label
+                    {
+                        Text = "Is the statement True or False?",
+                        Location = new System.Drawing.Point(20, 260),
+                        AutoSize = true
+                    };
+                    popup.Controls.Add(tfLabel);
+
+                    ComboBox tfComboBox = new ComboBox
+                    {
+                        Name = "tfComboBox", 
+                        Location = new System.Drawing.Point(20, 290),
+                        Width = 200
+                    };
+                    tfComboBox.Items.AddRange(new string[] { "True", "False" });
+                    tfComboBox.SelectedIndex = 0; // Default selection
+                    popup.Controls.Add(tfComboBox);
+                }
+                else if (comboBox.SelectedIndex == 1)
+                {
+                    // Add controls for MCQ options
+                    Label label4 = new Label
+                    {
+                        Text = "Enter number of options for the MCQ question:",
+                        Location = new System.Drawing.Point(20, 260),
+                        AutoSize = true
+                    };
+                    popup.Controls.Add(label4);
+
+                    NumericUpDown numericUpDown2 = new NumericUpDown()
+                    {
+                        Location = new System.Drawing.Point(20, 290),
+                        Width = 200
+                    };
+                    popup.Controls.Add(numericUpDown2);
+
+                    numericUpDown2.ValueChanged += (numSender, numArgs) =>
+                    {
+                        optionNumMCQ = (int)numericUpDown2.Value;
+                        int startY = 330; // Starting Y position for options
+
+                        // Clear previous option controls
+                        var controlsToRemove = popup.Controls.OfType<Control>()
+                            .Where(c => c.Location.Y > 250 && c.Name != "SaveButton").ToList();
+                        foreach (var control in controlsToRemove)
+                        {
+                            popup.Controls.Remove(control);
+                        }
+
+                        for (int i = 0; i < optionNumMCQ; i++)
+                        {
+                            Label optionLabel = new Label
+                            {
+                                Text = $"Option {i + 1}:",
+                                Location = new System.Drawing.Point(20, startY + (i * 40)),
+                                AutoSize = true
+                            };
+                            popup.Controls.Add(optionLabel);
+
+                            TextBox optionTextBox = new TextBox
+                            {
+                                Name = $"optionTextBox{i}", // Assign unique name
+                                Location = new System.Drawing.Point(100, startY + (i * 40)),
+                                Width = 300
+                            };
+                            popup.Controls.Add(optionTextBox);
+
+                            ComboBox validityComboBox = new ComboBox
+                            {
+                                Name = $"validityComboBox{i}", // Assign unique name
+                                Location = new System.Drawing.Point(420, startY + (i * 40)),
+                                Width = 100
+                            };
+                            validityComboBox.Items.AddRange(new string[] { "Valid", "Invalid" });
+                            validityComboBox.SelectedIndex = 0;
+                            popup.Controls.Add(validityComboBox);
+                        }
+                    };
+
+                }
+            };
+
+
+            save.Click += (s, args) =>
+            {
+                string questionText = textBox.Text;
+                int grade = (int)numericUpDown1.Value;
+                string questionType = comboBox.SelectedItem?.ToString();
+
+                // Insert the question
+                int questionId = insertQuestion(questionType, questionText, grade, ExamIdInQuestion);
+
+                if (questionId != -1)
+                {
+                    if (questionType == "MCQ")
+                    {
+                        for (int i = 0; i < optionNumMCQ; i++)
+                        {
+                            TextBox optionTextBox = (TextBox)popup.Controls.Find($"optionTextBox{i}", true).FirstOrDefault();
+                            ComboBox validityComboBox = (ComboBox)popup.Controls.Find($"validityComboBox{i}", true).FirstOrDefault();
+
+                            if (optionTextBox != null && validityComboBox != null)
+                            {
+                                string optionText = optionTextBox.Text;
+                                int isCorrect = validityComboBox.SelectedIndex == 0 ? 1 : 0;
+                                //MessageBox.Show($"optionText {optionText}, isCorrect {isCorrect}, questionId {questionId}");
+                                insertOption(optionText, isCorrect, questionId);
+                            }
+                            else
+                            {
+                                MessageBox.Show($"Error: Option controls for index {i} were not found.");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        ComboBox torf = (ComboBox)popup.Controls.Find("tfComboBox", true).FirstOrDefault();
+                        if (torf != null)
+                        {
+                            int isSelect = torf.SelectedIndex;
+                            if(isSelect == 0)
+                            {
+                                insertOption("T", 1, questionId);
+                                insertOption("F", 0, questionId);
+                            }
+                            else
+                            {
+                                insertOption("T", 0, questionId);
+                                insertOption("F", 1, questionId);
+                            }
+
+                        }
+                        else
+                        {
+                            MessageBox.Show(string.Join(", ", popup.Controls.Cast<Control>().Select(c => c.Name)));
+                        }
+                    }
+                    MessageBox.Show("Question and options saved successfully!");
+                    popup.Close();
+                    ResetForm();
+                    showQuestions();
+                }
+            };
+
+            popup.Controls.Add(save);
             popup.Show();
         }
 
@@ -79,7 +301,7 @@ namespace DBProject
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@ex_id", 1);
+                        command.Parameters.AddWithValue("@ex_id", ExamIdInQuestion);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -148,7 +370,7 @@ namespace DBProject
                 Label questionLabel = new Label
                 {
                     Text = $"Q{question.QuestionId}: {question.QuestionText} ({question.Grade} pts)",
-                    Font = new Font("Arial", 10, FontStyle.Bold),
+                    //Font = new Font("Arial", 10, FontStyle.Bold),
                     Location = new Point(xOffset, yOffset)
                 };
                 scrollablePanel.Controls.Add(questionLabel);
@@ -158,7 +380,7 @@ namespace DBProject
                 {
                     Text = question.QuestionType,
                     AutoSize = true,
-                    Font = new Font("Arial", 9, FontStyle.Italic),
+                    //Font = new Font("Arial", 9, FontStyle.Italic),
                     Location = new Point(scrollablePanel.Width - 150, yOffset), // Right side
                     ForeColor = Color.Gray
                 };
@@ -173,7 +395,7 @@ namespace DBProject
                     {
                         Text = $"- {option.OptionText}",
                         AutoSize = true,
-                        Font = new Font("Arial", 9),
+                        //Font = new Font("Arial", 9),
                         Location = new Point(xOffset + 20, yOffset), // Indented from the question
                         ForeColor = option.IsCorrect ? Color.Green : Color.Black // Highlight correct options in green
                     };
@@ -184,7 +406,21 @@ namespace DBProject
                 yOffset += 15; // Extra space between questions
             }
         }
-        
+        private void ResetForm()
+        {
+            // Clear existing controls in the main form if dynamically added
+            var controlsToRemove = this.Controls.OfType<Control>()
+                .Where(c => !(c is MenuStrip || c is ToolStrip)).ToList();
+
+            foreach (var control in controlsToRemove)
+            {
+                this.Controls.Remove(control);
+            }
+
+            // Reset specific properties or UI components as needed
+            // Example: TextBoxes, ComboBoxes, etc.
+        }
+
         private int insertQuestion(string q_type, string text, int grade, int ex_id)
         {
             int qId = -1;
@@ -227,7 +463,8 @@ namespace DBProject
                     {
                         command.Parameters.AddWithValue("@op_text", op_text);
                         command.Parameters.AddWithValue("@is_correct", is_correct);
-                        command.Parameters.AddWithValue("@grade", q_id);
+                        command.Parameters.AddWithValue("@q_id", q_id);
+                        command.ExecuteNonQuery();
                     }
                 }
                 catch (Exception ex)
