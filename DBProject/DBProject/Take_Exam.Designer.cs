@@ -55,17 +55,25 @@
             examTimer.Tick += ExamTimer_Tick;
             examTimer.Start();
 
-            int timerLabelHeight = lblTimer.Height + 20; 
+            int timerLabelHeight = lblTimer.Height + 20;
 
-            Panel scrollPanel = new Panel
+            scrollPanel = new Panel
             {
+
                 AutoScroll = true,
-                BackColor = Color.White,          
-                Location = new Point(0, timerLabelHeight), 
-                Size = new Size(this.ClientSize.Width, this.ClientSize.Height - timerLabelHeight) // Adjust height dynamically// Adjust height dynamically
+                BackColor = Color.White,
+                Location = new Point(0, timerLabelHeight),
+                Size = new Size(this.ClientSize.Width, this.ClientSize.Height - timerLabelHeight) 
             };
             this.Controls.Add(scrollPanel);
 
+            GenerateQuestions();
+
+            this.ResumeLayout(false);
+        }
+
+        private void GenerateQuestions()
+        {
             int y = 20, q_num = 1; // Starting Y position for the first question 
 
             foreach (var ed in examData)
@@ -155,13 +163,11 @@
                 BackColor = Color.Teal,
                 ForeColor = Color.White,
                 FlatStyle = FlatStyle.Flat,
-                Location = new Point((scrollPanel.ClientSize.Width - 260) / 2, y + 20), 
+                Location = new Point((scrollPanel.ClientSize.Width - 260) / 2, y + 20),
                 Size = new Size(260, 40),
             };
             btnSubmit.Click += SubmitButton_Click;
             scrollPanel.Controls.Add(btnSubmit);
-
-            this.ResumeLayout(false);
         }
 
         #endregion

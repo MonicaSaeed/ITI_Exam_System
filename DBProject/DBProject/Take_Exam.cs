@@ -10,7 +10,9 @@ namespace DBProject
         private System.Windows.Forms.Timer examTimer;
         private int remainingTime;
         private Label lblTimer;
+        private Panel scrollPanel;
         private int stId;
+
 
         public Take_Exam(int st_id, int exam_id)
         {
