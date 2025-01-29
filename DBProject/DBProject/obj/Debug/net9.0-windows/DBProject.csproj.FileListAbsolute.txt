@@ -91,7 +91,6 @@ D:\iti\mobile track\adv_sql\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0
 D:\iti\mobile track\adv_sql\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 D:\iti\mobile track\adv_sql\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\runtimes\win\lib\net8.0\System.Runtime.Caching.dll
 D:\iti\mobile track\adv_sql\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.csproj.AssemblyReference.cache
-D:\iti\mobile track\adv_sql\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.Form1.resources
 D:\iti\mobile track\adv_sql\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.csproj.GenerateResource.cache
 D:\iti\mobile track\adv_sql\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.GeneratedMSBuildEditorConfig.editorconfig
 D:\iti\mobile track\adv_sql\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.AssemblyInfoInputs.cache

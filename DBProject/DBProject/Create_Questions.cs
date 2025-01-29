@@ -21,35 +21,15 @@ namespace DBProject
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int ExamIdInQuestion { get; set; }
-        // set 10 for ExamIdInQuestion
-
         public Create_Questions()
         {
             InitializeComponent();
-            ExamIdInQuestion = 2; // Setting ExamIdInQuestion to 10
-
+            ExamIdInQuestion = 10; // Setting ExamIdInQuestion to 10
         }
 
         private void Create_Questions_Load(object sender, EventArgs e)
         {
-            //label1.Text = "Create Exam: Step Two";
-            //label1.ForeColor = Color.Teal;
-            //label1.Location = new Point(20, 20);
-            ////label1.Font = ("Microsoft Sans Serif", 15, 25);
-            //button1.ForeColor = Color.White;
-            //button1.BackColor = Color.Black;
-            //button1.Location = new Point(800, 500);
-            //button1.Text = "Add Question";
-            //button1.Width = 150;
-            //button1.Height = 50;
-            //this.button1.Click += new System.EventHandler(this.button1_Click);
-
             showQuestions();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -76,7 +56,7 @@ namespace DBProject
             };
 
 
-            // Label for question text
+            // for question text
             Label label = new Label
             {
                 Text = "Enter question text:",
@@ -85,7 +65,6 @@ namespace DBProject
             };
             popup.Controls.Add(label);
 
-            // TextBox for question text
             TextBox textBox = new TextBox
             {
                 Location = new System.Drawing.Point(20, 50),
@@ -93,7 +72,7 @@ namespace DBProject
             };
             popup.Controls.Add(textBox);
 
-            // Label for question grade
+            // for question grade
             Label label2 = new Label
             {
                 Text = "Enter question grade:",
@@ -102,7 +81,6 @@ namespace DBProject
             };
             popup.Controls.Add(label2);
 
-            // NumericUpDown for question grade
             NumericUpDown numericUpDown1 = new NumericUpDown()
             {
                 Location = new System.Drawing.Point(20, 130),
@@ -110,7 +88,7 @@ namespace DBProject
             };
             popup.Controls.Add(numericUpDown1);
 
-            // Label for question type
+            // for question type
             Label label3 = new Label
             {
                 Text = "Select question type:",
@@ -119,7 +97,6 @@ namespace DBProject
             };
             popup.Controls.Add(label3);
 
-            // ComboBox for question type
             ComboBox comboBox = new ComboBox
             {
                 Location = new System.Drawing.Point(20, 210),
@@ -128,12 +105,14 @@ namespace DBProject
             comboBox.Items.AddRange(new string[] { "T/F", "MCQ" });
             popup.Controls.Add(comboBox);
 
-            int optionNumMCQ = 0;
-            int torf = 0;
-            // Event handler for ComboBox selection
+
+            int optionNumMCQ = 0; // to save number of option need to add if question MCQ
+            int torf = 0; // to save true or false is correct if question is t/f
+
+            // Event handler for ComboBox selection(T/F, MCQ)
             comboBox.SelectedIndexChanged += (s, args) =>
             {
-                // Clear previously added controls
+                // Clear previously added controls if select mcq after this select t/f
                 var controlsToRemove = new System.Windows.Forms.Control[popup.Controls.Count];
                 popup.Controls.CopyTo(controlsToRemove, 0);
                 foreach (var control in controlsToRemove)
@@ -144,10 +123,8 @@ namespace DBProject
                     }
                 }
 
-
                 if (comboBox.SelectedIndex == 0)
                 {
-                    // Add a dropdown to specify True or False
                     Label tfLabel = new Label
                     {
                         Text = "Is the statement True or False?",
@@ -168,7 +145,6 @@ namespace DBProject
                 }
                 else if (comboBox.SelectedIndex == 1)
                 {
-                    // Add controls for MCQ options
                     Label label4 = new Label
                     {
                         Text = "Enter number of options for the MCQ question:",
@@ -189,7 +165,7 @@ namespace DBProject
                         optionNumMCQ = (int)numericUpDown2.Value;
                         int startY = 330; // Starting Y position for options
 
-                        // Clear previous option controls
+                        //////Clear previous option controls
                         var controlsToRemove = popup.Controls.OfType<Control>()
                             .Where(c => c.Location.Y > 250 && c.Name != "SaveButton").ToList();
                         foreach (var control in controlsToRemove)
@@ -209,7 +185,7 @@ namespace DBProject
 
                             TextBox optionTextBox = new TextBox
                             {
-                                Name = $"optionTextBox{i}", // Assign unique name
+                                Name = $"optionTextBox{i}", 
                                 Location = new System.Drawing.Point(100, startY + (i * 40)),
                                 Width = 300
                             };
@@ -217,7 +193,7 @@ namespace DBProject
 
                             ComboBox validityComboBox = new ComboBox
                             {
-                                Name = $"validityComboBox{i}", // Assign unique name
+                                Name = $"validityComboBox{i}", 
                                 Location = new System.Drawing.Point(420, startY + (i * 40)),
                                 Width = 100
                             };
@@ -395,12 +371,11 @@ namespace DBProject
 
 
             // Set the initial position for dynamically created controls within the panel
-            int yOffset = 80; // Starting offset, adjust as needed
-            int xOffset = 20; // Horizontal space from the left
+            int yOffset = 80; 
+            int xOffset = 20; 
 
             foreach (var question in questions)
             {
-                // Create and add a label for the question text
                 Label questionLabel = new Label
                 {
                     Text = $"Q{question.QuestionId}: {question.QuestionText} ({question.Grade} pts)",
@@ -409,17 +384,16 @@ namespace DBProject
                 };
                 scrollablePanel.Controls.Add(questionLabel);
 
-                // Create and add a label to display the question type on the right
                 Label questionTypeLabel = new Label
                 {
                     Text = question.QuestionType,
                     AutoSize = true,
-                    Location = new Point(scrollablePanel.Width - 150, yOffset), // Right side
+                    Location = new Point(scrollablePanel.Width - 150, yOffset), 
                     ForeColor = Color.Gray
                 };
                 scrollablePanel.Controls.Add(questionTypeLabel);
 
-                yOffset += questionLabel.Height + 10; // Adjust yOffset for next question (add space)
+                yOffset += questionLabel.Height + 10; 
 
                 foreach (var option in question.Options)
                 {
@@ -428,19 +402,19 @@ namespace DBProject
                     {
                         Text = $"- {option.OptionText}",
                         AutoSize = true,
-                        Location = new Point(xOffset + 20, yOffset), // Indented from the question
+                        Location = new Point(xOffset + 20, yOffset), 
                         ForeColor = option.IsCorrect ? Color.Green : Color.Black
                     };
                     scrollablePanel.Controls.Add(optionLabel);
 
-                    yOffset += optionLabel.Height + 5; // Space between options
+                    yOffset += optionLabel.Height + 5; 
                 }
 
                 yOffset += 15; // Extra space between questions
             }
         }
 
-
+        // data base
         private int insertQuestion(string q_type, string text, int grade, int ex_id)
         {
             int qId = -1;
@@ -493,7 +467,12 @@ namespace DBProject
                 }
             }
         }
-    
+
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+        }
+
     }
 }
 public class QuestionDetails

@@ -11,8 +11,16 @@
       "RelativeMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|solutionrelative:dbproject\\create_questions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|d:\\iti\\mobile track\\adv_sql\\iti_exam_system\\dbproject\\dbproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|solutionrelative:dbproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|d:\\iti\\mobile track\\adv_sql\\iti_exam_system\\dbproject\\dbproject\\create_exam_selecttracks.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|solutionrelative:dbproject\\create_exam_selecttracks.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|d:\\iti\\mobile track\\adv_sql\\iti_exam_system\\dbproject\\dbproject\\create_exam_selecttracks.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|solutionrelative:dbproject\\create_exam_selecttracks.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,11 +30,36 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Create_Exam_SelectTracks.cs [Design]",
+              "DocumentMoniker": "D:\\iti\\mobile track\\adv_sql\\ITI_Exam_System\\DBProject\\DBProject\\Create_Exam_SelectTracks.cs",
+              "RelativeDocumentMoniker": "DBProject\\Create_Exam_SelectTracks.cs",
+              "ToolTip": "D:\\iti\\mobile track\\adv_sql\\ITI_Exam_System\\DBProject\\DBProject\\Create_Exam_SelectTracks.cs [Design]",
+              "RelativeToolTip": "DBProject\\Create_Exam_SelectTracks.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-29T15:22:09.668Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\iti\\mobile track\\adv_sql\\ITI_Exam_System\\DBProject\\DBProject\\Program.cs",
+              "RelativeDocumentMoniker": "DBProject\\Program.cs",
+              "ToolTip": "D:\\iti\\mobile track\\adv_sql\\ITI_Exam_System\\DBProject\\DBProject\\Program.cs",
+              "RelativeToolTip": "DBProject\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwA0AAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-29T15:21:56.312Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -36,7 +69,7 @@
               "RelativeDocumentMoniker": "DBProject\\Create_Questions.cs",
               "ToolTip": "D:\\iti\\mobile track\\adv_sql\\ITI_Exam_System\\DBProject\\DBProject\\Create_Questions.cs",
               "RelativeToolTip": "DBProject\\Create_Questions.cs",
-              "ViewState": "AgIAAG0BAAAAAAAAAAAAAHYBAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAANMAAAAAAAAAAAAAAJkBAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-27T10:50:01.833Z",
               "EditorCaption": ""
@@ -55,13 +88,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Create_Exam_SelectTracks.cs",
               "DocumentMoniker": "D:\\iti\\mobile track\\adv_sql\\ITI_Exam_System\\DBProject\\DBProject\\Create_Exam_SelectTracks.cs",
               "RelativeDocumentMoniker": "DBProject\\Create_Exam_SelectTracks.cs",
               "ToolTip": "D:\\iti\\mobile track\\adv_sql\\ITI_Exam_System\\DBProject\\DBProject\\Create_Exam_SelectTracks.cs",
               "RelativeToolTip": "DBProject\\Create_Exam_SelectTracks.cs",
-              "ViewState": "AgIAAGwAAAAAAAAAAAAAAIMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAACoBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-24T23:22:14.294Z",
               "EditorCaption": ""

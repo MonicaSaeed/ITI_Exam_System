@@ -110,7 +110,7 @@ namespace DBProject
                             using (SqlCommand command = new SqlCommand(insertCourseExamQuery, connection))
                             {
                                 command.Parameters.AddWithValue("@examId", newExamId);
-                                command.Parameters.AddWithValue("@courseId", _courseIdSelected); // Assume course ID is set
+                                command.Parameters.AddWithValue("@courseId", _courseIdSelected); 
                                 command.Parameters.AddWithValue("@trackId", trackId);
                                 command.ExecuteNonQuery();
                             }
@@ -127,40 +127,15 @@ namespace DBProject
                 }
             }
 
+
+            /// to pass ExamIdInQuestion to Create_Questions
             Create_Questions q = new Create_Questions();
             q.ExamIdInQuestion = newExamId;
             q.Show();
             this.Hide();
 
         }
-
-
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Handle item selection changes if needed
-        }
-
-
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
+    
         // to show all courses in flowLayoutPanel1_Paint
         private List<string> coursessName()
         {
@@ -197,7 +172,6 @@ namespace DBProject
 
             return courses;
         }
-        // after select coure click on button 2 will make courseId query and return all trackes in checkedListBox1
         private void courseId(string courseName)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -313,14 +287,27 @@ namespace DBProject
             }
         }
 
+
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-
         }
-
         private void label2_Click(object sender, EventArgs e)
         {
-
+        }
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+        private void label1_Click(object sender, EventArgs e)
+        {
+        }
+        private void label3_Click(object sender, EventArgs e)
+        {
+        }
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+        }
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
         }
     }
 }
