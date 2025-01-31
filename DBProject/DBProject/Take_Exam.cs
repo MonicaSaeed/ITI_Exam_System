@@ -11,7 +11,10 @@ namespace DBProject
         private int remainingTime;
         private Label lblTimer;
         private Panel scrollPanel;
+        private VScrollBar vScrollBar;
+
         private int stId;
+
 
 
         public Take_Exam(int st_id, int exam_id)
@@ -20,6 +23,7 @@ namespace DBProject
             stId = st_id;
             GetExam(exam_id);
             InitializeComponent();
+
         }
         private int getDuration(int examID)
         {
@@ -265,8 +269,15 @@ namespace DBProject
         {
             examTimer.Stop(); 
             SubmitExam(); 
-      
 
+        }
+
+        private void VScrollBar_Scroll(object sender, ScrollEventArgs e)
+        {
+            foreach (Control control in scrollPanel.Controls)
+            {
+                control.Top = control.Top - (e.NewValue - e.OldValue);
+            }
         }
     }
 }

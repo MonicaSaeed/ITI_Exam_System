@@ -21,11 +21,6 @@
         }
 
         #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.SuspendLayout();
@@ -43,13 +38,13 @@
                 BackColor = Color.White,
                 AutoSize = true,
                 BorderStyle = BorderStyle.FixedSingle,
-                Location = new Point((this.ClientSize.Width - 300) / 2, 10) 
+                Location = new Point((this.ClientSize.Width - 300) / 2, 10)
             };
             this.Controls.Add(lblTimer);
 
             examTimer = new System.Windows.Forms.Timer
             {
-                Interval = 1000 
+                Interval = 1000
             };
 
             examTimer.Tick += ExamTimer_Tick;
@@ -59,13 +54,23 @@
 
             scrollPanel = new Panel
             {
-
-                AutoScroll = true,
                 BackColor = Color.White,
                 Location = new Point(0, timerLabelHeight),
-                Size = new Size(this.ClientSize.Width, this.ClientSize.Height - timerLabelHeight) 
+                Size = new Size(this.ClientSize.Width - 25, this.ClientSize.Height - timerLabelHeight),
             };
+
+            vScrollBar = new VScrollBar
+            {
+                Location = new Point(this.ClientSize.Width - 25, timerLabelHeight),
+                Height = this.ClientSize.Height - timerLabelHeight,
+                Width = 25,
+                Minimum = 0,
+                SmallChange = 20,
+            };
+            vScrollBar.Scroll += VScrollBar_Scroll;
+
             this.Controls.Add(scrollPanel);
+            this.Controls.Add(vScrollBar);
 
             GenerateQuestions();
 
@@ -74,7 +79,7 @@
 
         private void GenerateQuestions()
         {
-            int y = 20, q_num = 1; // Starting Y position for the first question 
+            int y = 20, q_num = 1;// Starting Y position for the first question 
 
             foreach (var ed in examData)
             {
@@ -91,12 +96,11 @@
                 };
                 scrollPanel.Controls.Add(questionGroup);
 
-                int optionY = 40; // Starting Y position for options inside the GroupBox
-                int optionX = 20; // Starting X position for the first option in the row
+                int optionY = 40;// Starting Y position for options inside the GroupBox
+                int optionX = 20;// Starting X position for the first option in the row
 
                 bool isMultiAnswer = IsMultiAnswers(ed.Key);
 
-                // Add all options for the current question
                 for (int i = 0; i < ed.Value.Options.Count; i++)
                 {
                     var option = ed.Value.Options[i];
@@ -115,7 +119,7 @@
                             Size = new Size(500, 50),
                             Padding = new Padding(5),
                             Cursor = Cursors.Hand,
-                            Tag = (ed.Key, option.Item2) // Store questionID and optionID in the Tag
+                            Tag = (ed.Key, option.Item2)// Store questionID and optionID in the Tag
                         };
                         optionCheckBox.CheckedChanged += OptionCheckBox_CheckedChanged;
                         questionGroup.Controls.Add(optionCheckBox);
@@ -134,25 +138,25 @@
                             Size = new Size(500, 50),
                             Padding = new Padding(5),
                             Cursor = Cursors.Hand,
-                            Tag = (ed.Key, option.Item2) // Store questionID and optionID in the Tag
+                            Tag = (ed.Key, option.Item2)
                         };
                         optionButton.CheckedChanged += optionButton_CheckedChanged;
                         questionGroup.Controls.Add(optionButton);
                     }
                     if (i % 2 == 0)
                     {
-                        optionX += 520; // Move to the second column
+                        optionX += 520;// Move to the second column
                     }
                     else
                     {
-                        optionX = 20; // Reset X position for the next row
+                        optionX = 20;// Reset X position for the next row
                         optionY += 70; // Move to the next row
                     }
                 }
 
-                questionGroup.Height = optionY + 60; // Add extra space at the bottom
+                questionGroup.Height = optionY + 60;
 
-                y += questionGroup.Height + 20; // Add spacing between questions
+                y += questionGroup.Height + 20;
                 q_num++;
             }
 
@@ -168,7 +172,16 @@
             };
             btnSubmit.Click += SubmitButton_Click;
             scrollPanel.Controls.Add(btnSubmit);
+
+            int totalContentHeight = y + btnSubmit.Height + 40; 
+
+            vScrollBar.Maximum = totalContentHeight;
+            vScrollBar.LargeChange = scrollPanel.Height;
+
         }
+
+       
+
 
         #endregion
     }
