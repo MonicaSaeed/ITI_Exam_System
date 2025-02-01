@@ -27,7 +27,7 @@ namespace DBProject
         }
         private int getDuration(int examID)
         {
-            int duration  = 0 ;
+            int duration = 0;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -53,7 +53,7 @@ namespace DBProject
                 }
 
             }
-            return duration*60; //in seconds
+            return duration * 60; //in seconds
 
         }
         private void ExamTimer_Tick(object sender, EventArgs e)
@@ -64,8 +64,8 @@ namespace DBProject
 
             if (remainingTime <= 0)
             {
-                examTimer.Stop(); 
-                SubmitExam(); 
+                examTimer.Stop();
+                SubmitExam();
             }
         }
         private void GetExam(int exam_id)
@@ -267,8 +267,8 @@ namespace DBProject
         }
         private void SubmitButton_Click(object sender, EventArgs e)
         {
-            examTimer.Stop(); 
-            SubmitExam(); 
+            examTimer.Stop();
+            SubmitExam();
 
         }
 
@@ -278,6 +278,16 @@ namespace DBProject
             {
                 control.Top = control.Top - (e.NewValue - e.OldValue);
             }
+        }
+
+        private void Take_Exam_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void scrollPanel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -19,7 +19,7 @@ namespace DBProject
         private Label label1;
         private Label label2;
         private Size baseFormSize = new Size(1246, 450); // Initialize baseFormSize with the initial form size
-
+        private int ExamId;
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -33,50 +33,49 @@ namespace DBProject
             base.Dispose(disposing);
         }
 
-        List<(string CourseName, DateTime? ExamDate, int? Grade, int CourseID)> courses = new List<(string, DateTime?, int?, int)>();
+        List<(string CourseName, DateTime? ExamDate, int? Grade, int CourseID, int ExamId)> courses = new List<(string, DateTime?, int?, int,int)>();
 
         private void InitializeComponent()
         {
             label1 = new Label();
             label2 = new Label();
             SuspendLayout();
-
-            // Label1
-            label1.Font = new Font("Showcard Gothic",  20, FontStyle.Bold, GraphicsUnit.Point, 0);
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Showcard Gothic", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Teal;
             label1.Location = new Point(25, 18);
             label1.Name = "label1";
-            label1.AutoSize = true;
+            label1.Size = new Size(0, 43);
             label1.TabIndex = 0;
-
-            // Label2
+            // 
+            // label2
+            // 
             label2.BorderStyle = BorderStyle.FixedSingle;
-            label2.AutoSize = false;
-            label2.Font = new Font("Courier New",  15, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Courier New", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.ActiveCaptionText;
+            label2.Location = new Point(0, 0);
+            label2.Name = "label2";
             label2.Size = new Size(753, 50);
             label2.TabIndex = 1;
-            //label1.Location = new Point(50, 18);
-            //label2.Text = "Your Courses";
-            ApplyLetterSpacing(label2, 0.001f, "Your Courses");
             label2.TextAlign = ContentAlignment.MiddleCenter;
-            //label2.Click += label2_Click;
-
-            // Form1
+            label2.Click += label2_Click;
+            // 
+            // Student_Courses
+            // 
             AllowDrop = true;
-            AutoScaleDimensions = new SizeF(10F, 25F);
-            AutoScaleMode = AutoScaleMode.None; // Disable auto-scaling
-            ClientSize = baseFormSize; // Set initial form size
+            AutoScaleMode = AutoScaleMode.None;
+            ClientSize = new Size(1046, 514);
             Controls.Add(label2);
             Controls.Add(label1);
-            Name = "Form1";
-            Text = "Student Courses";
-            Load += Form1_Load;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-
-            //     Resize += Form1_Resize; // Add Resize event handler
+            Name = "Student_Courses";
+            Text = "Student Courses";
+            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -149,9 +148,9 @@ namespace DBProject
 
         //    return courses;
         //}
-        private List<(string CourseName, DateTime? ExamDate, int? Grade, int CourseID)> GetStudentCourses(int studentID)
+        private List<(string CourseName, DateTime? ExamDate, int? Grade, int CourseID, int ExamId)> GetStudentCourses(int studentID)
         {
-            List<(string CourseName, DateTime? ExamDate, int? Grade, int CourseID)> courses = new List<(string, DateTime?, int?, int)>();
+            List<(string CourseName, DateTime? ExamDate, int? Grade, int CourseID,int ExamId)> courses = new List<(string, DateTime?, int?, int,int)>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -159,33 +158,36 @@ namespace DBProject
                 {
                     connection.Open();
                     string query = @"
-SELECT 
-    c.co_name AS CourseName,
-    e.start_date AS ExamDate,
-    ISNULL(SUM(CASE WHEN o.is_correct = 1 THEN q.grade ELSE 0 END), 0) AS Grade,
-    c.co_id AS CourseID
-FROM 
-    Student s
-INNER JOIN 
-    Track t ON s.track_id = t.track_id
-INNER JOIN 
-    Track_Course tc ON t.track_id = tc.track_id
-INNER JOIN 
-    Course c ON tc.co_id = c.co_id
-LEFT JOIN 
-    Course_Exam ce ON c.co_id = ce.co_id AND t.track_id = ce.track_id
-LEFT JOIN 
-    Exam e ON ce.ex_id = e.ex_id
-LEFT JOIN 
-    Question q ON e.ex_id = q.ex_id
-LEFT JOIN 
-    Student_Answer sa ON q.q_id = sa.q_id AND s.st_id = sa.st_id
-LEFT JOIN 
-    [Option] o ON sa.op_id = o.op_id
-WHERE 
-    s.st_id = @StudentID
-GROUP BY 
-    c.co_name, e.start_date, c.co_id;";
+                SELECT 
+                    c.co_name AS CourseName,
+                    e.start_date AS ExamDate,
+                    ISNULL(SUM(CASE WHEN o.is_correct = 1 THEN q.grade ELSE 0 END), 0) AS Grade,
+                    c.co_id AS CourseID,
+                    e.ex_id AS ExamID
+                FROM 
+                    Student s
+                INNER JOIN 
+                    Track t ON s.track_id = t.track_id
+                INNER JOIN 
+                    Track_Course tc ON t.track_id = tc.track_id
+                INNER JOIN 
+                    Course c ON tc.co_id = c.co_id
+                LEFT JOIN 
+                    Course_Exam ce ON c.co_id = ce.co_id AND t.track_id = ce.track_id
+                LEFT JOIN 
+                    Exam e ON ce.ex_id = e.ex_id
+                LEFT JOIN 
+                    Question q ON e.ex_id = q.ex_id
+                LEFT JOIN 
+                    Student_Answer sa ON q.q_id = sa.q_id AND s.st_id = sa.st_id
+                LEFT JOIN 
+                    [Option] o ON sa.op_id = o.op_id
+                WHERE 
+                    s.st_id = @StudentID
+                GROUP BY 
+                    c.co_name, e.start_date, c.co_id,e.ex_id;
+                ";
+
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -198,8 +200,8 @@ GROUP BY
                                 DateTime? examDate = reader["ExamDate"] as DateTime?;
                                 int grade = reader["Grade"] as int? ?? 0; // Default to 0 if null
                                 int courseID = Convert.ToInt32(reader["CourseID"]);
-
-                                courses.Add((courseName, examDate, grade, courseID));
+                                ExamId = reader["ExamID"] != DBNull.Value ? Convert.ToInt32(reader["ExamID"]) : 0;
+                                courses.Add((courseName, examDate, grade, courseID, ExamId));
                             }
                         }
                     }
@@ -280,16 +282,22 @@ GROUP BY
                 }
                 else if (course.ExamDate.Value < DateTime.Now)
                 {
+
+
                     // Case 2: Past exam date (student has answered it, waiting for grade)
                     courseButton.Text += $"\nExam taken on {course.ExamDate.Value.ToShortDateString()}";
                     courseButton.Click += (sender, e) =>
                     {
-                        // Fetch exam results
-                        var (results, totalGrade) = GetExamResults(studentID, course.CourseID); // Replace courseID with the actual course ID
+                        //// Fetch exam results
+                        //var (results, totalGrade) = GetExamResults(studentID, course.CourseID); // Replace courseID with the actual course ID
 
-                        // Show the exam results form
-                        ExamResultsForm examResultsForm = new ExamResultsForm( totalGrade,results);
-                        examResultsForm.ShowDialog();
+                        //// Show the exam results form
+                        //ExamResultsForm examResultsForm = new ExamResultsForm(totalGrade, results);
+                        //examResultsForm.ShowDialog();
+
+                        Take_Exam form2 = new Take_Exam(studentID, course.ExamId);
+                        form2.Show();
+                        this.Hide();
                     };
                     //courseButton.Text += $"\nExam taken on {course.ExamDate.Value.ToShortDateString()}";
                     //courseButton.Click += (sender, e) =>
@@ -297,6 +305,12 @@ GROUP BY
 
                     //    MessageBox.Show($"You have already taken the {course.CourseName} exam on {course.ExamDate.Value.ToShortDateString()}. Please wait for the results.", "Exam Taken");
                     //};
+                }
+                else if (course.ExamDate.Value == DateTime.Now)
+                {
+                    Take_Exam form2 = new Take_Exam(studentID,ExamId);
+                    form2.Show();
+                    this.Hide();
                 }
                 else
                 {

@@ -173,14 +173,14 @@
             btnSubmit.Click += SubmitButton_Click;
             scrollPanel.Controls.Add(btnSubmit);
 
-            int totalContentHeight = y + btnSubmit.Height + 40; 
+            int totalContentHeight = y + btnSubmit.Height + 40;
 
             vScrollBar.Maximum = totalContentHeight;
             vScrollBar.LargeChange = scrollPanel.Height;
 
         }
 
-       
+
 
 
         #endregion
