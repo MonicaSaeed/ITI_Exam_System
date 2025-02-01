@@ -78,7 +78,7 @@ CREATE TABLE Instructor_Course (
 -- Table: Exam
 CREATE TABLE Exam (
     ex_id INT IDENTITY(1,1) PRIMARY KEY,
-    start_date DATE NOT NULL,
+    start_date DateTime NOT NULL,
     duration INT NOT NULL
 );
 
