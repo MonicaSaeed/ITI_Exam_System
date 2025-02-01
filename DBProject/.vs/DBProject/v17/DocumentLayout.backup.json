@@ -1,30 +1,42 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\",
+  "WorkspaceRootPath": "C:\\Users\\HPprobook\\Desktop\\ITI\\Course10-AdvSQL\\Project\\ITI_Exam_System\\DBProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|c:\\users\\mr.genius\\downloads\\iti\\adv sql\\project\\iti_exam_system\\dbproject\\dbproject\\student_courses.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|solutionrelative:dbproject\\student_courses.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|c:\\users\\hpprobook\\desktop\\iti\\course10-advsql\\project\\iti_exam_system\\dbproject\\dbproject\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|solutionrelative:dbproject\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|c:\\users\\mr.genius\\downloads\\iti\\adv sql\\project\\iti_exam_system\\dbproject\\dbproject\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|solutionrelative:dbproject\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|c:\\users\\mr.genius\\downloads\\iti\\adv sql\\project\\iti_exam_system\\dbproject\\dbproject\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|solutionrelative:dbproject\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|c:\\users\\mr.genius\\downloads\\iti\\adv sql\\project\\iti_exam_system\\dbproject\\dbproject\\login.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|c:\\users\\hpprobook\\desktop\\iti\\course10-advsql\\project\\iti_exam_system\\dbproject\\dbproject\\login.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|solutionrelative:dbproject\\login.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|c:\\users\\mr.genius\\downloads\\iti\\adv sql\\project\\iti_exam_system\\dbproject\\dbproject\\dbproject.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|solutionrelative:dbproject\\dbproject.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|c:\\users\\hpprobook\\desktop\\iti\\course10-advsql\\project\\iti_exam_system\\dbproject\\dbproject\\test.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|solutionrelative:dbproject\\test.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|c:\\users\\mr.genius\\downloads\\iti\\adv sql\\project\\iti_exam_system\\dbproject\\dbproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|c:\\users\\hpprobook\\desktop\\iti\\course10-advsql\\project\\iti_exam_system\\dbproject\\dbproject\\test.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|solutionrelative:dbproject\\test.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|c:\\users\\hpprobook\\desktop\\iti\\course10-advsql\\project\\iti_exam_system\\dbproject\\dbproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|solutionrelative:dbproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|c:\\users\\hpprobook\\desktop\\iti\\course10-advsql\\project\\iti_exam_system\\dbproject\\dbproject\\student_courses.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|solutionrelative:dbproject\\student_courses.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|C:\\Users\\HPprobook\\Desktop\\ITI\\Course10-AdvSQL\\Project\\ITI_Exam_System\\DBProject\\dbproject\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|solutionrelative:dbproject\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|c:\\users\\hpprobook\\desktop\\iti\\course10-advsql\\project\\iti_exam_system\\dbproject\\dbproject\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|solutionrelative:dbproject\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|c:\\users\\hpprobook\\desktop\\iti\\course10-advsql\\project\\iti_exam_system\\dbproject\\dbproject\\dbproject.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{BD585CF1-4BDF-4CED-B4E6-CBD524D1AA85}|DBProject\\DBProject.csproj|solutionrelative:dbproject\\dbproject.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,59 +46,59 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Student_Courses.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\DBProject\\Student_Courses.Designer.cs",
-              "RelativeDocumentMoniker": "DBProject\\Student_Courses.Designer.cs",
-              "ToolTip": "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\DBProject\\Student_Courses.Designer.cs*",
-              "RelativeToolTip": "DBProject\\Student_Courses.Designer.cs*",
-              "ViewState": "AgIAACIAAAAAAAAAAAAAAF0AAAA0AAAAAAAAAA==",
+              "Title": "DatabaseHelper.cs",
+              "DocumentMoniker": "C:\\Users\\HPprobook\\Desktop\\ITI\\Course10-AdvSQL\\Project\\ITI_Exam_System\\DBProject\\DBProject\\DatabaseHelper.cs",
+              "RelativeDocumentMoniker": "DBProject\\DatabaseHelper.cs",
+              "ToolTip": "C:\\Users\\HPprobook\\Desktop\\ITI\\Course10-AdvSQL\\Project\\ITI_Exam_System\\DBProject\\DBProject\\DatabaseHelper.cs",
+              "RelativeToolTip": "DBProject\\DatabaseHelper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T09:16:09.179Z",
+              "WhenOpened": "2025-02-01T01:35:22.761Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Test.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\HPprobook\\Desktop\\ITI\\Course10-AdvSQL\\Project\\ITI_Exam_System\\DBProject\\DBProject\\Test.Designer.cs",
+              "RelativeDocumentMoniker": "DBProject\\Test.Designer.cs",
+              "ToolTip": "C:\\Users\\HPprobook\\Desktop\\ITI\\Course10-AdvSQL\\Project\\ITI_Exam_System\\DBProject\\DBProject\\Test.Designer.cs",
+              "RelativeToolTip": "DBProject\\Test.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-01T01:33:57.589Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "LogIn.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\DBProject\\LogIn.cs",
-              "RelativeDocumentMoniker": "DBProject\\LogIn.cs",
-              "ToolTip": "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\DBProject\\LogIn.cs [Design]",
-              "RelativeToolTip": "DBProject\\LogIn.cs [Design]",
+              "Title": "Test.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\HPprobook\\Desktop\\ITI\\Course10-AdvSQL\\Project\\ITI_Exam_System\\DBProject\\DBProject\\Test.cs",
+              "RelativeDocumentMoniker": "DBProject\\Test.cs",
+              "ToolTip": "C:\\Users\\HPprobook\\Desktop\\ITI\\Course10-AdvSQL\\Project\\ITI_Exam_System\\DBProject\\DBProject\\Test.cs [Design]",
+              "RelativeToolTip": "DBProject\\Test.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T09:02:20.657Z",
+              "WhenOpened": "2025-02-01T01:33:29.554Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "DBProject",
-              "DocumentMoniker": "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\DBProject\\DBProject.csproj",
-              "RelativeDocumentMoniker": "DBProject\\DBProject.csproj",
-              "ToolTip": "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\DBProject\\DBProject.csproj",
-              "RelativeToolTip": "DBProject\\DBProject.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-01-25T09:02:13.983Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\DBProject\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\HPprobook\\Desktop\\ITI\\Course10-AdvSQL\\Project\\ITI_Exam_System\\DBProject\\DBProject\\Program.cs",
               "RelativeDocumentMoniker": "DBProject\\Program.cs",
-              "ToolTip": "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\DBProject\\Program.cs",
+              "ToolTip": "C:\\Users\\HPprobook\\Desktop\\ITI\\Course10-AdvSQL\\Project\\ITI_Exam_System\\DBProject\\DBProject\\Program.cs",
               "RelativeToolTip": "DBProject\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-23T18:20:29Z",
               "EditorCaption": ""
@@ -94,27 +106,69 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "LogIn.cs",
-              "DocumentMoniker": "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\DBProject\\LogIn.cs",
-              "RelativeDocumentMoniker": "DBProject\\LogIn.cs",
-              "ToolTip": "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\DBProject\\LogIn.cs",
-              "RelativeToolTip": "DBProject\\LogIn.cs",
-              "ViewState": "AgIAADoAAAAAAAAAAAAAAFAAAAAdAAAAAAAAAA==",
+              "Title": "LogIn.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\HPprobook\\Desktop\\ITI\\Course10-AdvSQL\\Project\\ITI_Exam_System\\DBProject\\DBProject\\LogIn.Designer.cs",
+              "RelativeDocumentMoniker": "DBProject\\LogIn.Designer.cs",
+              "ToolTip": "C:\\Users\\HPprobook\\Desktop\\ITI\\Course10-AdvSQL\\Project\\ITI_Exam_System\\DBProject\\DBProject\\LogIn.Designer.cs",
+              "RelativeToolTip": "DBProject\\LogIn.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-23T17:24:30.871Z",
+              "WhenOpened": "2025-01-23T17:24:19.853Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Student_Courses.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\HPprobook\\Desktop\\ITI\\Course10-AdvSQL\\Project\\ITI_Exam_System\\DBProject\\DBProject\\Student_Courses.Designer.cs",
+              "RelativeDocumentMoniker": "DBProject\\Student_Courses.Designer.cs",
+              "ToolTip": "C:\\Users\\HPprobook\\Desktop\\ITI\\Course10-AdvSQL\\Project\\ITI_Exam_System\\DBProject\\DBProject\\Student_Courses.Designer.cs",
+              "RelativeToolTip": "DBProject\\Student_Courses.Designer.cs",
+              "ViewState": "AgIAAPoAAAAAAAAAAAAwwA4BAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-25T09:16:09.179Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "LogIn.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\DBProject\\LogIn.Designer.cs",
-              "RelativeDocumentMoniker": "DBProject\\LogIn.Designer.cs",
-              "ToolTip": "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\DBProject\\LogIn.Designer.cs",
-              "RelativeToolTip": "DBProject\\LogIn.Designer.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAAAYAAAAWAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "LogIn.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\HPprobook\\Desktop\\ITI\\Course10-AdvSQL\\Project\\ITI_Exam_System\\DBProject\\DBProject\\LogIn.cs",
+              "RelativeDocumentMoniker": "DBProject\\LogIn.cs",
+              "ToolTip": "C:\\Users\\HPprobook\\Desktop\\ITI\\Course10-AdvSQL\\Project\\ITI_Exam_System\\DBProject\\DBProject\\LogIn.cs [Design]",
+              "RelativeToolTip": "DBProject\\LogIn.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-23T17:24:19.853Z",
+              "WhenOpened": "2025-01-25T09:02:20.657Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DBProject.csproj",
+              "DocumentMoniker": "C:\\Users\\HPprobook\\Desktop\\ITI\\Course10-AdvSQL\\Project\\ITI_Exam_System\\DBProject\\DBProject\\DBProject.csproj",
+              "RelativeDocumentMoniker": "DBProject\\DBProject.csproj",
+              "ToolTip": "C:\\Users\\HPprobook\\Desktop\\ITI\\Course10-AdvSQL\\Project\\ITI_Exam_System\\DBProject\\DBProject\\DBProject.csproj*",
+              "RelativeToolTip": "DBProject\\DBProject.csproj*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-01-25T09:02:13.983Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "LogIn.cs",
+              "DocumentMoniker": "C:\\Users\\HPprobook\\Desktop\\ITI\\Course10-AdvSQL\\Project\\ITI_Exam_System\\DBProject\\DBProject\\LogIn.cs",
+              "RelativeDocumentMoniker": "DBProject\\LogIn.cs",
+              "ToolTip": "C:\\Users\\HPprobook\\Desktop\\ITI\\Course10-AdvSQL\\Project\\ITI_Exam_System\\DBProject\\DBProject\\LogIn.cs",
+              "RelativeToolTip": "DBProject\\LogIn.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAIBJwFAAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-23T17:24:30.871Z",
               "EditorCaption": ""
             }
           ]
