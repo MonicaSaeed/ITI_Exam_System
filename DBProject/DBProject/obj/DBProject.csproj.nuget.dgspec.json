@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\DBProject\\DBProject.csproj": {}
+    "E:\\Totorial_ITI\\My_Github_Database\\ITI_Exam_System\\DBProject\\DBProject\\DBProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\DBProject\\DBProject.csproj": {
+    "E:\\Totorial_ITI\\My_Github_Database\\ITI_Exam_System\\DBProject\\DBProject\\DBProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\DBProject\\DBProject.csproj",
+        "projectUniqueName": "E:\\Totorial_ITI\\My_Github_Database\\ITI_Exam_System\\DBProject\\DBProject\\DBProject.csproj",
         "projectName": "DBProject",
-        "projectPath": "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\DBProject\\DBProject.csproj",
-        "packagesPath": "C:\\Users\\MR.GENIUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MR.GENIUS\\Downloads\\ITI\\Adv SQL\\project\\ITI_Exam_System\\DBProject\\DBProject\\obj\\",
+        "projectPath": "E:\\Totorial_ITI\\My_Github_Database\\ITI_Exam_System\\DBProject\\DBProject\\DBProject.csproj",
+        "packagesPath": "C:\\Users\\W10\\.nuget\\packages\\",
+        "outputPath": "E:\\Totorial_ITI\\My_Github_Database\\ITI_Exam_System\\DBProject\\DBProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\MR.GENIUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\W10\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
