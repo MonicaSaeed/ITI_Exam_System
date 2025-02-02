@@ -7,24 +7,74 @@ namespace DBProject
         private Dictionary<int, (string QuestionText, List<(string, int)> Options)> examData = new();
         string connectionString = "Server=localhost\\SQLEXPRESS;Database=ExaminationSystem;Integrated Security=True;TrustServerCertificate=True;";
         private Dictionary<int, List<int>> studentAnswers = new Dictionary<int, List<int>>();
-        private System.Windows.Forms.Timer examTimer;
+        private System.Windows.Forms.Timer? examTimer;
         private int remainingTime;
-        private Label lblTimer;
-        private Panel scrollPanel;
-        private VScrollBar vScrollBar;
+        private Label? lblTimer;
+        private Panel? scrollPanel;
+        private VScrollBar? vScrollBar;
 
-        private int stId;
+        private int stId,Exam_id;
 
 
 
         public Take_Exam(int st_id, int exam_id)
         {
-            remainingTime = getDuration(exam_id);
             stId = st_id;
+            int examDuration = getDuration(exam_id);
+            DateTime examStartTime = DateTime.Now;
+        Exam_id=exam_id;
+
+        // Store the exam start time in the database
+
+        // Calculate the remaining time based on the start time
+        remainingTime = CalculateRemainingTime(st_id, exam_id, examDuration);
+
             GetExam(exam_id);
             InitializeComponent();
 
         }
+        #region modified_yasmeen
+        
+        private int CalculateRemainingTime(int studentId, int examId, int examDuration)
+        {
+            DateTime examStartTime = GetExamStartTime( examId);
+            DateTime currentTime = DateTime.Now;
+            TimeSpan elapsedTime = currentTime - examStartTime;
+
+            int remainingTime = examDuration - (int)elapsedTime.TotalSeconds;
+
+            // Ensure remaining time is not negative
+            return Math.Max(remainingTime, 0);
+        }
+
+        private DateTime GetExamStartTime(int examId)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = @"
+            SELECT start_date
+            FROM Exam
+            WHERE ex_id = @ExamID";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ExamID", examId);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return reader.GetDateTime(0); // Return the start time of the exam
+                        }
+                    }
+                }
+            }
+
+            // If no start time is found, assume the exam starts now
+            return DateTime.Now;
+        }
+        #endregion
         private int getDuration(int examID)
         {
             int duration = 0;
@@ -65,7 +115,7 @@ namespace DBProject
             if (remainingTime <= 0)
             {
                 examTimer.Stop();
-                SubmitExam();
+                SubmitExam(Exam_id);
             }
         }
         private void GetExam(int exam_id)
@@ -231,14 +281,42 @@ namespace DBProject
                 optionButton.ForeColor = Color.White;
             }
         }
-
-        private void SubmitExam()
+        private void SubmitExam(int ExamId)
         {
-
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
+                // Step 1: Record the student's attempt in the database
+                //    string attemptQuery = @"
+                //MERGE INTO Student_Exam_Attempt AS target
+                //USING (VALUES (@StudentID, @ExamID, @Attempted)) AS source (st_id, ex_id, attempted)
+                //ON target.st_id = source.st_id AND target.ex_id = source.ex_id
+                //WHEN MATCHED THEN
+                //    UPDATE SET attempted = source.attempted
+                //WHEN NOT MATCHED THEN
+                //    INSERT (st_id, ex_id, attempted)
+                //    VALUES (source.st_id, source.ex_id, source.attempted);";
+
+                //    using (SqlCommand attemptCommand = new SqlCommand(attemptQuery, connection))
+                //    {
+                //        attemptCommand.Parameters.AddWithValue("@StudentID", stId);
+                //        attemptCommand.Parameters.AddWithValue("@ExamID", ExamId); // Assuming examId is available
+                //        attemptCommand.Parameters.AddWithValue("@Attempted", 1); // Mark as attempted
+                //        attemptCommand.ExecuteNonQuery();
+                //    }
+                string attemptQuery = @"
+INSERT INTO Student_Exam_Attempt (st_id, ex_id)
+values (@StudentID,@ExamID);";
+
+                using (SqlCommand attemptCommand = new SqlCommand(attemptQuery, connection))
+                {
+                    attemptCommand.Parameters.AddWithValue("@StudentID", stId);
+                    attemptCommand.Parameters.AddWithValue("@ExamID", ExamId); // Assuming ExamId is available
+                    attemptCommand.ExecuteNonQuery();
+                }
+
+                // Step 2: Save the student's answers (if any)
                 foreach (var answer in studentAnswers)
                 {
                     int questionID = answer.Key;
@@ -247,15 +325,14 @@ namespace DBProject
                     foreach (int optionID in optionIDs)
                     {
                         string query = @"
-                                        INSERT INTO student_answer (st_id, q_id, op_id)
-                                        VALUES (@StudentID, @QuestionID, @OptionID)";
+                    INSERT INTO student_answer (st_id, q_id, op_id)
+                    VALUES (@StudentID, @QuestionID, @OptionID)";
 
                         using (SqlCommand command = new SqlCommand(query, connection))
                         {
                             command.Parameters.AddWithValue("@StudentID", stId);
                             command.Parameters.AddWithValue("@QuestionID", questionID);
                             command.Parameters.AddWithValue("@OptionID", optionID);
-
                             command.ExecuteNonQuery();
                         }
                     }
@@ -263,12 +340,47 @@ namespace DBProject
             }
 
             MessageBox.Show("Exam Ended! Returning to Home.", "Exam Ended", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Student_Courses form2 = new Student_Courses(stId);
+            form2.Show();
             this.Close();
         }
+        //private void SubmitExam()
+        //{
+
+        //    using (SqlConnection connection = new SqlConnection(connectionString))
+        //    {
+        //        connection.Open();
+
+        //        foreach (var answer in studentAnswers)
+        //        {
+        //            int questionID = answer.Key;
+        //            List<int> optionIDs = answer.Value;
+
+        //            foreach (int optionID in optionIDs)
+        //            {
+        //                string query = @"
+        //                                INSERT INTO student_answer (st_id, q_id, op_id)
+        //                                VALUES (@StudentID, @QuestionID, @OptionID)";
+
+        //                using (SqlCommand command = new SqlCommand(query, connection))
+        //                {
+        //                    command.Parameters.AddWithValue("@StudentID", stId);
+        //                    command.Parameters.AddWithValue("@QuestionID", questionID);
+        //                    command.Parameters.AddWithValue("@OptionID", optionID);
+
+        //                    command.ExecuteNonQuery();
+        //                }
+        //            }
+        //        }
+        //    }
+
+        //    MessageBox.Show("Exam Ended! Returning to Home.", "Exam Ended", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //    this.Close();
+        //}
         private void SubmitButton_Click(object sender, EventArgs e)
         {
             examTimer.Stop();
-            SubmitExam();
+            SubmitExam(Exam_id);
 
         }
 

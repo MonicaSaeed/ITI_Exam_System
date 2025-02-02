@@ -18,7 +18,7 @@ namespace DBProject
         public Student_Courses(int studentID)
         {
             this.studentID = studentID; // Store the student ID
-            baseFormSize = new Size(2000, 1000); // Store the initial form size
+            baseFormSize = new Size(1246, 450); // Store the initial form size
 
             InitializeComponent();
             InitializeCourses();   // Call your custom method to initialize courses

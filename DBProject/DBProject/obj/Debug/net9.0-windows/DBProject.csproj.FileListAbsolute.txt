@@ -166,3 +166,5 @@ C:\Users\MR.GENIUS\Downloads\ITI\Adv SQL\ITI_Exam_System\DBProject\DBProject\obj
 C:\Users\MR.GENIUS\Downloads\ITI\Adv SQL\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.pdb
 C:\Users\MR.GENIUS\Downloads\ITI\Adv SQL\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.genruntimeconfig.cache
 C:\Users\MR.GENIUS\Downloads\ITI\Adv SQL\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\ref\DBProject.dll
+C:\ME\ITI-9\SQL\SQL_Final_Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.Create_Questions.resources
+C:\ME\ITI-9\SQL\SQL_Final_Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.Take_Exam.resources

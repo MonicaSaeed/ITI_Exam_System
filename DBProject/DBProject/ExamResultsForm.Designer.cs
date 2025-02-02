@@ -45,16 +45,26 @@ namespace DBProject
             // Add a label for the total grade
             Label lblTotalGrade = new Label
             {
-                Text = $"Your Total Grade is {totalGrade} {(totalGrade>50 ? " :)" :" :(" )}",
+                Text = $"Your Total Grade is   {totalGrade} degrees {(totalGrade>50 ?  " :)" :" :(" )}",
                 Font = new Font("Showcard Gothic", 16, FontStyle.Bold),
                 ForeColor = Color.Teal,
                 AutoSize = true,
                 Location = new Point(20, 20)
             };
             scrollPanel.Controls.Add(lblTotalGrade);
-           
+            Label horizontalLine1 = new Label
+            {
+                // Text = "bla",
+                // ForeColor = Color.Black,
+                BackColor = Color.Black, // Line color
+                Height = 2, // Line thickness
+                AutoSize = false,
+                Width = this.ClientSize.Width - 40, // Line width (form width minus padding)
+                Location = new Point(20, 80) // Position below the total grade
+            };
+            scrollPanel.Controls.Add(horizontalLine1);
             int y = 120 , q_num=1; // Starting Y position for the first question
-
+          
             foreach (var result in this.results)
             {
                 // Add the question
@@ -64,8 +74,11 @@ namespace DBProject
                     Font = new Font("Courier New", 12, FontStyle.Bold),
                     ForeColor = Color.Black,
                     AutoSize = true,
+                    //Size= new Size(Width,60),
+                    //BorderStyle = BorderStyle.FixedSingle,
                     Location = new Point(20, y)
                 };
+               
                 scrollPanel.Controls.Add(lblQuestion);
                 y += 30;
 
@@ -75,17 +88,35 @@ namespace DBProject
                 {
                     var option = result.Options[i];
 
-                    Button btnOption = new Button
+                    //Button btnOption = new Button
+                    //{
+                    //    Text = option,
+                    //    Font = new Font("Courier New", 12, FontStyle.Regular),
+                    //    ForeColor = Color.Black,
+                    //    BackColor = Color.White, // Default background color
+                    //    FlatStyle = FlatStyle.Flat,
+
+                    //    TextAlign = ContentAlignment.TopLeft, // Align text to the top-left to accommodate wrapping
+                    //    AutoSize = false, // Disable AutoSize to keep the fixed size
+                    //    UseMnemonic = false, // Disable mnemonics
+                    //    AutoEllipsis = false, // Disable text truncation
+                    //    Location = new Point(x, y+10),
+                    //    Size = new Size(500, 60) // Fixed size for uniformity
+                    //};
+                    Label btnOption = new Label
                     {
                         Text = option,
                         Font = new Font("Courier New", 12, FontStyle.Regular),
                         ForeColor = Color.Black,
                         BackColor = Color.White, // Default background color
-                        FlatStyle = FlatStyle.Flat,
-                        AutoSize = true,
-                        Location = new Point(x, y+10),
-                        Size = new Size(500, 30) // Fixed size for uniformity
+                        Size = new Size(500, 60), // Fixed size for uniformity and wrapping
+                        Location = new Point(x, y + 10),
+                        TextAlign = (option == "T" || option == "F")?ContentAlignment.MiddleCenter: ContentAlignment.TopLeft, // Align text to the top-left to accommodate wrapping
+                        AutoSize = false, // Disable AutoSize to keep the fixed size
+                        //MaximumSize = new Size(500, 0), // Ensure text is wrapped when it exceeds the width
+                        BorderStyle = BorderStyle.FixedSingle // Optional: Add a border for a button-like look
                     };
+
 
                     // Highlight the student's chosen answer
                     if (option == result.StudentAnswer)
@@ -121,7 +152,7 @@ namespace DBProject
                     else
                     {
                         x = 40; // Reset X position for the next row
-                        y += 60; // Move to the next row
+                        y += 100; // Move to the next row
                     }
                 }
 
@@ -135,8 +166,22 @@ namespace DBProject
                     Location = new Point(this.ClientSize.Width/2-100, y+30)
                 };
                 scrollPanel.Controls.Add(lblGrade);
+                Label newlabel = new Label { };
+                if (result.StudentAnswer == "null")
+                {
+                    newlabel.Text = "Not Answered !!!";
+                    newlabel.Font = new Font("Showcard Gothic", 12, FontStyle.Bold);
+                    newlabel.ForeColor = Color.Red;
+                    newlabel.AutoSize = true;
+                    //Size= new Size(Width,60),
+                    //BorderStyle = BorderStyle.FixedSingle,
+                    newlabel.Location = new Point(this.ClientSize.Width / 2 +50, y + 30);
+                    // Highlight unanswered questions with a yellow background
+                    // lblQuestion.ForeColor = Color.DarkGoldenrod;
+                }
+                scrollPanel.Controls.Add(newlabel);
                 q_num++;
-                Label horizontalLine1 = new Label
+                 horizontalLine1 = new Label
                 {
                     // Text = "bla",
                     // ForeColor = Color.Black,
