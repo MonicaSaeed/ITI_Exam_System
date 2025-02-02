@@ -26,5 +26,11 @@ namespace InstructorPart
             ExamDisplayForm examDisplayForm = new ExamDisplayForm(1);
             examDisplayForm.ShowDialog();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            GradesForm gradesForm = new GradesForm(1);
+            gradesForm.ShowDialog();
+        }
     }
 }

@@ -168,3 +168,4 @@ C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject
 C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\runtimes\unix\lib\net8.0\System.Data.SqlClient.dll
 C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\runtimes\win\lib\net8.0\System.Data.SqlClient.dll
 C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\InstructorPart.Test.resources
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\InstructorPart.GradesForm.resources
