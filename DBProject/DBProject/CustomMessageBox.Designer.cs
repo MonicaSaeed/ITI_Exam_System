@@ -88,10 +88,11 @@ partial class CustomMessageBox
         //Controls.Add(label1);
         Name = "Form1";
         Text = "Student Test";
-        //Load += Form1_Load;
+        //Load += Form1_Load;     
         MaximizeBox = false;
         MinimizeBox = false;
-        this.FormBorderStyle = FormBorderStyle.FixedSingle;
+        StartPosition = FormStartPosition.CenterScreen;
+        this.FormBorderStyle = FormBorderStyle.FixedDialog;
 
         //     Resize += Form1_Resize; // Add Resize event handler
         ResumeLayout(false);

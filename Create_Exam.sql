@@ -82,3 +82,5 @@ ORDER BY q.q_id
 INSERT INTO Question (q_type, text, grade, ex_id) VALUES ('T/F', 'Encapsulation binds together data and functions that manipulate that data.', 10, 2);
 INSERT INTO [Option] (op_text, is_correct, q_id) VALUES ('A unique identifier for a record', 1, 1);
 INSERT INTO [Option] (op_text, is_correct, q_id) VALUES ('A duplicate value for reference', 0, 1);
+
+

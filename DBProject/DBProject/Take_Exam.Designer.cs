@@ -26,7 +26,10 @@
             this.SuspendLayout();
 
             this.ClientSize = new Size(1200, 650);
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.Text = "Exam";
             this.BackColor = Color.White;
 
@@ -79,10 +82,17 @@
 
         private void GenerateQuestions()
         {
-            int y = 20, q_num = 1;// Starting Y position for the first question 
+            int y = 20, q_num = 1; // Starting Y position for the first question
 
             foreach (var ed in examData)
             {
+
+                Size questionTextSize = TextRenderer.MeasureText(ed.Value.QuestionText, new Font("Segoe UI", 12, FontStyle.Regular));
+                int factorQ = questionTextSize.Width / 1060;
+                int questionTextHeight = (factorQ >= 1) ? 40*(factorQ+1) : 40; // Adjust height if the question is long
+
+
+
                 GroupBox questionGroup = new GroupBox
                 {
                     Text = $"Q{q_num}: {ed.Value.QuestionText}",
@@ -90,20 +100,25 @@
                     ForeColor = Color.Black,
                     BackColor = Color.White,
                     AutoSize = false,
-                    Size = new Size(1100, 150),
+                    Size = new Size(1100, questionTextHeight + 180), // Adjust the height to accommodate the question text
                     Location = new Point(20, y),
                     Padding = new Padding(10)
                 };
                 scrollPanel.Controls.Add(questionGroup);
 
-                int optionY = 40;// Starting Y position for options inside the GroupBox
-                int optionX = 20;// Starting X position for the first option in the row
+                int optionY = questionTextHeight + 20; ; // Starting Y position for options inside the GroupBox
+                int totalOptionHeight = 0; // Track the total height of options
 
                 bool isMultiAnswer = IsMultiAnswers(ed.Key);
 
                 for (int i = 0; i < ed.Value.Options.Count; i++)
                 {
                     var option = ed.Value.Options[i];
+
+                    // Calculate the text height 
+                    Size textSize = TextRenderer.MeasureText(option.Item1, new Font("Segoe UI", 12, FontStyle.Regular));
+                    int factor = textSize.Width / 1060;
+                    int optionHeight = (factor >= 1) ? 40*(factor + 1) : 40; // Adjust height if text is long
 
                     if (isMultiAnswer)
                     {
@@ -115,11 +130,11 @@
                             BackColor = Color.Teal,
                             FlatStyle = FlatStyle.Flat,
                             AutoSize = false,
-                            Location = new Point(optionX, optionY),
-                            Size = new Size(500, 50),
+                            Location = new Point(20, optionY),
+                            Size = new Size(1060, optionHeight), 
                             Padding = new Padding(5),
                             Cursor = Cursors.Hand,
-                            Tag = (ed.Key, option.Item2)// Store questionID and optionID in the Tag
+                            Tag = (ed.Key, option.Item2) // Store questionID and optionID in the Tag
                         };
                         optionCheckBox.CheckedChanged += OptionCheckBox_CheckedChanged;
                         questionGroup.Controls.Add(optionCheckBox);
@@ -134,8 +149,8 @@
                             BackColor = Color.Teal,
                             FlatStyle = FlatStyle.Flat,
                             AutoSize = false,
-                            Location = new Point(optionX, optionY),
-                            Size = new Size(500, 50),
+                            Location = new Point(20, optionY),
+                            Size = new Size(1060, optionHeight), // Use calculated height for option
                             Padding = new Padding(5),
                             Cursor = Cursors.Hand,
                             Tag = (ed.Key, option.Item2)
@@ -143,20 +158,15 @@
                         optionButton.CheckedChanged += optionButton_CheckedChanged;
                         questionGroup.Controls.Add(optionButton);
                     }
-                    if (i % 2 == 0)
-                    {
-                        optionX += 520;// Move to the second column
-                    }
-                    else
-                    {
-                        optionX = 20;// Reset X position for the next row
-                        optionY += 70; // Move to the next row
-                    }
+
+                    optionY += optionHeight + 10; // Increase Y position based on the option height
+                    totalOptionHeight += optionHeight + 10; // Add the height of this option to the total height
                 }
 
-                questionGroup.Height = optionY + 60;
+                // Adjust the height of the GroupBox 
+                questionGroup.Height = totalOptionHeight + questionTextHeight + 50; // Add some padding to the GroupBox height
 
-                y += questionGroup.Height + 20;
+                y += questionGroup.Height + 20; // Update total height for next question
                 q_num++;
             }
 
@@ -164,7 +174,7 @@
             {
                 Text = "Submit",
                 Font = new Font("Segoe UI", 12, FontStyle.Regular),
-                BackColor = Color.Teal,
+                BackColor = Color.Black,
                 ForeColor = Color.White,
                 FlatStyle = FlatStyle.Flat,
                 Location = new Point((scrollPanel.ClientSize.Width - 260) / 2, y + 20),
@@ -177,11 +187,7 @@
 
             vScrollBar.Maximum = totalContentHeight;
             vScrollBar.LargeChange = scrollPanel.Height;
-
         }
-
-
-
 
         #endregion
     }

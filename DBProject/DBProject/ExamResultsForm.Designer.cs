@@ -30,8 +30,11 @@ namespace DBProject
 
             // Set fixed form size
             this.ClientSize = new Size(1200, 650); // Fixed size
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.Text = "Exam Results";
+            MaximizeBox = false;
+            MinimizeBox = false;
+            StartPosition = FormStartPosition.CenterScreen;
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
 
             // Create a panel for scrollable content
             Panel scrollPanel = new Panel

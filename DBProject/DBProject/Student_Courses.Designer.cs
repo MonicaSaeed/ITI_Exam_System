@@ -74,7 +74,8 @@ namespace DBProject
             Load += Form1_Load;
             MaximizeBox = false;
             MinimizeBox = false;
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            StartPosition = FormStartPosition.CenterScreen;
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
 
             //     Resize += Form1_Resize; // Add Resize event handler
             ResumeLayout(false);
@@ -272,22 +273,24 @@ GROUP BY
                     courseButton.Click += (sender, e) =>
                     {
                         CustomMessageBox customMessageBox = new CustomMessageBox(
-   $"No date has been specified \n\nfor the {course.CourseName} exam.", // Message
-   "Exam Not Scheduled", // Title
-   MessageBoxIcon.Error // Icon
+                               $"No date has been specified \n\nfor the {course.CourseName} exam.", // Message
+                               "Exam Not Scheduled", // Title
+                               MessageBoxIcon.Error // Icon
 );
                         customMessageBox.ShowDialog(); // Show the custom message box
                                                        //         MessageBox.Show($"No date has been specified for the {course.CourseName} exam.", "Exam Not Scheduled");
                     };
-                } else {
+                }
+                else
+                {
                     DateTime examDateTime = course.ExamDate.Value;
                     DateTime now = DateTime.Now;
                     if (hasAttempted)
                     {
                         // Case 2: Student has already attempted the exam
                         courseButton.Text += "\nExam already taken";
-                      //  courseButton.BackColor = Color.Gray;
-                     //   courseButton.Enabled = false; // Disable the button
+                        //  courseButton.BackColor = Color.Gray;
+                        //   courseButton.Enabled = false; // Disable the button
                         courseButton.Click += (sender, e) =>
                         {
                             var (results, totalGrade) = GetExamResults(studentID, course.CourseID); // Replace courseID with the actual course ID
@@ -304,29 +307,29 @@ GROUP BY
 
                         //if (timeRemaining.TotalMinutes > 0)
                         //{
-                            courseButton.Click += (sender, e) =>
-                            {
-                                DateTime now = DateTime.Now;
+                        courseButton.Click += (sender, e) =>
+                        {
+                            DateTime now = DateTime.Now;
 
-                                TimeSpan timeRemaining = examDateTime - now;
-                                if (timeRemaining.TotalSeconds > 0)
-                                {
-                                    // MessageBox.Show($"Your {course.CourseName} exam is scheduled for {course.ExamDate.Value.ToShortDateString()}. Please prepare for it.", "Upcoming Exam");
-                                    CustomMessageBox customMessageBox = new CustomMessageBox(
-                $"\nStarts in {timeRemaining.Hours}h {timeRemaining.Minutes}m , {timeRemaining.TotalSeconds}s", // Message
-                "Upcoming Exam", // Title
-                MessageBoxIcon.Information // Icon
-            );
-                                    customMessageBox.ShowDialog(); // Show the custom message box
-                                }
-                                else
-                                {
-                                    Take_Exam examForm = new Take_Exam(studentID, course.ExamId);
-                                    examForm.Show();
-                                    this.Hide();
-                                }
-                            };
-                        
+                            TimeSpan timeRemaining = examDateTime - now;
+                            if (timeRemaining.TotalSeconds > 0)
+                            {
+                                // MessageBox.Show($"Your {course.CourseName} exam is scheduled for {course.ExamDate.Value.ToShortDateString()}. Please prepare for it.", "Upcoming Exam");
+                                CustomMessageBox customMessageBox = new CustomMessageBox(
+            $"\nStarts in {timeRemaining.Hours}h {timeRemaining.Minutes}m , {timeRemaining.Seconds}s", // Message
+            "Upcoming Exam", // Title
+            MessageBoxIcon.Information // Icon
+        );
+                                customMessageBox.ShowDialog(); // Show the custom message box
+                            }
+                            else
+                            {
+                                Take_Exam examForm = new Take_Exam(studentID, course.ExamId);
+                                examForm.Show();
+                                this.Hide();
+                            }
+                        };
+
                         //else
                         //{
                         //    courseButton.Text += "\nExam is available now!";
@@ -381,7 +384,7 @@ GROUP BY
 
                     }
                     // Add the button to the form
-                    
+
                 }
                 this.Controls.Add(courseButton);
                 courseButtons.Add(courseButton);
@@ -433,124 +436,124 @@ GROUP BY
                 q.ex_id IN (SELECT ex_id FROM Course_Exam WHERE co_id = @CourseID);";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
-                        {
-                            command.Parameters.AddWithValue("@StudentID", studentID);
-                            command.Parameters.AddWithValue("@CourseID", courseID);
+                {
+                    command.Parameters.AddWithValue("@StudentID", studentID);
+                    command.Parameters.AddWithValue("@CourseID", courseID);
 
-                            using (SqlDataReader reader = command.ExecuteReader())
-                            {
-                                // Store the results in memory
-                                var questions = new List<(string Question, int? StudentAnswerID, int CorrectAnswerID, int QuestionGrade)>();
-                                while (reader.Read())
-                                {
-                                    string question = reader["Question"]?.ToString() ?? "No Question";
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        // Store the results in memory
+                        var questions = new List<(string Question, int? StudentAnswerID, int CorrectAnswerID, int QuestionGrade)>();
+                        while (reader.Read())
+                        {
+                            string question = reader["Question"]?.ToString() ?? "No Question";
                             int? studentAnswerID = reader["StudentAnswerID"] as int?; // Handle DBNull
-                          //  string studentAnswerID = (reader["StudentAnswerID"]==null) ? "No Answer":reader["StudentAnswerID"].ToString();
+                                                                                      //  string studentAnswerID = (reader["StudentAnswerID"]==null) ? "No Answer":reader["StudentAnswerID"].ToString();
 
                             int correctAnswerID = Convert.ToInt32(reader["CorrectAnswerID"]);
-        int questionGrade = Convert.ToInt32(reader["QuestionGrade"]);
+                            int questionGrade = Convert.ToInt32(reader["QuestionGrade"]);
                             //int temp = (studentAnswerID!="No Answer" ? Convert.ToInt32(studentAnswerID) : 0);
-        questions.Add((question, studentAnswerID, correctAnswerID, questionGrade));
-                                }
-                                
-    // Close the reader before executing additional queries
-    reader.Close();
+                            questions.Add((question, studentAnswerID, correctAnswerID, questionGrade));
+                        }
 
-                                // Process each question
-                                foreach (var question in questions)
-                                {
-                                    // Step 2: Fetch options for the current question
-                                    List<string> options = GetOptionsForQuestion(connection, question.Question);
+                        // Close the reader before executing additional queries
+                        reader.Close();
 
-    // Step 3: Fetch the student's answer and correct answer text
-    string studentAnswer = (question.StudentAnswerID !=0)?GetOptionText(connection, question.StudentAnswerID):"No Answer";
-    string correctAnswer = GetOptionText(connection, question.CorrectAnswerID);
+                        // Process each question
+                        foreach (var question in questions)
+                        {
+                            // Step 2: Fetch options for the current question
+                            List<string> options = GetOptionsForQuestion(connection, question.Question);
 
-    // Step 4: Determine if the student's answer is correct
-    bool isCorrect = question.StudentAnswerID == question.CorrectAnswerID;
+                            // Step 3: Fetch the student's answer and correct answer text
+                            string studentAnswer = (question.StudentAnswerID != 0) ? GetOptionText(connection, question.StudentAnswerID) : "No Answer";
+                            string correctAnswer = GetOptionText(connection, question.CorrectAnswerID);
 
-    // Add the result to the list
-    results.Add((question.Question, options, studentAnswer, correctAnswer, isCorrect, question.QuestionGrade));
+                            // Step 4: Determine if the student's answer is correct
+                            bool isCorrect = question.StudentAnswerID == question.CorrectAnswerID;
 
-                                    // Update the total grade
-                                    if (isCorrect)
-                                    {
-                                        totalGrade += question.QuestionGrade;
-                                    }
-                                }
+                            // Add the result to the list
+                            results.Add((question.Question, options, studentAnswer, correctAnswer, isCorrect, question.QuestionGrade));
+
+                            // Update the total grade
+                            if (isCorrect)
+                            {
+                                totalGrade += question.QuestionGrade;
                             }
                         }
                     }
-
-                    return (results, totalGrade);
                 }
+            }
+
+            return (results, totalGrade);
+        }
         #endregion
 
         #region NEW_ONE
         //private (List<(string Question, List<string> Options, string StudentAnswer, string CorrectAnswer, bool IsCorrect, int QuestionGrade)>, int TotalGrade)
-    //GetExamResults(int studentId, int courseID)
-    //    {
-    //        var results = new List<(string Question, List<string> Options, string StudentAnswer, string CorrectAnswer, bool IsCorrect, int QuestionGrade)>();
-    //        int totalGrade = 0;
+        //GetExamResults(int studentId, int courseID)
+        //    {
+        //        var results = new List<(string Question, List<string> Options, string StudentAnswer, string CorrectAnswer, bool IsCorrect, int QuestionGrade)>();
+        //        int totalGrade = 0;
 
-    //        using (SqlConnection connection = new SqlConnection(connectionString))
-    //        {
-    //            connection.Open();
+        //        using (SqlConnection connection = new SqlConnection(connectionString))
+        //        {
+        //            connection.Open();
 
-    //            // Step 1: Fetch all questions and their correct answers
-    //            string query = @"
-    //        SELECT 
-    //            q.text AS Question,
-    //            q.grade AS QuestionGrade,
-    //            correct_op.op_text AS CorrectAnswer,
-    //            sa.op_id AS StudentAnswerID,
-    //            o.op_text AS StudentAnswer
-    //        FROM 
-    //            Question q
-    //        INNER JOIN 
-    //            [Option] correct_op ON q.q_id = correct_op.q_id AND correct_op.is_correct = 1
-    //        LEFT JOIN 
-    //            Student_Answer sa ON q.q_id = sa.q_id AND sa.st_id = @StudentID
-    //        LEFT JOIN 
-    //            [Option] o ON sa.op_id = o.op_id
-    //        WHERE 
-    //            q.ex_id IN (SELECT ex_id FROM Course_Exam WHERE co_id = @CourseID);";
+        //            // Step 1: Fetch all questions and their correct answers
+        //            string query = @"
+        //        SELECT 
+        //            q.text AS Question,
+        //            q.grade AS QuestionGrade,
+        //            correct_op.op_text AS CorrectAnswer,
+        //            sa.op_id AS StudentAnswerID,
+        //            o.op_text AS StudentAnswer
+        //        FROM 
+        //            Question q
+        //        INNER JOIN 
+        //            [Option] correct_op ON q.q_id = correct_op.q_id AND correct_op.is_correct = 1
+        //        LEFT JOIN 
+        //            Student_Answer sa ON q.q_id = sa.q_id AND sa.st_id = @StudentID
+        //        LEFT JOIN 
+        //            [Option] o ON sa.op_id = o.op_id
+        //        WHERE 
+        //            q.ex_id IN (SELECT ex_id FROM Course_Exam WHERE co_id = @CourseID);";
 
-    //            using (SqlCommand command = new SqlCommand(query, connection))
-    //            {
-    //                command.Parameters.AddWithValue("@StudentID", studentId);
-    //                command.Parameters.AddWithValue("@CourseID", courseID);
+        //            using (SqlCommand command = new SqlCommand(query, connection))
+        //            {
+        //                command.Parameters.AddWithValue("@StudentID", studentId);
+        //                command.Parameters.AddWithValue("@CourseID", courseID);
 
-    //                using (SqlDataReader reader = command.ExecuteReader())
-    //                {
-    //                    while (reader.Read())
-    //                    {
-    //                        string question = reader["Question"]?.ToString() ?? "No Question";
-    //                        int questionGrade = Convert.ToInt32(reader["QuestionGrade"]);
-    //                        string correctAnswer = reader["CorrectAnswer"]?.ToString() ?? "No Correct Answer";
-    //                        string studentAnswer = reader["StudentAnswer"]?.ToString() ?? "No Answer";
+        //                using (SqlDataReader reader = command.ExecuteReader())
+        //                {
+        //                    while (reader.Read())
+        //                    {
+        //                        string question = reader["Question"]?.ToString() ?? "No Question";
+        //                        int questionGrade = Convert.ToInt32(reader["QuestionGrade"]);
+        //                        string correctAnswer = reader["CorrectAnswer"]?.ToString() ?? "No Correct Answer";
+        //                        string studentAnswer = reader["StudentAnswer"]?.ToString() ?? "No Answer";
 
-    //                        // Fetch all options for the question
-    //                        List<string> options = GetOptionsForQuestion(connection, question);
+        //                        // Fetch all options for the question
+        //                        List<string> options = GetOptionsForQuestion(connection, question);
 
-    //                        // Determine if the student's answer is correct
-    //                        bool isCorrect = studentAnswer == correctAnswer;
+        //                        // Determine if the student's answer is correct
+        //                        bool isCorrect = studentAnswer == correctAnswer;
 
-    //                        // Add the result to the list
-    //                        results.Add((question, options, studentAnswer, correctAnswer, isCorrect, questionGrade));
+        //                        // Add the result to the list
+        //                        results.Add((question, options, studentAnswer, correctAnswer, isCorrect, questionGrade));
 
-    //                        // Update the total grade if the answer is correct
-    //                        if (isCorrect)
-    //                        {
-    //                            totalGrade += questionGrade;
-    //                        }
-    //                    }
-    //                }
-    //            }
-    //        }
+        //                        // Update the total grade if the answer is correct
+        //                        if (isCorrect)
+        //                        {
+        //                            totalGrade += questionGrade;
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //        }
 
-    //        return (results, totalGrade);
-    //    }
+        //        return (results, totalGrade);
+        //    }
         #endregion
         private List<string> GetOptionsForQuestion(SqlConnection connection, string question)
         {

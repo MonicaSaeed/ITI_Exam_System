@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.VisualBasic.Devices;
 
 namespace DBProject
 {
@@ -53,9 +54,9 @@ namespace DBProject
             {
                 connection.Open();
                 string query = @"
-            SELECT start_date
-            FROM Exam
-            WHERE ex_id = @ExamID";
+                        SELECT start_date
+                        FROM Exam
+                        WHERE ex_id = @ExamID";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -157,9 +158,6 @@ namespace DBProject
                 }
             }
         }
-
-
-
 
         private List<(string, int)> GetOptionsForQuestion(SqlConnection connection, int questionID)
         {
@@ -286,28 +284,10 @@ namespace DBProject
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-
-                // Step 1: Record the student's attempt in the database
-                //    string attemptQuery = @"
-                //MERGE INTO Student_Exam_Attempt AS target
-                //USING (VALUES (@StudentID, @ExamID, @Attempted)) AS source (st_id, ex_id, attempted)
-                //ON target.st_id = source.st_id AND target.ex_id = source.ex_id
-                //WHEN MATCHED THEN
-                //    UPDATE SET attempted = source.attempted
-                //WHEN NOT MATCHED THEN
-                //    INSERT (st_id, ex_id, attempted)
-                //    VALUES (source.st_id, source.ex_id, source.attempted);";
-
-                //    using (SqlCommand attemptCommand = new SqlCommand(attemptQuery, connection))
-                //    {
-                //        attemptCommand.Parameters.AddWithValue("@StudentID", stId);
-                //        attemptCommand.Parameters.AddWithValue("@ExamID", ExamId); // Assuming examId is available
-                //        attemptCommand.Parameters.AddWithValue("@Attempted", 1); // Mark as attempted
-                //        attemptCommand.ExecuteNonQuery();
-                //    }
+             
                 string attemptQuery = @"
-INSERT INTO Student_Exam_Attempt (st_id, ex_id)
-values (@StudentID,@ExamID);";
+                    INSERT INTO Student_Exam_Attempt (st_id, ex_id)
+                    values (@StudentID,@ExamID);";
 
                 using (SqlCommand attemptCommand = new SqlCommand(attemptQuery, connection))
                 {
@@ -325,8 +305,8 @@ values (@StudentID,@ExamID);";
                     foreach (int optionID in optionIDs)
                     {
                         string query = @"
-                    INSERT INTO student_answer (st_id, q_id, op_id)
-                    VALUES (@StudentID, @QuestionID, @OptionID)";
+                                    INSERT INTO student_answer (st_id, q_id, op_id)
+                                    VALUES (@StudentID, @QuestionID, @OptionID)";
 
                         using (SqlCommand command = new SqlCommand(query, connection))
                         {
@@ -339,44 +319,18 @@ values (@StudentID,@ExamID);";
                 }
             }
 
-            MessageBox.Show("Exam Ended! Returning to Home.", "Exam Ended", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            CustomMessageBox customMessageBox = new CustomMessageBox(
+                               $"Exam Ended!\nBack To Your Courses.", 
+                               "Exam Ended", 
+                               MessageBoxIcon.Information );
+
+                                    customMessageBox.ShowDialog(); // Show the custom message box
+                                           
+
             Student_Courses form2 = new Student_Courses(stId);
             form2.Show();
             this.Close();
         }
-        //private void SubmitExam()
-        //{
-
-        //    using (SqlConnection connection = new SqlConnection(connectionString))
-        //    {
-        //        connection.Open();
-
-        //        foreach (var answer in studentAnswers)
-        //        {
-        //            int questionID = answer.Key;
-        //            List<int> optionIDs = answer.Value;
-
-        //            foreach (int optionID in optionIDs)
-        //            {
-        //                string query = @"
-        //                                INSERT INTO student_answer (st_id, q_id, op_id)
-        //                                VALUES (@StudentID, @QuestionID, @OptionID)";
-
-        //                using (SqlCommand command = new SqlCommand(query, connection))
-        //                {
-        //                    command.Parameters.AddWithValue("@StudentID", stId);
-        //                    command.Parameters.AddWithValue("@QuestionID", questionID);
-        //                    command.Parameters.AddWithValue("@OptionID", optionID);
-
-        //                    command.ExecuteNonQuery();
-        //                }
-        //            }
-        //        }
-        //    }
-
-        //    MessageBox.Show("Exam Ended! Returning to Home.", "Exam Ended", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //    this.Close();
-        //}
         private void SubmitButton_Click(object sender, EventArgs e)
         {
             examTimer.Stop();
@@ -390,16 +344,6 @@ values (@StudentID,@ExamID);";
             {
                 control.Top = control.Top - (e.NewValue - e.OldValue);
             }
-        }
-
-        private void Take_Exam_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void scrollPanel_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
