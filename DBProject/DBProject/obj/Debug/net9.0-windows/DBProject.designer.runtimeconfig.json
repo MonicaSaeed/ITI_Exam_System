@@ -12,7 +12,7 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\MR.GENIUS\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\W10\\.dotnet\\store\\|arch|\\|tfm|",
       "C:\\Users\\MR.GENIUS\\.nuget\\packages",
       "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
     ],
