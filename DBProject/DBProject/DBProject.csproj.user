@@ -13,7 +13,13 @@
     <Compile Update="CustomMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="ExamDisplayForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="ExamResultsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GradesForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Instructor_Courses.cs">
@@ -29,6 +35,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Take_Exam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Test.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

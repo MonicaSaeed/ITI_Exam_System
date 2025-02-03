@@ -1,3 +1,5 @@
+using InstructorPart;
+
 namespace DBProject
 {
     internal static class Program
