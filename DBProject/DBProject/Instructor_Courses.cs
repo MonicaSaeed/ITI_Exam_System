@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace DBProject
 {
-    public partial class Student_Courses : Form
+    public partial class Instructor_Courses : Form
     {
         private int studentID;
         string connectionString = "Server=localhost\\SQLEXPRESS;Database=ExaminationSystem;Integrated Security=True;TrustServerCertificate=True;";
 
-        public Student_Courses(int studentID)
+        public Instructor_Courses(int studentID)
         {
             this.studentID = studentID; // Store the student ID
             baseFormSize = new Size(1246, 450); // Store the initial form size
@@ -35,6 +35,11 @@ namespace DBProject
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click_1(object sender, EventArgs e)
         {
 
         }
