@@ -91,12 +91,9 @@ namespace DBProject
                 else
                 {
 
-                    //var instructorForm = new InstructorForm(returnedId);
-                    //studentForm.Show();
-                    //this.Hide();
-
-                    MessageBox.Show($"Instructor id {returnedId}.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                    Instructor_Courses instructorForm = new Instructor_Courses(int.Parse(returnedId));
+                    instructorForm.Show();
+                    this.Hide();
 
                 }
 

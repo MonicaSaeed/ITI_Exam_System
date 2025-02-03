@@ -115,6 +115,10 @@ namespace DBProject
                 Location = new Point(400, panel.Bottom + 20) // Below the last panel
             };
 
+            addExamButton.Click += (sender, e) => {
+                Create_Exam_SelectTracks examDisplayForm = new Create_Exam_SelectTracks(instructor_id);
+                examDisplayForm.ShowDialog();
+            };
             this.Controls.Add(addExamButton);
         }
 

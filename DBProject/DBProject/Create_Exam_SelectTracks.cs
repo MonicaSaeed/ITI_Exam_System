@@ -15,7 +15,7 @@ namespace DBProject
 {
     public partial class Create_Exam_SelectTracks : Form
     {
-        int instructorId = 1; // Replace with actual instructor ID
+        int instructorId; // Replace with actual instructor ID
 
         private string _courseNameSelected;
         private int _courseIdSelected;
@@ -25,8 +25,10 @@ namespace DBProject
 
         string connectionString = "Server=localhost\\SQLEXPRESS;Database=ExaminationSystem;Integrated Security=True;TrustServerCertificate=True;";
 
-        public Create_Exam_SelectTracks()
+        public Create_Exam_SelectTracks(int insId)
         {
+            instructorId = insId;
+             
             InitializeComponent();
         }
 
