@@ -106,6 +106,7 @@ C:\ME\ITI-9\SQL\SQL_Final_Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\
 C:\ME\ITI-9\SQL\SQL_Final_Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.genruntimeconfig.cache
 C:\ME\ITI-9\SQL\SQL_Final_Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\ref\DBProject.dll
 C:\Users\MR.GENIUS\Downloads\ITI\Adv SQL\project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.Student_Courses.resources
+<<<<<<< HEAD
 C:\ME\ITI-9\SQL\SQL_Final_Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\CustomMessageBox.resources
 C:\ME\ITI-9\SQL\SQL_Final_Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.ExamResultsForm.resources
 C:\Users\MR.GENIUS\Downloads\ITI\Adv SQL\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\DBProject.exe
@@ -290,3 +291,77 @@ C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\another branch of project\ITI_Exa
 C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\another branch of project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.pdb
 C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\another branch of project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.genruntimeconfig.cache
 C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\another branch of project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\ref\DBProject.dll
+=======
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\DBProject.exe
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\DBProject.deps.json
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\DBProject.runtimeconfig.json
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\DBProject.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\DBProject.pdb
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\Azure.Core.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\Azure.Identity.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\Microsoft.Data.SqlClient.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\Microsoft.Identity.Client.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\Microsoft.Identity.Client.Extensions.Msal.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\Microsoft.IdentityModel.Logging.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\Microsoft.IdentityModel.Protocols.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\Microsoft.IdentityModel.Tokens.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\Microsoft.SqlServer.Server.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\System.ClientModel.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\System.Memory.Data.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\System.Runtime.Caching.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\de\Microsoft.Data.SqlClient.resources.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\es\Microsoft.Data.SqlClient.resources.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\fr\Microsoft.Data.SqlClient.resources.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\it\Microsoft.Data.SqlClient.resources.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\ja\Microsoft.Data.SqlClient.resources.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\ko\Microsoft.Data.SqlClient.resources.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\pt-BR\Microsoft.Data.SqlClient.resources.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\ru\Microsoft.Data.SqlClient.resources.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\zh-Hans\Microsoft.Data.SqlClient.resources.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\zh-Hant\Microsoft.Data.SqlClient.resources.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\runtimes\unix\lib\net8.0\Microsoft.Data.SqlClient.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\runtimes\win\lib\net8.0\Microsoft.Data.SqlClient.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\runtimes\win\lib\net8.0\System.Runtime.Caching.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.csproj.AssemblyReference.cache
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.LogIn.resources
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.Student_Courses.resources
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.csproj.GenerateResource.cache
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.AssemblyInfoInputs.cache
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.AssemblyInfo.cs
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.csproj.CoreCompileInputs.cache
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.sourcelink.json
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.csproj.Up2Date
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\refint\DBProject.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.pdb
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\DBProject.genruntimeconfig.cache
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\ref\DBProject.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\InstructorPart.ExamDisplayForm.resources
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\System.Data.SqlClient.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\runtimes\win-arm64\native\sni.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\runtimes\win-x64\native\sni.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\runtimes\win-x86\native\sni.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\runtimes\unix\lib\net8.0\System.Data.SqlClient.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\runtimes\win\lib\net8.0\System.Data.SqlClient.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\InstructorPart.Test.resources
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\Project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\InstructorPart.GradesForm.resources
+>>>>>>> origin/feature/instructor-dashboard
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\another branch of project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\InstructorPart.ExamDisplayForm.resources
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\another branch of project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\InstructorPart.GradesForm.resources
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\another branch of project\ITI_Exam_System\DBProject\DBProject\obj\Debug\net9.0-windows\InstructorPart.Test.resources
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\another branch of project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\System.Data.SqlClient.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\another branch of project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\runtimes\win-arm64\native\sni.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\another branch of project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\runtimes\win-x64\native\sni.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\another branch of project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\runtimes\win-x86\native\sni.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\another branch of project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\runtimes\unix\lib\net8.0\System.Data.SqlClient.dll
+C:\Users\HPprobook\Desktop\ITI\Course10-AdvSQL\another branch of project\ITI_Exam_System\DBProject\DBProject\bin\Debug\net9.0-windows\runtimes\win\lib\net8.0\System.Data.SqlClient.dll

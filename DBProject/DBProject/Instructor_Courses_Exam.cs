@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
+using InstructorPart;
 using Microsoft.Data.SqlClient;
 
 namespace DBProject
@@ -58,12 +58,16 @@ namespace DBProject
 
                 Button viewGradesButton = new Button
                 {
-                    Text = "View Grades",
+                    Text = "Grades",
                     BackColor = Color.Black,
                     ForeColor = Color.White,
                     Location = new Point(400, 10),
                     Width = 90,
                     Height = 40,
+                };
+                viewGradesButton.Click += (sender, e) => {
+                    GradesForm gradesForm = new GradesForm(1);
+                    gradesForm.ShowDialog();
                 };
 
                 Button viewExamButton = new Button
@@ -74,6 +78,10 @@ namespace DBProject
                     Location = new Point(500, 10),
                     Width = 90,
                     Height = 40,
+                };
+                viewExamButton.Click += (sender, e) => {
+                    ExamDisplayForm examDisplayForm = new ExamDisplayForm(1);
+                    examDisplayForm.ShowDialog();
                 };
 
                 Button deleteButton = new Button
