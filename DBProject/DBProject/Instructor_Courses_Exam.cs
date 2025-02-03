@@ -10,11 +10,13 @@ namespace DBProject
     public partial class Instructor_Courses_Exam : Form
     {
         string connectionString = "Server=localhost\\SQLEXPRESS;Database=ExaminationSystem;Integrated Security=True;TrustServerCertificate=True;";
-        int course_id = 1;
-        int instructor_id = 1;
+        int course_id ;
+        int instructor_id ;
 
-        public Instructor_Courses_Exam()
+        public Instructor_Courses_Exam( int _course_id, int _instructor_id)
         {
+            course_id = _course_id ;
+            instructor_id = _instructor_id;
             InitializeComponent();
             LoadCourses();
         }

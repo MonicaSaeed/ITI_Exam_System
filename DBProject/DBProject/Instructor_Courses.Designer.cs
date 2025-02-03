@@ -199,7 +199,12 @@ WHERE
                 // Determine the course status based on the exam date
                 this.Controls.Add(courseButton);
                 courseButtons.Add(courseButton);
-                courseButton.Click += (sender, e) => {  }; ///////////////////////////////////
+                courseButton.Click += (sender, e) => {
+                    Instructor_Courses_Exam instructor_Courses_Exam = new Instructor_Courses_Exam(course.CourseID, studentID);
+                    this.Hide();
+                    instructor_Courses_Exam.ShowDialog();
+                    
+                }; ///////////////////////////////////
             }
         }
         private void CenterLabel2()

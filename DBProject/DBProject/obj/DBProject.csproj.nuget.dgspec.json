@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\iti\\mobile track\\adv_sql\\ITI_Exam_System\\DBProject\\DBProject\\DBProject.csproj": {}
+    "C:\\Users\\HPprobook\\Desktop\\ITI\\Course10-AdvSQL\\another branch of project\\ITI_Exam_System\\DBProject\\DBProject\\DBProject.csproj": {}
   },
   "projects": {
-    "D:\\iti\\mobile track\\adv_sql\\ITI_Exam_System\\DBProject\\DBProject\\DBProject.csproj": {
+    "C:\\Users\\HPprobook\\Desktop\\ITI\\Course10-AdvSQL\\another branch of project\\ITI_Exam_System\\DBProject\\DBProject\\DBProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\iti\\mobile track\\adv_sql\\ITI_Exam_System\\DBProject\\DBProject\\DBProject.csproj",
+        "projectUniqueName": "C:\\Users\\HPprobook\\Desktop\\ITI\\Course10-AdvSQL\\another branch of project\\ITI_Exam_System\\DBProject\\DBProject\\DBProject.csproj",
         "projectName": "DBProject",
-        "projectPath": "D:\\iti\\mobile track\\adv_sql\\ITI_Exam_System\\DBProject\\DBProject\\DBProject.csproj",
-        "packagesPath": "C:\\Users\\monic\\.nuget\\packages\\",
-        "outputPath": "D:\\iti\\mobile track\\adv_sql\\ITI_Exam_System\\DBProject\\DBProject\\obj\\",
+        "projectPath": "C:\\Users\\HPprobook\\Desktop\\ITI\\Course10-AdvSQL\\another branch of project\\ITI_Exam_System\\DBProject\\DBProject\\DBProject.csproj",
+        "packagesPath": "C:\\Users\\HPprobook\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\HPprobook\\Desktop\\ITI\\Course10-AdvSQL\\another branch of project\\ITI_Exam_System\\DBProject\\DBProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\monic\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\HPprobook\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
