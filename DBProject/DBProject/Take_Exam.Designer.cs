@@ -110,15 +110,26 @@
                 int totalOptionHeight = 0; // Track the total height of options
 
                 bool isMultiAnswer = IsMultiAnswers(ed.Key);
+                int x = 40;// Starting X position for the first option
+                int finalHeight = 0;
+                for (int i = 0; i < ed.Value.Options.Count; i++)
+                {
+                    var option = ed.Value.Options[i];
 
+                    Size textSize = TextRenderer.MeasureText(option.Item1, new Font("Courier New", 12, FontStyle.Regular));
+
+                    int factor = textSize.Width / 1060;
+                    int optionHeight = (factor >= 1) ? 40 * (factor + 1) : 40; // Adjust height if text is long
+                    finalHeight = Math.Max(finalHeight, optionHeight);
+                };
                 for (int i = 0; i < ed.Value.Options.Count; i++)
                 {
                     var option = ed.Value.Options[i];
 
                     // Calculate the text height 
-                    Size textSize = TextRenderer.MeasureText(option.Item1, new Font("Segoe UI", 12, FontStyle.Regular));
-                    int factor = textSize.Width / 1060;
-                    int optionHeight = (factor >= 1) ? 40*(factor + 1) : 40; // Adjust height if text is long
+                    //Size textSize = TextRenderer.MeasureText(option.Item1, new Font("Segoe UI", 12, FontStyle.Regular));
+                    //int factor = textSize.Width / 1060;
+                    //int optionHeight = (factor >= 1) ? 40*(factor + 1) : 40; // Adjust height if text is long
 
                     if (isMultiAnswer)
                     {
@@ -130,8 +141,9 @@
                             BackColor = Color.Teal,
                             FlatStyle = FlatStyle.Flat,
                             AutoSize = false,
-                            Location = new Point(20, optionY),
-                            Size = new Size(1060, optionHeight), 
+                            Location = new Point(x, optionY),
+
+                            Size = new Size(500, finalHeight + 10), 
                             Padding = new Padding(5),
                             Cursor = Cursors.Hand,
                             Tag = (ed.Key, option.Item2) // Store questionID and optionID in the Tag
@@ -149,8 +161,8 @@
                             BackColor = Color.Teal,
                             FlatStyle = FlatStyle.Flat,
                             AutoSize = false,
-                            Location = new Point(20, optionY),
-                            Size = new Size(1060, optionHeight), // Use calculated height for option
+                            Location = new Point(x, optionY),
+                            Size = new Size(500, finalHeight+10), // Use calculated height for option
                             Padding = new Padding(5),
                             Cursor = Cursors.Hand,
                             Tag = (ed.Key, option.Item2)
@@ -158,9 +170,24 @@
                         optionButton.CheckedChanged += optionButton_CheckedChanged;
                         questionGroup.Controls.Add(optionButton);
                     }
+                    // Adjust X position for the next option
+                    if (i % 2 == 0)
+                    {
+                        x += 520; // Move to the second column
+                        if (i == ed.Value.Options.Count - 1)
+                        {
+                            optionY += finalHeight + 20; // Move to the next row
+                            totalOptionHeight += finalHeight + 10; // Add the height of this option to the total height
 
-                    optionY += optionHeight + 10; // Increase Y position based on the option height
-                    totalOptionHeight += optionHeight + 10; // Add the height of this option to the total height
+                        }
+                    } 
+                    else
+                    {
+                        x = 40; // Reset X position for the next row
+                        optionY += finalHeight + 20; // Move to the next row
+                        totalOptionHeight += finalHeight + 10; // Add the height of this option to the total height
+
+                    }
                 }
 
                 // Adjust the height of the GroupBox 

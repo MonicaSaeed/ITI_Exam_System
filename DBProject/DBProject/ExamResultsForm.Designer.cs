@@ -52,7 +52,8 @@ namespace DBProject
                 Font = new Font("Showcard Gothic", 16, FontStyle.Bold),
                 ForeColor = Color.Teal,
                 AutoSize = true,
-                Location = new Point(20, 20)
+                //TextAlign=ContentAlignment.TopCenter,
+                Location = new Point(this.ClientSize.Width/2-400, 20)
             };
             scrollPanel.Controls.Add(lblTotalGrade);
             Label horizontalLine1 = new Label
@@ -71,22 +72,60 @@ namespace DBProject
             foreach (var result in this.results)
             {
                 // Add the question
-                Label lblQuestion = new Label
+                Size questionTextSize = TextRenderer.MeasureText(result.Question, new Font("Courier New", 12, FontStyle.Bold));
+                int factorQ = questionTextSize.Width / 1100;
+                int questionTextHeight = (factorQ >= 1) ? 40 * (factorQ + 1) : 40; // Adjust height if the question is long
+
+                CustomGroupBox questionGroup = new CustomGroupBox
                 {
-                    Text = "Q"+q_num +": " +result.Question,
+                    //Text = "Q" + q_num + ": " + result.Question,
                     Font = new Font("Courier New", 12, FontStyle.Bold),
                     ForeColor = Color.Black,
-                    AutoSize = true,
+                    //BackColor = Color.White,
+                    AutoSize = false,
+                    Size = new Size(1100, questionTextHeight + 180), // Adjust the height to accommodate the question text
+                    Location = new Point(20, y),
+                    Padding = new Padding(10),
+                   BorderColor = System.Drawing.Color.Gray
+
+                    /////////////////////////////
+
+
                     //Size= new Size(Width,60),
                     //BorderStyle = BorderStyle.FixedSingle,
-                    Location = new Point(20, y)
                 };
-               
-                scrollPanel.Controls.Add(lblQuestion);
+                scrollPanel.Controls.Add(questionGroup);
+                Label lblQuestion = new Label
+                {
+                    Text = "Q" + q_num + ": " + result.Question,
+                    Font = new Font("Courier New", 12, FontStyle.Bold),
+                    ForeColor = Color.Black,
+                    AutoSize = false,
+                    Size = new Size(questionTextSize.Width, questionTextHeight), // Adjust the height to accommodate the question text
+
+                    //Size= new Size(Width,60),
+                    //BorderStyle = BorderStyle.FixedSingle,
+                    Location = new Point(20, -5)
+                };
+
+                questionGroup.Controls.Add(lblQuestion);
                 y += 30;
 
                 // Add all options in two columns
                 int x = 40; // Starting X position for the first option
+                int finalHeight = 0;
+                int totalOptionHeight = 0; // Track the total height of options
+                int optionY = questionTextHeight + 20; ; // Starting Y position for options inside the GroupBox
+
+                for (int i = 0; i < result.Options.Count; i++) {
+                    var option = result.Options[i];
+
+                    Size textSize = TextRenderer.MeasureText(option, new Font("Courier New", 12, FontStyle.Regular));
+
+                    int factor = textSize.Width / 1060;
+                    int optionHeight = (factor >= 1) ? 40 * (factor + 1) : 40; // Adjust height if text is long
+                    finalHeight = Math.Max(finalHeight, optionHeight);
+                };
                 for (int i = 0; i < result.Options.Count; i++)
                 {
                     var option = result.Options[i];
@@ -111,10 +150,10 @@ namespace DBProject
                         Text = option,
                         Font = new Font("Courier New", 12, FontStyle.Regular),
                         ForeColor = Color.Black,
-                        BackColor = Color.White, // Default background color
-                        Size = new Size(500, 60), // Fixed size for uniformity and wrapping
-                        Location = new Point(x, y + 10),
-                        TextAlign = (option == "T" || option == "F")?ContentAlignment.MiddleCenter: ContentAlignment.TopLeft, // Align text to the top-left to accommodate wrapping
+                        //BackColor = Color.White, // Default background color
+                        Size = new Size(500, finalHeight), // Fixed size for uniformity and wrapping
+                        Location = new Point(x, optionY),
+                        TextAlign = (option == "T" || option == "F")?ContentAlignment.MiddleCenter: ContentAlignment.MiddleLeft, // Align text to the top-left to accommodate wrapping
                         AutoSize = false, // Disable AutoSize to keep the fixed size
                         //MaximumSize = new Size(500, 0), // Ensure text is wrapped when it exceeds the width
                         BorderStyle = BorderStyle.FixedSingle // Optional: Add a border for a button-like look
@@ -145,17 +184,25 @@ namespace DBProject
                         //    btnOption.BackColor = Color.LightGreen; // Green background for correct answer
                     }
 
-                    scrollPanel.Controls.Add(btnOption);
+                    questionGroup.Controls.Add(btnOption);
 
                     // Adjust X position for the next option
                     if (i % 2 == 0)
                     {
                         x += 520; // Move to the second column
-                    }
+                        if (i == result.Options.Count - 1)
+                        {
+                            optionY += finalHeight + 20; // Move to the next row
+                            totalOptionHeight += finalHeight + 10; // Add the height of this option to the total height
+
+                        }
+                    } 
                     else
                     {
                         x = 40; // Reset X position for the next row
-                        y += 100; // Move to the next row
+                        optionY += finalHeight + 20; // Move to the next row
+                        totalOptionHeight += finalHeight + 10; // Add the height of this option to the total height
+
                     }
                 }
 
@@ -166,9 +213,9 @@ namespace DBProject
                     Font = new Font("Courier New", 12, FontStyle.Bold),
                     ForeColor = Color.Black,
                     AutoSize = true,
-                    Location = new Point(this.ClientSize.Width/2-100, y+30)
+                    Location = new Point(this.ClientSize.Width/2-200, optionY )
                 };
-                scrollPanel.Controls.Add(lblGrade);
+                questionGroup.Controls.Add(lblGrade);
                 Label newlabel = new Label { };
                 if (result.StudentAnswer == "null")
                 {
@@ -178,28 +225,33 @@ namespace DBProject
                     newlabel.AutoSize = true;
                     //Size= new Size(Width,60),
                     //BorderStyle = BorderStyle.FixedSingle,
-                    newlabel.Location = new Point(this.ClientSize.Width / 2 +50, y + 30);
+                    newlabel.Location = new Point(this.ClientSize.Width / 2 , optionY );
                     // Highlight unanswered questions with a yellow background
                     // lblQuestion.ForeColor = Color.DarkGoldenrod;
                 }
-                scrollPanel.Controls.Add(newlabel);
+                questionGroup.Controls.Add(newlabel);
+
+                questionGroup.Height = totalOptionHeight + questionTextHeight + 80; // Add some padding to the GroupBox height
+
                 q_num++;
-                 horizontalLine1 = new Label
-                {
-                    // Text = "bla",
-                    // ForeColor = Color.Black,
-                    BackColor = Color.Black, // Line color
-                    Height = 2, // Line thickness
-                    AutoSize = false,
-                    Width = this.ClientSize.Width - 40, // Line width (form width minus padding)
-                    Location = new Point(20, y+80) // Position below the total grade
-                };
-                y += 100; // Add extra spacing between questions
-                if(q_num!= this.results.Count+1)
-                scrollPanel.Controls.Add(horizontalLine1);
+                // horizontalLine1 = new Label
+                //{
+                //    // Text = "bla",
+                //    // ForeColor = Color.Black,
+                //    BackColor = Color.Black, // Line color
+                //    Height = 2, // Line thickness
+                //    AutoSize = false,
+                //    Width = this.ClientSize.Width - 40, // Line width (form width minus padding)
+                //    Location = new Point(20, y+80) // Position below the total grade
+                //};
+                //  y += 100; // Add extra spacing between questions
+                y += questionGroup.Height + 20; // Update total height for next question
+
+                //if(q_num!= this.results.Count+1)
+                //scrollPanel.Controls.Add(horizontalLine1);
             }
 
-           
+
             // Add a back button
             Button btnBack = new Button
             {
