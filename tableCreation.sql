@@ -78,7 +78,7 @@ CREATE TABLE Instructor_Course (
 -- Table: Exam
 CREATE TABLE Exam (
     ex_id INT IDENTITY(1,1) PRIMARY KEY,
-    start_date DateTime NOT NULL,
+    start_date DATETime NOT NULL,
     duration INT NOT NULL
 );
 
@@ -122,3 +122,13 @@ CREATE TABLE Student_Answer (
     FOREIGN KEY (q_id) REFERENCES Question(q_id),
     FOREIGN KEY (op_id) REFERENCES [Option](op_id)
 );
+
+
+--Table: Stdent_Exam
+CREATE TABLE Student_Exam_Attempt (
+    st_id INT NOT NULL,          
+    ex_id INT NOT NULL,          
+    PRIMARY KEY (st_id, ex_id),  
+    FOREIGN KEY (st_id) REFERENCES Student(st_id), 
+    FOREIGN KEY (ex_id) REFERENCES Exam(ex_id)     
+	);
