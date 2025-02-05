@@ -371,47 +371,82 @@ namespace DBProject
 
 
             // Set the initial position for dynamically created controls within the panel
-            int yOffset = 80; 
-            int xOffset = 20; 
-
+            int yOffset = 80;
+            int xOffset = 20;
+            int i = 1;
             foreach (var question in questions)
             {
+                // Create a GroupBox for better visual separation
+                CustomGroupBox questionGroup = new CustomGroupBox
+                {
+                    Font = new System.Drawing.Font("Arial", 12, FontStyle.Bold),
+                    ForeColor = Color.Black,
+                    AutoSize = false,
+                    Size = new Size(900, 100), // Default height, adjusted later
+                    Location = new Point(xOffset, yOffset),
+                    Padding = new Padding(10),
+                    BorderColor = Color.Gray
+                };
+                scrollablePanel.Controls.Add(questionGroup);
+
+                // Add question text
                 Label questionLabel = new Label
                 {
-                    Text = $"Q{question.QuestionId}: {question.QuestionText} ({question.Grade} pts)",
+                    Text = $"Q{i}: {question.QuestionText} ({question.Grade} pts)",
+                    Font = new System.Drawing.Font("Arial", 12, FontStyle.Bold),
+                    ForeColor = Color.Black,
                     AutoSize = true,
-                    Location = new Point(xOffset, yOffset)
+                    Location = new Point(20, 10)
                 };
-                scrollablePanel.Controls.Add(questionLabel);
+                questionGroup.Controls.Add(questionLabel);
 
+                // Add question type label
                 Label questionTypeLabel = new Label
                 {
                     Text = question.QuestionType,
+                    Font = new System.Drawing.Font("Arial", 12, FontStyle.Italic),
                     AutoSize = true,
-                    Location = new Point(scrollablePanel.Width - 150, yOffset), 
-                    ForeColor = Color.Gray
+                    ForeColor = Color.Gray,
+                    Location = new Point(questionGroup.Width - 150, 10)
                 };
-                scrollablePanel.Controls.Add(questionTypeLabel);
+                questionGroup.Controls.Add(questionTypeLabel);
 
-                yOffset += questionLabel.Height + 10; 
+                int optionYOffset = questionLabel.Height + 20;
+                int finalHeight = 0;
 
                 foreach (var option in question.Options)
                 {
-                    // Create and add a label for each option
-                    Label optionLabel = new Label
-                    {
-                        Text = $"- {option.OptionText}",
-                        AutoSize = true,
-                        Location = new Point(xOffset + 20, yOffset), 
-                        ForeColor = option.IsCorrect ? Color.Green : Color.Black
-                    };
-                    scrollablePanel.Controls.Add(optionLabel);
-
-                    yOffset += optionLabel.Height + 5; 
+                    // Measure option text size
+                    Size textSize = TextRenderer.MeasureText(option.OptionText, new System.Drawing.Font("Courier New", 12, FontStyle.Regular));
+                    int factor = textSize.Width / 1060;
+                    int optionHeight = (factor >= 1) ? 40 * (factor + 1) : 40; // Adjust height if text is long
+                    finalHeight = Math.Max(finalHeight, optionHeight);
                 }
 
-                yOffset += 15; // Extra space between questions
+                foreach (var option in question.Options)
+                {
+                    Label optionLabel = new Label
+                    {
+                        Text = option.OptionText,
+                        Font = new System.Drawing.Font("Arial", 12, FontStyle.Regular),
+                        //ForeColor = Color.Black,
+                        Size = new Size(500, finalHeight),
+                        Location = new Point(40, optionYOffset),
+                        TextAlign = ContentAlignment.MiddleLeft,
+                        BorderStyle = BorderStyle.FixedSingle,
+                        BackColor = option.IsCorrect ? Color.DarkGreen : Color.Transparent,
+                        ForeColor = option.IsCorrect ? Color.White : Color.Black
+                    };
+                    questionGroup.Controls.Add(optionLabel);
+                    optionYOffset += finalHeight + 5;
+                }
+
+                // Adjust the height of the questionGroup dynamically
+                questionGroup.Height = optionYOffset + 20;
+                yOffset += questionGroup.Height + 20;
+                i++;
             }
+
         }
 
         // data base
