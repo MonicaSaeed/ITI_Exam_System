@@ -9,38 +9,44 @@ namespace DBProject
 {
     public partial class Instructor_Courses_Exam : Form
     {
-        string connectionString = "Server=localhost\\SQLEXPRESS;Database=ExaminationSystem;Integrated Security=True;TrustServerCertificate=True;";
-        int course_id ;
-        int instructor_id ;
+        string connectionString = "Server=DESKTOP-JGIQ4Q8\\MSSQLSERVER1;Database=ExaminationSystem;Integrated Security=True;TrustServerCertificate=True;";
+        int course_id;
+        int instructor_id;
 
-        public Instructor_Courses_Exam( int _course_id, int _instructor_id)
+        public Instructor_Courses_Exam(int _course_id, int _instructor_id)
         {
-            course_id = _course_id ;
+            course_id = _course_id;
             instructor_id = _instructor_id;
             InitializeComponent();
+
+            // Enable scrolling for the form
+            this.AutoScroll = true;
+
             LoadCourses();
         }
 
         private void LoadCourses()
         {
-            DataTable examsData = GetCourseExams(course_id, instructor_id); // Get courses with tracks
+            DataTable examsData = GetCourseExams(course_id, instructor_id); // Get exams with tracks
 
             FlowLayoutPanel panel = new FlowLayoutPanel
             {
                 Dock = DockStyle.Top,
                 AutoSize = true,
                 FlowDirection = FlowDirection.TopDown,
-                WrapContents = false // Ensures items are stacked vertically
+                WrapContents = false, // Ensures items are stacked vertically
+                AutoScroll = true // Enable scrolling for the panel if needed
             };
 
             foreach (DataRow row in examsData.Rows)
             {
                 string courseName = GetCourseName(course_id);  // Fetch course name
                 string trackName = row["TrackName"].ToString(); // Track name for course
+                int examId = Convert.ToInt32(row["ExamID"]); // Get the exam ID
 
                 Panel coursePanel = new Panel
                 {
-                    Width = 700 , // Full width minus padding
+                    Width = 700, // Full width minus padding
                     Height = 60, // Increased height for better spacing
                     BackColor = Color.Teal,
                     Margin = new Padding(5) // Adds spacing between panels
@@ -54,7 +60,6 @@ namespace DBProject
                     Location = new Point(10, 15),
                     AutoSize = true
                 };
-               
 
                 Button viewGradesButton = new Button
                 {
@@ -92,7 +97,9 @@ namespace DBProject
                     Location = new Point(600, 10),
                     Width = 80,
                     Height = 40,
+                    Tag = examId // Store the exam ID in the button's Tag property
                 };
+                deleteButton.Click += (sender, e) => DeleteButton_Click(sender, e, examId); // Pass the exam ID to the event handler
 
                 // Add controls to panel
                 coursePanel.Controls.Add(courseLabel);
@@ -182,6 +189,67 @@ namespace DBProject
                 }
             }
             return examsTable;
+        }
+
+        // Event handler for the delete button
+        private void DeleteButton_Click(object sender, EventArgs e, int examId)
+        {
+            // Confirm deletion with the user
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this exam?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlTransaction transaction = conn.BeginTransaction();
+
+                    try
+                    {
+                        // Delete from Course_Exam
+                        string deleteCourseExamQuery = @"
+                            DELETE ce
+                            FROM Course_Exam ce
+                            JOIN Course c ON ce.co_id = c.co_id
+                            JOIN Instructor_Course ic ON c.co_id = ic.co_id
+                            WHERE ce.ex_id = @examId AND ce.co_id = @course_id AND ic.ins_id = @instructor_id";
+
+                        SqlCommand cmd1 = new SqlCommand(deleteCourseExamQuery, conn, transaction);
+                        cmd1.Parameters.AddWithValue("@examId", examId); // Add examId parameter
+                        cmd1.Parameters.AddWithValue("@course_id", course_id); // Add course_id parameter
+                        cmd1.Parameters.AddWithValue("@instructor_id", instructor_id); // Add instructor_id parameter
+                        int courseExamRowsAffected = cmd1.ExecuteNonQuery();
+
+                        // Delete from Exam
+                        string deleteExamQuery = @"
+                            DELETE e
+                            FROM Exam e
+                            JOIN Course_Exam ce ON e.ex_id = ce.ex_id
+                            JOIN Course c ON ce.co_id = c.co_id
+                            JOIN Instructor_Course ic ON c.co_id = ic.co_id
+                            WHERE e.ex_id = @examId AND ce.co_id = @course_id AND ic.ins_id = @instructor_id";
+
+                        SqlCommand cmd2 = new SqlCommand(deleteExamQuery, conn, transaction);
+                        cmd2.Parameters.AddWithValue("@examId", examId); // Add examId parameter
+                        cmd2.Parameters.AddWithValue("@course_id", course_id); // Add course_id parameter
+                        cmd2.Parameters.AddWithValue("@instructor_id", instructor_id); // Add instructor_id parameter
+                        int examRowsAffected = cmd2.ExecuteNonQuery();
+
+                        // Commit the transaction if both deletes were successful
+                        transaction.Commit();
+
+                        MessageBox.Show("Exam and associated course exams deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // Clear existing controls and reload the exams
+                        this.Controls.Clear();
+                        LoadCourses(); // Refresh the course list
+                    }
+                    catch (Exception ex)
+                    {
+                        // Rollback the transaction in case of error
+                        transaction.Rollback();
+                        MessageBox.Show("Error deleting exam: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
 
         private void Instructor_Courses_Exam_Load(object sender, EventArgs e)

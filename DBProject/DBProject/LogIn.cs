@@ -5,7 +5,7 @@ namespace DBProject
 {
     public partial class LogIn : Form
     {
-
+    
         string connectionString = "Server=localhost\\SQLEXPRESS;Database=ExaminationSystem;Integrated Security=True;TrustServerCertificate=True;";
         string selectedType = "student";
         public LogIn()
@@ -141,6 +141,11 @@ namespace DBProject
         }
 
         private void LogIn_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }

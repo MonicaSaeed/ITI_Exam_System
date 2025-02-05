@@ -38,9 +38,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 25.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Teal;
-            label1.Location = new Point(166, 27);
+            label1.Location = new Point(145, 20);
             label1.Name = "label1";
-            label1.Size = new Size(147, 60);
+            label1.Size = new Size(117, 47);
             label1.TabIndex = 0;
             label1.Text = "Log In";
             label1.TextAlign = ContentAlignment.TopCenter;
@@ -48,20 +48,23 @@
             // textBox1
             // 
             textBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(50, 200);
+            textBox1.Location = new Point(44, 150);
+            textBox1.Margin = new Padding(3, 2, 3, 2);
             textBox1.Name = "textBox1";
             textBox1.PlaceholderText = "Enter your email";
-            textBox1.Size = new Size(400, 34);
+            textBox1.Size = new Size(350, 29);
             textBox1.TabIndex = 1;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // textBox2
             // 
             textBox2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(50, 280);
+            textBox2.Location = new Point(44, 210);
+            textBox2.Margin = new Padding(3, 2, 3, 2);
             textBox2.Name = "textBox2";
             textBox2.PasswordChar = '*';
             textBox2.PlaceholderText = "Enter your password";
-            textBox2.Size = new Size(400, 34);
+            textBox2.Size = new Size(350, 29);
             textBox2.TabIndex = 2;
             // 
             // label2
@@ -69,9 +72,9 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(50, 170);
+            label2.Location = new Point(44, 128);
             label2.Name = "label2";
-            label2.Size = new Size(64, 28);
+            label2.Size = new Size(52, 21);
             label2.TabIndex = 3;
             label2.Text = "Email ";
             // 
@@ -80,9 +83,9 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Black;
-            label4.Location = new Point(50, 250);
+            label4.Location = new Point(44, 188);
             label4.Name = "label4";
-            label4.Size = new Size(93, 28);
+            label4.Size = new Size(76, 21);
             label4.TabIndex = 5;
             label4.Text = "Password";
             // 
@@ -93,9 +96,10 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(50, 350);
+            button1.Location = new Point(44, 262);
+            button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(400, 50);
+            button1.Size = new Size(350, 38);
             button1.TabIndex = 6;
             button1.Text = "Log In";
             button1.UseVisualStyleBackColor = false;
@@ -107,9 +111,10 @@
             buttonStudent.FlatStyle = FlatStyle.Flat;
             buttonStudent.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             buttonStudent.ForeColor = Color.White;
-            buttonStudent.Location = new Point(50, 120);
+            buttonStudent.Location = new Point(44, 90);
+            buttonStudent.Margin = new Padding(3, 2, 3, 2);
             buttonStudent.Name = "buttonStudent";
-            buttonStudent.Size = new Size(180, 40);
+            buttonStudent.Size = new Size(158, 30);
             buttonStudent.TabIndex = 7;
             buttonStudent.Text = "Student";
             buttonStudent.UseVisualStyleBackColor = false;
@@ -121,9 +126,10 @@
             buttonInstructor.FlatStyle = FlatStyle.Flat;
             buttonInstructor.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             buttonInstructor.ForeColor = Color.Teal;
-            buttonInstructor.Location = new Point(270, 120);
+            buttonInstructor.Location = new Point(236, 90);
+            buttonInstructor.Margin = new Padding(3, 2, 3, 2);
             buttonInstructor.Name = "buttonInstructor";
-            buttonInstructor.Size = new Size(180, 40);
+            buttonInstructor.Size = new Size(158, 30);
             buttonInstructor.TabIndex = 8;
             buttonInstructor.Text = "Instructor";
             buttonInstructor.UseVisualStyleBackColor = false;
@@ -131,10 +137,10 @@
             // 
             // LogIn
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(500, 500);
+            ClientSize = new Size(438, 375);
             Controls.Add(button1);
             Controls.Add(buttonInstructor);
             Controls.Add(buttonStudent);
@@ -144,6 +150,7 @@
             Controls.Add(textBox1);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "LogIn";
