@@ -12,11 +12,11 @@ namespace DBProject
 {
     public partial class ExamResultsForm : Form
     {
-        private List<(string Question, List<string> Options, string StudentAnswer, string CorrectAnswer, bool IsCorrect, int QuestionGrade)> results;
+        private List<(string Question, List<string> Options, List<string> StudentAnswers, List<string> CorrectAnswers, int QuestionGrade)> results;
         private int totalGrade;
         string connectionString = "Server=localhost\\SQLEXPRESS;Database=ExaminationSystem;Integrated Security=True;TrustServerCertificate=True;";
 
-        public ExamResultsForm(int totalGrade, List<(string Question, List<string> Answers, string StudentAnswer, string CorrectAnswer, bool IsCorrect, int QuestionGrade)>  results1)
+        public ExamResultsForm(int totalGrade, List<(string Question, List<string> Options, List<string> StudentAnswers, List<string> CorrectAnswers, int QuestionGrade)> results1)
         {
             this.results = results1;
             this.totalGrade = totalGrade;

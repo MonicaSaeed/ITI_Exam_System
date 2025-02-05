@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.VisualBasic.Devices;
+using static System.Windows.Forms.Design.AxImporter;
 
 namespace DBProject
 {
@@ -76,17 +77,17 @@ namespace DBProject
                 int factorQ = questionTextSize.Width / 1100;
                 int questionTextHeight = (factorQ >= 1) ? 40 * (factorQ + 1) : 40; // Adjust height if the question is long
 
-                CustomGroupBox questionGroup = new CustomGroupBox
+                GroupBox questionGroup = new GroupBox
                 {
-                    //Text = "Q" + q_num + ": " + result.Question,
+                    Text = "Q" + q_num + ": " + result.Question,
                     Font = new Font("Courier New", 12, FontStyle.Bold),
                     ForeColor = Color.Black,
                     //BackColor = Color.White,
                     AutoSize = false,
                     Size = new Size(1100, questionTextHeight + 180), // Adjust the height to accommodate the question text
                     Location = new Point(20, y),
-                    Padding = new Padding(10),
-                   BorderColor = System.Drawing.Color.Gray
+                   // Padding = new Padding(5),
+                 //  BorderColor = System.Drawing.Color.Gray
 
                     /////////////////////////////
 
@@ -95,28 +96,29 @@ namespace DBProject
                     //BorderStyle = BorderStyle.FixedSingle,
                 };
                 scrollPanel.Controls.Add(questionGroup);
-                Label lblQuestion = new Label
-                {
-                    Text = "Q" + q_num + ": " + result.Question,
-                    Font = new Font("Courier New", 12, FontStyle.Bold),
-                    ForeColor = Color.Black,
-                    AutoSize = false,
-                    Size = new Size(questionTextSize.Width, questionTextHeight), // Adjust the height to accommodate the question text
+              
+                //Label lblQuestion = new Label
+                //{
+                //    Text = "Q" + q_num + ": " + result.Question,
+                //    Font = new Font("Courier New", 12, FontStyle.Bold),
+                //    ForeColor = Color.Black,
+                //    AutoSize = false,
+                //    Size = new Size(questionTextSize.Width+20, questionTextHeight), // Adjust the height to accommodate the question text
+                //    TextAlign = ContentAlignment.TopLeft,
+                //    //Size= new Size(Width,60),
+                //    //BorderStyle = BorderStyle.FixedSingle,
+                //    Location = new Point(20, 0)
+                //};
 
-                    //Size= new Size(Width,60),
-                    //BorderStyle = BorderStyle.FixedSingle,
-                    Location = new Point(20, -5)
-                };
-
-                questionGroup.Controls.Add(lblQuestion);
+                //questionGroup.Controls.Add(lblQuestion);
                 y += 30;
 
                 // Add all options in two columns
                 int x = 40; // Starting X position for the first option
                 int finalHeight = 0;
                 int totalOptionHeight = 0; // Track the total height of options
-                int optionY = questionTextHeight + 20; ; // Starting Y position for options inside the GroupBox
-
+                int optionY = questionTextHeight + 20 , track_correct=0 ; // Starting Y position for options inside the GroupBox
+                bool iscorrect = false;
                 for (int i = 0; i < result.Options.Count; i++) {
                     var option = result.Options[i];
 
@@ -125,7 +127,16 @@ namespace DBProject
                     int factor = textSize.Width / 1060;
                     int optionHeight = (factor >= 1) ? 40 * (factor + 1) : 40; // Adjust height if text is long
                     finalHeight = Math.Max(finalHeight, optionHeight);
+
+                    //// is correct 
+                      if (result.StudentAnswers.Contains(option))
+                    {
+                        //btnOption.ForeColor = Color.White;
+                        if (result.CorrectAnswers.Contains(option)) track_correct++; 
+                    }
                 };
+                if (track_correct == result.CorrectAnswers.Count()) iscorrect = true;
+               
                 for (int i = 0; i < result.Options.Count; i++)
                 {
                     var option = result.Options[i];
@@ -159,31 +170,47 @@ namespace DBProject
                         BorderStyle = BorderStyle.FixedSingle // Optional: Add a border for a button-like look
                     };
 
-
+                    #region old
                     // Highlight the student's chosen answer
-                    if (option == result.StudentAnswer)
+                    //if (option == result.StudentAnswer)
+                    //{
+                    //    // If the student's answer is incorrect, set the background to red
+                    //    if (!result.IsCorrect)
+                    //    {
+                    //        btnOption.ForeColor = Color.White;
+                    //        btnOption.BackColor = Color.Red;
+                    //      //  btnOption.FlatAppearance.BorderColor = Color.Red; // Set border color to red
+                    //        //btnOption.FlatAppearance.BorderSize = 2; // Set border thickness
+                    //     // btnOption.BackColor = Color.LightCoral; // Red background for incorrect answer
+                    //    }
+                    //}
+
+                    //// Highlight the correct answer
+                    //if (option == result.CorrectAnswer)
+                    //{
+                    //    btnOption.ForeColor = Color.White;
+                    //    btnOption.BackColor = Color.Green;
+                    //    //    btnOption.FlatAppearance.BorderColor = Color.Green; // Set border color to red
+                    //    //    btnOption.FlatAppearance.BorderSize = 2; // Set border thickness
+                    //    //    btnOption.BackColor = Color.LightGreen; // Green background for correct answer
+                    //}
+                    #endregion
+
+                    #region new
+                    // Highlight the student's chosen answers
+                    if (result.StudentAnswers.Contains(option))
                     {
-                        // If the student's answer is incorrect, set the background to red
-                        if (!result.IsCorrect)
-                        {
-                            btnOption.ForeColor = Color.White;
-                            btnOption.BackColor = Color.DarkRed;
-                          //  btnOption.FlatAppearance.BorderColor = Color.Red; // Set border color to red
-                            //btnOption.FlatAppearance.BorderSize = 2; // Set border thickness
-                         // btnOption.BackColor = Color.LightCoral; // Red background for incorrect answer
-                        }
+                        btnOption.ForeColor = Color.White;
+                        btnOption.BackColor = result.CorrectAnswers.Contains(option) ? Color.DarkGreen : Color.DarkRed;
                     }
 
-                    // Highlight the correct answer
-                    if (option == result.CorrectAnswer)
+                    // Highlight the correct answers
+                    if (result.CorrectAnswers.Contains(option))
                     {
                         btnOption.ForeColor = Color.White;
                         btnOption.BackColor = Color.DarkGreen;
-                        //    btnOption.FlatAppearance.BorderColor = Color.Green; // Set border color to red
-                        //    btnOption.FlatAppearance.BorderSize = 2; // Set border thickness
-                        //    btnOption.BackColor = Color.LightGreen; // Green background for correct answer
                     }
-
+                    #endregion
                     questionGroup.Controls.Add(btnOption);
 
                     // Adjust X position for the next option
@@ -216,20 +243,29 @@ namespace DBProject
                     Location = new Point(this.ClientSize.Width/2-200, optionY )
                 };
                 questionGroup.Controls.Add(lblGrade);
-                Label newlabel = new Label { };
-                if (result.StudentAnswer == "null")
+                Label iconLabel = new Label
                 {
-                    newlabel.Text = "Not Answered !!!";
-                    newlabel.Font = new Font("Showcard Gothic", 12, FontStyle.Bold);
-                    newlabel.ForeColor = Color.Red;
-                    newlabel.AutoSize = true;
-                    //Size= new Size(Width,60),
-                    //BorderStyle = BorderStyle.FixedSingle,
-                    newlabel.Location = new Point(this.ClientSize.Width / 2 , optionY );
-                    // Highlight unanswered questions with a yellow background
-                    // lblQuestion.ForeColor = Color.DarkGoldenrod;
-                }
-                questionGroup.Controls.Add(newlabel);
+                    Text = iscorrect ? "✔" : "❌",
+                    ForeColor = iscorrect ? Color.Green : Color.Red,
+                    Location = new Point(this.ClientSize.Width / 2, optionY-10),
+                    AutoSize = true,
+                    Font = new Font("Arial", 16, FontStyle.Bold)
+                };
+                questionGroup.Controls.Add(iconLabel);
+                //Label newlabel = new Label { };
+                //if (result.StudentAnswers.Count() ==0)
+                //{
+                //    newlabel.Text = "Not Answered !!!";
+                //    newlabel.Font = new Font("Showcard Gothic", 12, FontStyle.Bold);
+                //    newlabel.ForeColor = Color.Red;
+                //    newlabel.AutoSize = true;
+                //    //Size= new Size(Width,60),
+                //    //BorderStyle = BorderStyle.FixedSingle,
+                //    newlabel.Location = new Point(this.ClientSize.Width / 2 , optionY );
+                //    // Highlight unanswered questions with a yellow background
+                //    // lblQuestion.ForeColor = Color.DarkGoldenrod;
+                //}
+                //questionGroup.Controls.Add(newlabel);
 
                 questionGroup.Height = totalOptionHeight + questionTextHeight + 80; // Add some padding to the GroupBox height
 
