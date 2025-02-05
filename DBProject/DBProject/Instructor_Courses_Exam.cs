@@ -194,64 +194,109 @@ namespace DBProject
         // Event handler for the delete button
         private void DeleteButton_Click(object sender, EventArgs e, int examId)
         {
-            // Confirm deletion with the user
-            DialogResult result = MessageBox.Show("Are you sure you want to delete this exam?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (result == DialogResult.Yes)
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                conn.Open();
+                SqlTransaction transaction = conn.BeginTransaction();
+
+                try
                 {
-                    conn.Open();
-                    SqlTransaction transaction = conn.BeginTransaction();
+                    // Step 0: Check if the exam has ended
+                    string checkExamEndQuery = @"
+                SELECT 
+                    e.start_date,
+                    e.duration
+                FROM Exam e
+                WHERE e.ex_id = @examId";
 
-                    try
+                    SqlCommand checkExamEndCmd = new SqlCommand(checkExamEndQuery, conn, transaction);
+                    checkExamEndCmd.Parameters.AddWithValue("@examId", examId);
+
+                    using (SqlDataReader reader = checkExamEndCmd.ExecuteReader())
                     {
-                        // Delete from Course_Exam
-                        string deleteCourseExamQuery = @"
-                            DELETE ce
-                            FROM Course_Exam ce
-                            JOIN Course c ON ce.co_id = c.co_id
-                            JOIN Instructor_Course ic ON c.co_id = ic.co_id
-                            WHERE ce.ex_id = @examId AND ce.co_id = @course_id AND ic.ins_id = @instructor_id";
+                        if (reader.Read())
+                        {
+                            DateTime startDate = reader.GetDateTime(0); // Get start_date
+                            int duration = reader.GetInt32(1); // Get duration in minutes
+                            DateTime endDate = startDate.AddMinutes(duration); // Calculate end date
 
-                        SqlCommand cmd1 = new SqlCommand(deleteCourseExamQuery, conn, transaction);
-                        cmd1.Parameters.AddWithValue("@examId", examId); // Add examId parameter
-                        cmd1.Parameters.AddWithValue("@course_id", course_id); // Add course_id parameter
-                        cmd1.Parameters.AddWithValue("@instructor_id", instructor_id); // Add instructor_id parameter
-                        int courseExamRowsAffected = cmd1.ExecuteNonQuery();
-
-                        // Delete from Exam
-                        string deleteExamQuery = @"
-                            DELETE e
-                            FROM Exam e
-                            JOIN Course_Exam ce ON e.ex_id = ce.ex_id
-                            JOIN Course c ON ce.co_id = c.co_id
-                            JOIN Instructor_Course ic ON c.co_id = ic.co_id
-                            WHERE e.ex_id = @examId AND ce.co_id = @course_id AND ic.ins_id = @instructor_id";
-
-                        SqlCommand cmd2 = new SqlCommand(deleteExamQuery, conn, transaction);
-                        cmd2.Parameters.AddWithValue("@examId", examId); // Add examId parameter
-                        cmd2.Parameters.AddWithValue("@course_id", course_id); // Add course_id parameter
-                        cmd2.Parameters.AddWithValue("@instructor_id", instructor_id); // Add instructor_id parameter
-                        int examRowsAffected = cmd2.ExecuteNonQuery();
-
-                        // Commit the transaction if both deletes were successful
-                        transaction.Commit();
-
-                        MessageBox.Show("Exam and associated course exams deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        // Clear existing controls and reload the exams
-                        this.Controls.Clear();
-                        LoadCourses(); // Refresh the course list
+                            if (DateTime.Now <= endDate)
+                            {
+                                MessageBox.Show("Cannot delete the exam because it has not yet ended.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                transaction.Rollback();
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Exam not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            transaction.Rollback();
+                            return;
+                        }
                     }
-                    catch (Exception ex)
-                    {
-                        // Rollback the transaction in case of error
-                        transaction.Rollback();
-                        MessageBox.Show("Error deleting exam: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+
+                    // Step 1: Delete from [Option] table
+                    string deleteOptionsQuery = @"
+                DELETE o
+                FROM [Option] o
+                WHERE o.q_id IN (
+                    SELECT q.q_id
+                    FROM Question q
+                    WHERE q.ex_id = @examId
+                )";
+
+                    SqlCommand cmd1 = new SqlCommand(deleteOptionsQuery, conn, transaction);
+                    cmd1.Parameters.AddWithValue("@examId", examId);
+                    int optionsRowsAffected = cmd1.ExecuteNonQuery();
+
+                    // Step 2: Delete from Question table
+                    string deleteQuestionsQuery = @"
+                DELETE q
+                FROM Question q
+                WHERE q.ex_id = @examId";
+
+                    SqlCommand cmd2 = new SqlCommand(deleteQuestionsQuery, conn, transaction);
+                    cmd2.Parameters.AddWithValue("@examId", examId);
+                    int questionsRowsAffected = cmd2.ExecuteNonQuery();
+
+                    // Step 3: Delete from Course_Exam
+                    string deleteCourseExamQuery = @"
+                DELETE ce
+                FROM Course_Exam ce
+                WHERE ce.ex_id = @examId AND ce.co_id = @course_id";
+
+                    SqlCommand cmd3 = new SqlCommand(deleteCourseExamQuery, conn, transaction);
+                    cmd3.Parameters.AddWithValue("@examId", examId);
+                    cmd3.Parameters.AddWithValue("@course_id", course_id);
+                    int courseExamRowsAffected = cmd3.ExecuteNonQuery();
+
+                    // Step 4: Delete from Exam
+                    string deleteExamQuery = @"
+                DELETE e
+                FROM Exam e
+                WHERE e.ex_id = @examId";
+
+                    SqlCommand cmd4 = new SqlCommand(deleteExamQuery, conn, transaction);
+                    cmd4.Parameters.AddWithValue("@examId", examId);
+                    int examRowsAffected = cmd4.ExecuteNonQuery();
+
+                    // Commit the transaction if all deletes were successful
+                    transaction.Commit();
+
+                    MessageBox.Show("Exam and all related data deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Clear existing controls and reload the exams
+                    this.Controls.Clear();
+                    LoadCourses(); // Refresh the course list
+                }
+                catch (Exception ex)
+                {
+                    // Rollback the transaction in case of error
+                    transaction.Rollback();
+                    MessageBox.Show("Error deleting exam: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
-
         private void Instructor_Courses_Exam_Load(object sender, EventArgs e)
         {
             // Fetch exams when the form loads
