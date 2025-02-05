@@ -201,49 +201,44 @@ namespace DBProject
 
                 try
                 {
-                    // Step 0: Check if the exam has ended
-                    string checkExamEndQuery = @"
-                SELECT 
-                    e.start_date,
-                    e.duration
-                FROM Exam e
-                WHERE e.ex_id = @examId";
+                    // Step 0: Check if the exam has started
+                    string checkExamStartQuery = @"
+                        SELECT 
+                            e.start_date
+                        FROM Exam e
+                        WHERE e.ex_id = @examId";
 
-                    SqlCommand checkExamEndCmd = new SqlCommand(checkExamEndQuery, conn, transaction);
-                    checkExamEndCmd.Parameters.AddWithValue("@examId", examId);
+                    SqlCommand checkExamStartCmd = new SqlCommand(checkExamStartQuery, conn, transaction);
+                    checkExamStartCmd.Parameters.AddWithValue("@examId", examId);
 
-                    using (SqlDataReader reader = checkExamEndCmd.ExecuteReader())
+                    // Use ExecuteScalar to avoid the "open DataReader" error
+                    object result = checkExamStartCmd.ExecuteScalar();
+
+                    if (result == null || result == DBNull.Value)
                     {
-                        if (reader.Read())
-                        {
-                            DateTime startDate = reader.GetDateTime(0); // Get start_date
-                            int duration = reader.GetInt32(1); // Get duration in minutes
-                            DateTime endDate = startDate.AddMinutes(duration); // Calculate end date
+                        MessageBox.Show("Exam not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        transaction.Rollback();
+                        return;
+                    }
 
-                            if (DateTime.Now <= endDate)
-                            {
-                                MessageBox.Show("Cannot delete the exam because it has not yet ended.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                transaction.Rollback();
-                                return;
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Exam not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            transaction.Rollback();
-                            return;
-                        }
+                    DateTime startDate = (DateTime)result;
+
+                    if (DateTime.Now >= startDate)
+                    {
+                        MessageBox.Show("Cannot delete the exam because it has already started.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        transaction.Rollback();
+                        return;
                     }
 
                     // Step 1: Delete from [Option] table
                     string deleteOptionsQuery = @"
-                DELETE o
-                FROM [Option] o
-                WHERE o.q_id IN (
-                    SELECT q.q_id
-                    FROM Question q
-                    WHERE q.ex_id = @examId
-                )";
+                        DELETE o
+                        FROM [Option] o
+                        WHERE o.q_id IN (
+                            SELECT q.q_id
+                            FROM Question q
+                            WHERE q.ex_id = @examId
+                        )";
 
                     SqlCommand cmd1 = new SqlCommand(deleteOptionsQuery, conn, transaction);
                     cmd1.Parameters.AddWithValue("@examId", examId);
@@ -251,9 +246,9 @@ namespace DBProject
 
                     // Step 2: Delete from Question table
                     string deleteQuestionsQuery = @"
-                DELETE q
-                FROM Question q
-                WHERE q.ex_id = @examId";
+                        DELETE q
+                        FROM Question q
+                        WHERE q.ex_id = @examId";
 
                     SqlCommand cmd2 = new SqlCommand(deleteQuestionsQuery, conn, transaction);
                     cmd2.Parameters.AddWithValue("@examId", examId);
@@ -261,9 +256,9 @@ namespace DBProject
 
                     // Step 3: Delete from Course_Exam
                     string deleteCourseExamQuery = @"
-                DELETE ce
-                FROM Course_Exam ce
-                WHERE ce.ex_id = @examId AND ce.co_id = @course_id";
+                        DELETE ce
+                        FROM Course_Exam ce
+                        WHERE ce.ex_id = @examId AND ce.co_id = @course_id";
 
                     SqlCommand cmd3 = new SqlCommand(deleteCourseExamQuery, conn, transaction);
                     cmd3.Parameters.AddWithValue("@examId", examId);
@@ -272,9 +267,9 @@ namespace DBProject
 
                     // Step 4: Delete from Exam
                     string deleteExamQuery = @"
-                DELETE e
-                FROM Exam e
-                WHERE e.ex_id = @examId";
+                        DELETE e
+                        FROM Exam e
+                        WHERE e.ex_id = @examId";
 
                     SqlCommand cmd4 = new SqlCommand(deleteExamQuery, conn, transaction);
                     cmd4.Parameters.AddWithValue("@examId", examId);
@@ -297,6 +292,7 @@ namespace DBProject
                 }
             }
         }
+
         private void Instructor_Courses_Exam_Load(object sender, EventArgs e)
         {
             // Fetch exams when the form loads
