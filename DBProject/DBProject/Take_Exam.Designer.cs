@@ -118,7 +118,7 @@
 
                     Size textSize = TextRenderer.MeasureText(option.Item1, new Font("Courier New", 12, FontStyle.Regular));
 
-                    int factor = textSize.Width / 1060;
+                    int factor = textSize.Width / 500;
                     int optionHeight = (factor >= 1) ? 40 * (factor + 1) : 40; // Adjust height if text is long
                     finalHeight = Math.Max(finalHeight, optionHeight);
                 };

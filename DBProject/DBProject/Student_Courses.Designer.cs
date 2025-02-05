@@ -39,44 +39,45 @@ namespace DBProject
             label1 = new Label();
             label2 = new Label();
             SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Showcard Gothic", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
+
+            // Label1
+            label1.Font = new Font("Showcard Gothic", 20, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Teal;
             label1.Location = new Point(25, 18);
             label1.Name = "label1";
-            label1.Size = new Size(177, 43);
+            label1.AutoSize = true;
             label1.TabIndex = 0;
             label1.Text = "Student";
-            label1.Click += label1_Click;
-            // 
-            // label2
-            // 
+
+            // Label2
             label2.BorderStyle = BorderStyle.FixedSingle;
-            label2.Font = new Font("Courier New", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.AutoSize = false;
+            label2.Font = new Font("Courier New", 15, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.ActiveCaptionText;
-            label2.Location = new Point(0, 0);
-            label2.Name = "label2";
             label2.Size = new Size(753, 50);
             label2.TabIndex = 1;
+            //label1.Location = new Point(50, 18);
+            //label2.Text = "Your Courses";
+            ApplyLetterSpacing(label2, 0.001f, "Your Courses");
             label2.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // Student_Courses
-            // 
+            //label2.Click += label2_Click;
+
+            // Form1
             AllowDrop = true;
-            AutoScaleMode = AutoScaleMode.None;
-            ClientSize = new Size(282, 253);
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.None; // Disable auto-scaling
+            ClientSize = baseFormSize; // Set initial form size
             Controls.Add(label2);
             Controls.Add(label1);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "Student_Courses";
-            StartPosition = FormStartPosition.CenterScreen;
+            Name = "Form1";
             Text = "Student Test";
             Load += Form1_Load;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            StartPosition = FormStartPosition.CenterScreen;
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+
+            //     Resize += Form1_Resize; // Add Resize event handler
             ResumeLayout(false);
             PerformLayout();
         }
