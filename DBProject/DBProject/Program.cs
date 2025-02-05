@@ -1,3 +1,5 @@
+using InstructorPart;
+
 namespace DBProject
 {
     internal static class Program
@@ -11,7 +13,9 @@ namespace DBProject
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new LogIn());
+             Application.Run(new LogIn());
+       //     Application.Run(new CustomMessageBox("it's no date for it now \n\n, please prepare for it" , "UpComing Exam" , MessageBoxIcon.Information));
+
         }
     }
 }
