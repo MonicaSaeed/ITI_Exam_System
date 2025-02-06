@@ -132,5 +132,3 @@ CREATE TABLE Student_Exam_Attempt (
     FOREIGN KEY (st_id) REFERENCES Student(st_id), 
     FOREIGN KEY (ex_id) REFERENCES Exam(ex_id)     
 	);
-
-
