@@ -40,6 +40,7 @@
             Name = "Instructor_Courses_Exam";
             Text = "Instructor_Courses_Exam";
             Load += Instructor_Courses_Exam_Load;
+            this.StartPosition = FormStartPosition.CenterScreen;
             ResumeLayout(false);
         }
 

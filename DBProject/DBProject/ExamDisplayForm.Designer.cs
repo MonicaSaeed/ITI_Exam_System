@@ -80,6 +80,7 @@
             this.Text = "ExamDisplayForm";
             this.QuestionsFlowLayoutPanel.ResumeLayout(false);
             this.QuestionsFlowLayoutPanel.PerformLayout();
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
 
         }

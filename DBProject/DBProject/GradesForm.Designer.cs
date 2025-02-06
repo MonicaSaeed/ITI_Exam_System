@@ -90,6 +90,7 @@
             this.Load += new System.EventHandler(this.GradesForm_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
             this.PerformLayout();
 

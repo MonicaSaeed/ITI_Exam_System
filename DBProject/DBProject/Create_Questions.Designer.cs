@@ -60,6 +60,7 @@
             Name = "Create_Questions";
             Text = "Create_Questions";
             Load += Create_Questions_Load;
+            this.StartPosition = FormStartPosition.CenterScreen;
             ResumeLayout(false);
             PerformLayout();
         }

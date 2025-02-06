@@ -166,6 +166,7 @@
             Name = "Create_Exam_SelectTracks";
             Text = "Create_Exam_SelectTracks";
             Load += Create_Exam_SelectTracks_Load;
+            StartPosition = FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ResumeLayout(false);
             PerformLayout();
