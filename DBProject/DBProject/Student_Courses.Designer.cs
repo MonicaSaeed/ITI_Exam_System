@@ -78,7 +78,7 @@ namespace DBProject
             scrollPanel.Controls.Add(label2);
             scrollPanel.Controls.Add(label1);
             Name = "Form1";
-            Text = "Student Test";
+            Text = "Student Courses";
             Load += Form1_Load;
             MaximizeBox = false;
             MinimizeBox = false;

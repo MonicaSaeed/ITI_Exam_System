@@ -56,9 +56,9 @@ namespace DBProject
             label2.Location = new Point(0, 0);
             label2.Name = "label2";
             label2.Size = new Size(753, 50);
-            label2.TabIndex = 1;
+            label2.TabIndex = 1;     
+            ApplyLetterSpacing(label2, 0.001f, "Your Courses");
             label2.TextAlign = ContentAlignment.MiddleCenter;
-            label2.Click += label2_Click_1;
             // 
             // Instructor_Courses
             // 
@@ -72,7 +72,7 @@ namespace DBProject
             MinimizeBox = false;
             Name = "Instructor_Courses";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Student Test";
+            Text = "Istructor Courses";
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -113,18 +113,18 @@ namespace DBProject
                 {
                     connection.Open();
                     string query = @"
-SELECT 
-    c.co_name AS CourseName,
-    c.co_id AS CourseID
-FROM 
-    Instructor i
-INNER JOIN 
-    Instructor_Course ic ON i.ins_id = ic.ins_id
-INNER JOIN 
-    Course c ON ic.co_id = c.co_id
-WHERE 
-    i.ins_id = @InstructorID
-";
+                                SELECT 
+                                    c.co_name AS CourseName,
+                                    c.co_id AS CourseID
+                                FROM 
+                                    Instructor i
+                                INNER JOIN 
+                                    Instructor_Course ic ON i.ins_id = ic.ins_id
+                                INNER JOIN 
+                                    Course c ON ic.co_id = c.co_id
+                                WHERE 
+                                    i.ins_id = @InstructorID
+                                ";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
