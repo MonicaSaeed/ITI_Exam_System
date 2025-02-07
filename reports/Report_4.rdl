@@ -9,7 +9,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.0.20283.0</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-01-19T14:26:31.3812597Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-02-07T14:27:36.8688044Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
@@ -17,7 +17,7 @@
     <DataSource Name="ITI_Exam_System">
       <ConnectionProperties>
         <DataProvider>SQL</DataProvider>
-        <ConnectString>Data Source=MONICA\SQLEXPRESS;Initial Catalog=ITI_Exam</ConnectString>
+        <ConnectString>Data Source=localhost\SQLEXPRESS;Initial Catalog=ExaminationSystem</ConnectString>
         <IntegratedSecurity>true</IntegratedSecurity>
       </ConnectionProperties>
       <rd:SecurityType>Integrated</rd:SecurityType>
@@ -113,7 +113,7 @@ FROM
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>1in</Width>
+                  <Width>1.66667in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -210,10 +210,10 @@ FROM
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>Topics</DataSetName>
-            <Top>0.69444in</Top>
-            <Left>3.21333in</Left>
+            <Top>0.84723in</Top>
+            <Left>3.13833in</Left>
             <Height>1.05in</Height>
-            <Width>1in</Width>
+            <Width>1.66667in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -230,7 +230,7 @@ FROM
                   <TextRun>
                     <Value>Course Name is</Value>
                     <Style>
-                      <FontSize>16pt</FontSize>
+                      <FontSize>14pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -240,7 +240,7 @@ FROM
             </Paragraphs>
             <rd:DefaultName>Textbox20</rd:DefaultName>
             <Top>0.68056in</Top>
-            <Left>0.25in</Left>
+            <Left>0.55in</Left>
             <Height>0.41667in</Height>
             <Width>2.13333in</Width>
             <ZIndex>2</ZIndex>
@@ -262,15 +262,18 @@ FROM
                 <TextRuns>
                   <TextRun>
                     <Value>=First(Fields!co_name.Value, "Topics")</Value>
-                    <Style />
+                    <Style>
+                      <FontSize>14pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>co_name</rd:DefaultName>
-            <Top>0.69444in</Top>
-            <Left>1.84389in</Left>
+            <Top>0.80556in</Top>
+            <Left>2.13833in</Left>
             <Height>0.25in</Height>
             <Width>1in</Width>
             <ZIndex>3</ZIndex>

@@ -47,7 +47,7 @@ namespace DBProject
                 CustomMessageBox customMessageBox = new CustomMessageBox(
                                "Please enter an email.",
                                "Validation Error",
-                               MessageBoxIcon.Error);
+                               MessageBoxIcon.Warning);
 
                 customMessageBox.ShowDialog(); 
                
@@ -58,7 +58,7 @@ namespace DBProject
                 CustomMessageBox customMessageBox = new CustomMessageBox(
                               "Please enter an password.",
                               "Validation Error",
-                              MessageBoxIcon.Error);
+                              MessageBoxIcon.Warning);
 
                 customMessageBox.ShowDialog();
                 return;
@@ -116,7 +116,7 @@ namespace DBProject
                 CustomMessageBox customMessageBox = new CustomMessageBox(
                "Email does not exist or wrong password.",
                "Validation Error",
-               MessageBoxIcon.Error);
+               MessageBoxIcon.Warning);
 
                 customMessageBox.ShowDialog();
             }

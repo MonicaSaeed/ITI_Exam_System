@@ -111,6 +111,7 @@ namespace DBProject
             }
 
             this.Controls.Add(panel);
+           
 
             Button addExamButton = new Button
             {
@@ -123,6 +124,7 @@ namespace DBProject
             };
 
             addExamButton.Click += (sender, e) => {
+                this.Hide();
                 Create_Exam_SelectTracks examDisplayForm = new Create_Exam_SelectTracks(instructor_id);
                 examDisplayForm.ShowDialog();
             };
@@ -150,7 +152,13 @@ namespace DBProject
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error fetching course name: " + ex.Message);
+                    CustomMessageBox customMessageBox = new CustomMessageBox(
+$"Error fetching course name: {ex.Message}", // Message
+"Error", // Title
+MessageBoxIcon.Warning // Icon
+);
+                    customMessageBox.ShowDialog();
+                    //MessageBox.Show("Error fetching course name: " + ex.Message);
                 }
             }
             return courseName;
@@ -185,7 +193,13 @@ namespace DBProject
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error fetching exams: " + ex.Message);
+                    CustomMessageBox customMessageBox = new CustomMessageBox(
+$"Error fetching exams: {ex.Message}", // Message
+"Error", // Title
+MessageBoxIcon.Warning // Icon
+);
+                    customMessageBox.ShowDialog();
+                    //MessageBox.Show("Error fetching exams: " + ex.Message);
                 }
             }
             return examsTable;
@@ -216,7 +230,13 @@ namespace DBProject
 
                     if (result == null || result == DBNull.Value)
                     {
-                        MessageBox.Show("Exam not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        CustomMessageBox customMessageBox3 = new CustomMessageBox(
+$"Exam not found", // Message
+"Error", // Title
+MessageBoxIcon.Warning // Icon
+);
+                        customMessageBox3.ShowDialog();
+                        //MessageBox.Show("Exam not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         transaction.Rollback();
                         return;
                     }
@@ -225,7 +245,13 @@ namespace DBProject
 
                     if (DateTime.Now >= startDate)
                     {
-                        MessageBox.Show("Cannot delete the exam because it has already started.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        CustomMessageBox customMessageBox4 = new CustomMessageBox(
+$"Cannot delete the exam because it has already started.", // Message
+"Error", // Title
+MessageBoxIcon.Warning // Icon
+);
+                        customMessageBox4.ShowDialog();
+                        //MessageBox.Show("Cannot delete the exam because it has already started.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         transaction.Rollback();
                         return;
                     }
@@ -277,8 +303,13 @@ namespace DBProject
 
                     // Commit the transaction if all deletes were successful
                     transaction.Commit();
-
-                    MessageBox.Show("Exam and all related data deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CustomMessageBox customMessageBox = new CustomMessageBox(
+$"Exam and all related data deleted successfully!", // Message
+"Delete Exam", // Title
+MessageBoxIcon.Question // Icon
+);
+                    customMessageBox.ShowDialog();
+                    //MessageBox.Show("Exam and all related data deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Clear existing controls and reload the exams
                     this.Controls.Clear();
@@ -288,7 +319,13 @@ namespace DBProject
                 {
                     // Rollback the transaction in case of error
                     transaction.Rollback();
-                    MessageBox.Show("Error deleting exam: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    CustomMessageBox customMessageBox = new CustomMessageBox(
+$"Error deleting exam: {ex.Message}", // Message
+"Error", // Title
+MessageBoxIcon.Warning // Icon
+);
+                    customMessageBox.ShowDialog();
+                    // MessageBox.Show("Error deleting exam: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

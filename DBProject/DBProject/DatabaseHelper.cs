@@ -87,7 +87,13 @@ namespace InstructorPart
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error fetching student correct answers: " + ex.Message);
+                    CustomMessageBox customMessageBox = new CustomMessageBox(
+$"Error fetching student correct answers: \" + ex.Message", // Message
+"Error", // Title
+MessageBoxIcon.Warning // Icon
+);
+                    customMessageBox.ShowDialog();
+                    //MessageBox.Show("Error fetching student correct answers: " + ex.Message);
                 }
             }
 
@@ -149,7 +155,13 @@ namespace InstructorPart
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error fetching course name: " + ex.Message);
+                    //  MessageBox.Show("Error fetching course name: " + ex.Message);
+                    CustomMessageBox customMessageBox = new CustomMessageBox(
+$"Error fetching course name: \" + ex.Message", // Message
+"Error", // Title
+MessageBoxIcon.Warning // Icon
+);
+                    customMessageBox.ShowDialog();
                 }
             }
 

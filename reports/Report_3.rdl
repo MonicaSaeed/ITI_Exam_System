@@ -9,15 +9,15 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.0.20283.0</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-01-19T18:26:20.2073080Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-02-07T14:19:34.0762074Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="DataSource1">
+    <DataSource Name="Instructor_Courses">
       <ConnectionProperties>
         <DataProvider>SQL</DataProvider>
-        <ConnectString>Data Source=DESKTOP-I125DVC\SQLEXPRESS;Initial Catalog=ITI_system</ConnectString>
+        <ConnectString>Data Source=localhost\SQLEXPRESS;Initial Catalog=ExaminationSystem</ConnectString>
         <IntegratedSecurity>true</IntegratedSecurity>
       </ConnectionProperties>
       <rd:SecurityType>Integrated</rd:SecurityType>
@@ -27,7 +27,7 @@
   <DataSets>
     <DataSet Name="DataSet1">
       <Query>
-        <DataSourceName>DataSource1</DataSourceName>
+        <DataSourceName>Instructor_Courses</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@InstructorID">
             <Value>=Parameters!InstructorID.Value</Value>
@@ -56,6 +56,20 @@ GROUP BY
         </Field>
         <Field Name="StudentCount">
           <DataField>StudentCount</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Instructor_IDS">
+      <Query>
+        <DataSourceName>Instructor_Courses</DataSourceName>
+        <CommandText>SELECT ins_id
+FROM Instructor</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="ins_id">
+          <DataField>ins_id</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
@@ -101,15 +115,15 @@ GROUP BY
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>40.875mm</Width>
+                  <Width>48.8125mm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>35.58333mm</Width>
+                  <Width>37.17083mm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>6mm</Height>
+                  <Height>8.11667mm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -180,7 +194,7 @@ GROUP BY
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>6mm</Height>
+                  <Height>8.11667mm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -268,9 +282,9 @@ GROUP BY
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>23.19867mm</Top>
-            <Left>19.812mm</Left>
-            <Height>12mm</Height>
-            <Width>76.45833mm</Width>
+            <Left>16.637mm</Left>
+            <Height>16.23334mm</Height>
+            <Width>85.98333mm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -345,7 +359,20 @@ GROUP BY
   <ReportParameters>
     <ReportParameter Name="InstructorID">
       <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>Instructor_IDS</DataSetName>
+          <ValueField>ins_id</ValueField>
+        </DataSetReference>
+      </DefaultValue>
       <Prompt>Instructor ID</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>Instructor_IDS</DataSetName>
+          <ValueField>ins_id</ValueField>
+          <LabelField>ins_id</LabelField>
+        </DataSetReference>
+      </ValidValues>
     </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>

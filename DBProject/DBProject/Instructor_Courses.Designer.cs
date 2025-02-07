@@ -142,7 +142,13 @@ namespace DBProject
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error fetching courses: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    CustomMessageBox customMessageBox = new CustomMessageBox(
+$"Error fetching courses: {ex.Message}", // Message
+"Error", // Title
+MessageBoxIcon.Warning // Icon
+);
+                    customMessageBox.ShowDialog();
+                    //MessageBox.Show("Error fetching courses: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
