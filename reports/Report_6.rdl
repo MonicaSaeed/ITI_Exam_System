@@ -9,7 +9,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.0.20283.0</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-01-19T17:28:21.8079994Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-02-07T16:57:29.5842451Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
@@ -17,7 +17,7 @@
     <DataSource Name="Student_Answers">
       <ConnectionProperties>
         <DataProvider>SQL</DataProvider>
-        <ConnectString>Data Source=MONICA\SQLEXPRESS;Initial Catalog=ITI_Exam</ConnectString>
+        <ConnectString>Data Source=localhost\SQLEXPRESS;Initial Catalog=ExaminationSystem</ConnectString>
         <IntegratedSecurity>true</IntegratedSecurity>
       </ConnectionProperties>
       <rd:SecurityType>Integrated</rd:SecurityType>
@@ -36,59 +36,58 @@
             <Value>=Parameters!e_id.Value</Value>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>SELECT
-	q.text, o.op_text
+        <CommandText>SELECT 
+    q.text AS Question_Text,
+    ISNULL(STRING_AGG(o.op_text, ', '), 'No Answer') AS Option_Text
 FROM 
-	Student_Answer sa
+    Exam e
 INNER JOIN 
-	Question q ON sa.q_id = q.q_id
-INNER JOIN
-	[Option] o ON o.op_id = sa.op_id
+    Question q ON e.ex_id = q.ex_id
+LEFT JOIN
+    Student_Answer sa ON sa.q_id = q.q_id AND sa.st_id = @s_id
+LEFT JOIN
+    [Option] o ON o.op_id = sa.op_id
 WHERE
-	sa.st_id = @s_id AND q.ex_id = @e_id</CommandText>
+    q.ex_id = @e_id
+GROUP BY
+    q.text;</CommandText>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
       <Fields>
-        <Field Name="text">
-          <DataField>text</DataField>
+        <Field Name="Question_Text">
+          <DataField>Question_Text</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="op_text">
-          <DataField>op_text</DataField>
+        <Field Name="Option_Text">
+          <DataField>Option_Text</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
-    <DataSet Name="Students_ids_Exams">
+    <DataSet Name="Exams_IDS">
       <Query>
         <DataSourceName>Student_Answers</DataSourceName>
-        <CommandText>SELECT DISTINCT
-	sa.st_id
-FROM 
-	Student_Answer sa</CommandText>
-        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
-      </Query>
-      <Fields>
-        <Field Name="st_id">
-          <DataField>st_id</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="Exams_ids_Students">
-      <Query>
-        <DataSourceName>Student_Answers</DataSourceName>
-        <CommandText>SELECT DISTINCT
-	q.ex_id
-FROM 
-	Student_Answer sa
-INNER JOIN 
-	Question q ON sa.q_id = q.q_id</CommandText>
+        <CommandText>SELECT DISTINCT ex_id
+FROM Student_Exam_Attempt</CommandText>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
       <Fields>
         <Field Name="ex_id">
           <DataField>ex_id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Student_IDs">
+      <Query>
+        <DataSourceName>Student_Answers</DataSourceName>
+        <CommandText>SELECT DISTINCT st_id
+FROM Student_Exam_Attempt
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="st_id">
+          <DataField>st_id</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
@@ -134,10 +133,10 @@ INNER JOIN
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>2.18083in</Width>
+                  <Width>3.79333in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.33917in</Width>
+                  <Width>3.25167in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -211,21 +210,21 @@ INNER JOIN
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="text">
+                        <Textbox Name="Question_Text">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!text.Value</Value>
+                                  <Value>=Fields!Question_Text.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>text</rd:DefaultName>
+                          <rd:DefaultName>Question_Text</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -241,21 +240,21 @@ INNER JOIN
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="op_text">
+                        <Textbox Name="Option_Text">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!op_text.Value</Value>
+                                  <Value>=Fields!Option_Text.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>op_text</rd:DefaultName>
+                          <rd:DefaultName>Option_Text</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -293,7 +292,7 @@ INNER JOIN
             <Top>0.91333in</Top>
             <Left>0.98in</Left>
             <Height>0.5in</Height>
-            <Width>4.52in</Width>
+            <Width>7.045in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -309,10 +308,10 @@ INNER JOIN
           </Border>
         </Style>
       </Body>
-      <Width>6in</Width>
+      <Width>10.88333in</Width>
       <Page>
         <PageFooter>
-          <Height>0.45in</Height>
+          <Height>1.19167in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -365,16 +364,10 @@ INNER JOIN
   <ReportParameters>
     <ReportParameter Name="s_id">
       <DataType>String</DataType>
-      <DefaultValue>
-        <DataSetReference>
-          <DataSetName>Students_ids_Exams</DataSetName>
-          <ValueField>st_id</ValueField>
-        </DataSetReference>
-      </DefaultValue>
-      <Prompt>Choose Student id</Prompt>
+      <Prompt>Student id</Prompt>
       <ValidValues>
         <DataSetReference>
-          <DataSetName>Students_ids_Exams</DataSetName>
+          <DataSetName>Student_IDs</DataSetName>
           <ValueField>st_id</ValueField>
           <LabelField>st_id</LabelField>
         </DataSetReference>
@@ -382,16 +375,10 @@ INNER JOIN
     </ReportParameter>
     <ReportParameter Name="e_id">
       <DataType>String</DataType>
-      <DefaultValue>
-        <DataSetReference>
-          <DataSetName>Exams_ids_Students</DataSetName>
-          <ValueField>ex_id</ValueField>
-        </DataSetReference>
-      </DefaultValue>
-      <Prompt>Choose Exam id</Prompt>
+      <Prompt>Exam id</Prompt>
       <ValidValues>
         <DataSetReference>
-          <DataSetName>Exams_ids_Students</DataSetName>
+          <DataSetName>Exams_IDS</DataSetName>
           <ValueField>ex_id</ValueField>
           <LabelField>ex_id</LabelField>
         </DataSetReference>

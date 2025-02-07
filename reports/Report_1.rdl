@@ -9,15 +9,15 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.0.20283.0</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-01-19T18:22:36.8966757Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-02-07T12:20:18.5539102Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="DataSource1">
+    <DataSource Name="Students_Information">
       <ConnectionProperties>
         <DataProvider>SQL</DataProvider>
-        <ConnectString>Data Source=DESKTOP-I125DVC\SQLEXPRESS;Initial Catalog=ITI_system</ConnectString>
+        <ConnectString>Data Source=localhost\SQLEXPRESS;Initial Catalog=ExaminationSystem</ConnectString>
         <IntegratedSecurity>true</IntegratedSecurity>
       </ConnectionProperties>
       <rd:SecurityType>Integrated</rd:SecurityType>
@@ -27,7 +27,7 @@
   <DataSets>
     <DataSet Name="Students_Information_by_Department">
       <Query>
-        <DataSourceName>DataSource1</DataSourceName>
+        <DataSourceName>Students_Information</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@DepartmentNo">
             <Value>=Parameters!DepartmentNo.Value</Value>
@@ -38,14 +38,12 @@
     S.st_name AS StudentName,
     S.st_email AS StudentEmail,
     S.st_phoneNo AS StudentPhone,
-    T.track_name AS TrackName,
-    B.branch_name AS BranchName
+    T.track_name AS TrackName
 FROM 
     Student S
     JOIN Track T ON S.track_id = T.track_id
-    JOIN Branch B ON T.branch_id = B.branch_id
 WHERE 
-    B.branch_id = @DepartmentNo; -- Parameter for Department No</CommandText>
+    T.track_id= @DepartmentNo; -- Parameter for Department No</CommandText>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
       <Fields>
@@ -69,9 +67,18 @@ WHERE
           <DataField>TrackName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="BranchName">
-          <DataField>BranchName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Track_Number">
+      <Query>
+        <DataSourceName>Students_Information</DataSourceName>
+        <CommandText>select track_id
+from Track</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="track_id">
+          <DataField>track_id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -128,10 +135,7 @@ WHERE
                   <Width>34.94834mm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>35.16001mm</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>36.42999mm</Width>
+                  <Width>62.46499mm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -305,40 +309,6 @@ WHERE
                         </Textbox>
                       </CellContents>
                     </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox13">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>Branch Name</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                    <FontSize>12pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox13</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
@@ -498,45 +468,12 @@ WHERE
                         </Textbox>
                       </CellContents>
                     </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="BranchName">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!BranchName.Value</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>BranchName</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
                   </TablixCells>
                 </TablixRow>
               </TablixRows>
             </TablixBody>
             <TablixColumnHierarchy>
               <TablixMembers>
-                <TablixMember />
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
@@ -558,7 +495,7 @@ WHERE
             <Top>26.162mm</Top>
             <Left>5.842mm</Left>
             <Height>12mm</Height>
-            <Width>196.11133mm</Width>
+            <Width>186.98632mm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -632,8 +569,21 @@ WHERE
   </ReportSections>
   <ReportParameters>
     <ReportParameter Name="DepartmentNo">
-      <DataType>String</DataType>
-      <Prompt>Department No</Prompt>
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>Track_Number</DataSetName>
+          <ValueField>track_id</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>DepartmentNo</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>Track_Number</DataSetName>
+          <ValueField>track_id</ValueField>
+          <LabelField>track_id</LabelField>
+        </DataSetReference>
+      </ValidValues>
     </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>

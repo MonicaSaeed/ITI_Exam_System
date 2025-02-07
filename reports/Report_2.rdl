@@ -9,15 +9,15 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.0.20283.0</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-01-19T18:25:06.7686631Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-02-07T14:01:57.9859731Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="DataSource">
+    <DataSource Name="Student_Grades">
       <ConnectionProperties>
         <DataProvider>SQL</DataProvider>
-        <ConnectString>Data Source=DESKTOP-I125DVC\SQLEXPRESS;Initial Catalog=ITI_system</ConnectString>
+        <ConnectString>Data Source=localhost\SQLEXPRESS;Initial Catalog=ExaminationSystem</ConnectString>
         <IntegratedSecurity>true</IntegratedSecurity>
       </ConnectionProperties>
       <rd:SecurityType>Integrated</rd:SecurityType>
@@ -27,7 +27,7 @@
   <DataSets>
     <DataSet Name="Student_Grades_by_Student_ID">
       <Query>
-        <DataSourceName>DataSource</DataSourceName>
+        <DataSourceName>Student_Grades</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@StudentID">
             <Value>=Parameters!StudentID.Value</Value>
@@ -102,15 +102,15 @@ GROUP BY
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>53.15167mm</Width>
+                  <Width>54.73917mm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>39.18166mm</Width>
+                  <Width>40.76916mm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>6mm</Height>
+                  <Height>10.1275mm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -181,7 +181,7 @@ GROUP BY
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>6mm</Height>
+                  <Height>10.1275mm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -269,9 +269,9 @@ GROUP BY
             </TablixRowHierarchy>
             <DataSetName>Student_Grades_by_Student_ID</DataSetName>
             <Top>19.177mm</Top>
-            <Left>22.14033mm</Left>
-            <Height>12mm</Height>
-            <Width>92.33333mm</Width>
+            <Left>18.96533mm</Left>
+            <Height>20.255mm</Height>
+            <Width>95.50833mm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
