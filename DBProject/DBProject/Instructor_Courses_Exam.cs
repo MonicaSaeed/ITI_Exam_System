@@ -71,7 +71,7 @@ namespace DBProject
                     Height = 40,
                 };
                 viewGradesButton.Click += (sender, e) => {
-                    GradesForm gradesForm = new GradesForm(1);
+                    GradesForm gradesForm = new GradesForm(examId);
                     gradesForm.ShowDialog();
                 };
 
@@ -85,7 +85,7 @@ namespace DBProject
                     Height = 40,
                 };
                 viewExamButton.Click += (sender, e) => {
-                    ExamDisplayForm examDisplayForm = new ExamDisplayForm(1);
+                    ExamDisplayForm examDisplayForm = new ExamDisplayForm(examId);
                     examDisplayForm.ShowDialog();
                 };
 

@@ -1,18 +1,11 @@
-
 -- DataBase Name ExaminationSystem 
 
--- Table: Branch
-CREATE TABLE Branch (
-    branch_id INT IDENTITY(1,1) PRIMARY KEY,
-    branch_name NVARCHAR(100) NOT NULL
-);
+
 
 -- Table: Track
 CREATE TABLE Track (
     track_id INT IDENTITY(1,1) PRIMARY KEY,
-    track_name NVARCHAR(100) NOT NULL,
-    branch_id INT NOT NULL,
-    FOREIGN KEY (branch_id) REFERENCES Branch(branch_id)
+    track_name NVARCHAR(100) NOT NULL
 );
 
 -- Table: Student
@@ -132,3 +125,7 @@ CREATE TABLE Student_Exam_Attempt (
     FOREIGN KEY (st_id) REFERENCES Student(st_id), 
     FOREIGN KEY (ex_id) REFERENCES Exam(ex_id)     
 	);
+
+
+
+
