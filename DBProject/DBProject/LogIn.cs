@@ -6,7 +6,7 @@ namespace DBProject
     public partial class LogIn : Form
     {
 
-        string connectionString = "Server=DESKTOP-JGIQ4Q8\\MSSQLSERVER1;Database=ExaminationSystem;Integrated Security=True;TrustServerCertificate=True;";
+        string connectionString = "Server=localhost\\SQLEXPRESS;Database=ExaminationSystem;Integrated Security=True;TrustServerCertificate=True;";
         string selectedType = "student";
         public LogIn()
         {
