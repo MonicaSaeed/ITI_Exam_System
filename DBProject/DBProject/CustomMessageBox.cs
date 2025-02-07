@@ -18,11 +18,14 @@ public partial class CustomMessageBox : Form
             case MessageBoxIcon.Information:
                 pictureBoxIcon.Image = LoadIconFromResources("1.png"); // Load custom info icon
                 break;
-            //case MessageBoxIcon.Warning:
-            //    pictureBoxIcon.Image = LoadIconFromResources("Assets//warning.png"); // Load custom warning icon
-            //    break;
+            case MessageBoxIcon.Warning:
+                pictureBoxIcon.Image = LoadIconFromResources("x2.png"); // Load custom warning icon
+                break;
             case MessageBoxIcon.Error:
                 pictureBoxIcon.Image = LoadIconFromResources("2.png"); // Load custom error icon
+                break;
+            case MessageBoxIcon.Question:
+                pictureBoxIcon.Image = LoadIconFromResources("c3.png");
                 break;
             default:
                 pictureBoxIcon.Image = null; // No icon

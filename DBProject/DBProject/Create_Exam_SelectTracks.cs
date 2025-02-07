@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.VisualBasic.Devices;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -121,11 +122,23 @@ namespace DBProject
 
                     // Commit the transaction
                     scope.Complete();
-                    MessageBox.Show("Exam created and tracks assigned successfully.");
+                    //    MessageBox.Show("Exam created and tracks assigned successfully.");
+                    CustomMessageBox customMessageBox = new CustomMessageBox(
+                                  "Exam created and tracks assigned successfully.", // Message
+                                  "Exam Creation", // Title
+                                  MessageBoxIcon.Question // Icon
+   );
+                    customMessageBox.ShowDialog();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error: {ex.Message}");
+                    //  MessageBox.Show($"Error: {ex.Message}");
+                    CustomMessageBox customMessageBox = new CustomMessageBox(
+                                $"Error: {ex.Message}.", // Message
+                                "Error", // Title
+                                MessageBoxIcon.Warning // Icon
+ );
+                    customMessageBox.ShowDialog();
                 }
             }
 
@@ -168,7 +181,13 @@ namespace DBProject
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error: {ex.Message}");
+                    //MessageBox.Show($"Error: {ex.Message}");
+                    CustomMessageBox customMessageBox = new CustomMessageBox(
+            $"Error: {ex.Message}.", // Message
+            "Error", // Title
+            MessageBoxIcon.Warning // Icon
+);
+                    customMessageBox.ShowDialog();
                 }
             }
 
@@ -201,7 +220,13 @@ namespace DBProject
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error: {ex.Message}");
+                    //  MessageBox.Show($"Error: {ex.Message}");
+                    CustomMessageBox customMessageBox = new CustomMessageBox(
+              $"Error: {ex.Message}.", // Message
+              "Error", // Title
+              MessageBoxIcon.Warning // Icon
+);
+                    customMessageBox.ShowDialog();
                 }
             }
 
@@ -237,7 +262,13 @@ namespace DBProject
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error: {ex.Message}");
+                    //MessageBox.Show($"Error: {ex.Message}");
+                    CustomMessageBox customMessageBox = new CustomMessageBox(
+            $"Error: {ex.Message}", // Message
+            "Error", // Title
+            MessageBoxIcon.Warning // Icon
+);
+                    customMessageBox.ShowDialog();
                 }
             }
             return tracks;
@@ -266,7 +297,13 @@ namespace DBProject
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error: {ex.Message}");
+                    //MessageBox.Show($"Error: {ex.Message}");
+                    CustomMessageBox customMessageBox = new CustomMessageBox(
+          $"Error: {ex.Message}", // Message
+          "Error", // Title
+          MessageBoxIcon.Warning // Icon
+);
+                    customMessageBox.ShowDialog();
                 }
             }
 
@@ -285,7 +322,13 @@ namespace DBProject
             }
             else
             {
-                MessageBox.Show("No tracks found for the given instructor and course.");
+                //MessageBox.Show("No tracks found for the given instructor and course.");
+                CustomMessageBox customMessageBox = new CustomMessageBox(
+          "No tracks found for the given instructor and course.", // Message
+          "Error", // Title
+          MessageBoxIcon.Warning // Icon
+);
+                customMessageBox.ShowDialog();
             }
         }
 

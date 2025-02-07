@@ -217,7 +217,13 @@ GROUP BY
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error fetching courses: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    CustomMessageBox customMessageBox = new CustomMessageBox(
+$"Error fetching courses:  {ex.Message}", // Message
+"Error", // Title
+MessageBoxIcon.Warning // Icon
+);
+                    customMessageBox.ShowDialog();
+                    //MessageBox.Show("Error fetching courses: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -763,7 +769,13 @@ WHERE
         private void CourseButton_Click(object sender, EventArgs e)
         {
             Button clickedButton = (Button)sender;
-            MessageBox.Show($"You clicked: {clickedButton.Text}", "Course Selected");
+            CustomMessageBox customMessageBox = new CustomMessageBox(
+$"You clicked: {clickedButton.Text}", // Message
+"Course Selected", // Title
+MessageBoxIcon.Question // Icon
+);
+            customMessageBox.ShowDialog();
+            // MessageBox.Show($"You clicked: {clickedButton.Text}", "Course Selected");
         }
         #region new_for_exam_attemptCheck 
         //private bool HasStudentAttemptedExam(int studentId, int examId)

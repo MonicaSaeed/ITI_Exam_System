@@ -10,11 +10,30 @@
 
   <ItemGroup>
     <None Remove="1.png" />
+    <None Remove="c1.jpg" />
+    <None Remove="c2.jpg" />
+    <None Remove="c3.png" />
+    <None Remove="c4.jpg" />
+    <None Remove="x.jpg" />
+    <None Remove="x1.png" />
+    <None Remove="x2.png" />
+    <None Remove="x3.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="c2.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="2.png" />
     <EmbeddedResource Include="1.png" />
+    <EmbeddedResource Include="c1.jpg" />
+    <EmbeddedResource Include="c3.png" />
+    <EmbeddedResource Include="c4.jpg" />
+    <EmbeddedResource Include="x.jpg" />
+    <EmbeddedResource Include="x1.png" />
+    <EmbeddedResource Include="x2.png" />
+    <EmbeddedResource Include="x3.png" />
   </ItemGroup>
 
   <ItemGroup>

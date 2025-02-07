@@ -16,7 +16,10 @@ using static System.Net.Mime.MediaTypeNames;
 namespace DBProject
 {
     public partial class Create_Questions : Form
+
     {
+        Form popup = new Form();
+
         string connectionString = "Server=localhost\\SQLEXPRESS;Database=ExaminationSystem;Integrated Security=True;TrustServerCertificate=True;";
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -24,6 +27,8 @@ namespace DBProject
         public Create_Questions()
         {
             InitializeComponent();
+            button1.Click += new EventHandler(button1_Click);
+
             ExamIdInQuestion = 10; // Setting ExamIdInQuestion to 10
         }
 
@@ -34,7 +39,7 @@ namespace DBProject
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form popup = new Form
+            popup = new Form
             {
                 Width = 800,
                 Height = 700,
@@ -206,7 +211,7 @@ namespace DBProject
                 }
             };
 
-
+            bool clicked = false;
             save.Click += (s, args) =>
             {
                 string questionText = textBox.Text;
@@ -234,7 +239,13 @@ namespace DBProject
                             }
                             else
                             {
-                                MessageBox.Show($"Error: Option controls for index {i} were not found.");
+                                //MessageBox.Show($"Error: Option controls for index {i} were not found.");
+                                CustomMessageBox customMessageBox1 = new CustomMessageBox(
+$"Option controls for index {i} were not found.", // Message
+"Error", // Title
+MessageBoxIcon.Warning // Icon
+);
+                                customMessageBox1.ShowDialog();
                             }
                         }
                     }
@@ -258,16 +269,34 @@ namespace DBProject
                         }
                         else
                         {
-                            MessageBox.Show(string.Join(", ", popup.Controls.Cast<Control>().Select(c => c.Name)));
+                            #region need_edit
+
+                            //MessageBox.Show(string.Join(", ", popup.Controls.Cast<Control>().Select(c => c.Name)));
+                            CustomMessageBox customMessageBox2 = new CustomMessageBox(
+string.Join(", ", popup.Controls.Cast<Control>().Select(c => c.Name)), // Message
+"Error", // Title
+MessageBoxIcon.Warning // Icon
+);
+                            customMessageBox2.ShowDialog();
+                            #endregion
                         }
                     }
-                    MessageBox.Show("Question and options saved successfully!");
-                    popup.Close();
+                    CustomMessageBox customMessageBox = new CustomMessageBox(
+$"Question and options saved successfully!", // Message
+"Question Added", // Title
+MessageBoxIcon.Question // Icon
+);
+                    customMessageBox.ShowDialog();
+                    //  MessageBox.Show("Question and options saved successfully!");
+                    popup.Hide();
+                    clicked = true;
                     showQuestions();
                 }
             };
+          //  popup.Hide();
 
             popup.Controls.Add(save);
+            if(!clicked)
             popup.Show();
         }
 
@@ -329,7 +358,13 @@ namespace DBProject
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error: {ex.Message}");
+                    CustomMessageBox customMessageBox = new CustomMessageBox(
+$"Error: {ex.Message}", // Message
+"Error", // Title
+MessageBoxIcon.Warning // Icon
+);
+                    customMessageBox.ShowDialog();
+                    //MessageBox.Show($"Error: {ex.Message}");
                 }
             }
 
@@ -349,12 +384,24 @@ namespace DBProject
             label1.Font = new System.Drawing.Font("Arial", 12, FontStyle.Bold);
             button1.ForeColor = Color.White;
             button1.BackColor = Color.Black;
-            button1.Location = new Point(800, 500);
+            button1.Location = new Point(800, 20);
             button1.Text = "Add Question";
             button1.Width = 150;
             button1.Height = 50;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-
+            //this.button1.Click += new System.EventHandler(this.button1_Click);
+            backButton.ForeColor = Color.White;
+            backButton.BackColor = Color.Black;
+            backButton.Location = new Point(400, 20);
+            backButton.Text = "Back";
+            backButton.Width = 150;
+            backButton.Height = 50;
+           
+            //backButton.Click += (sender, e) => {
+            //    this.Hide();
+            //   Instructor_Courses_Exam CouresShow = new Instructor_Courses_Exam();
+            //    CouresShow.ShowDialog();
+            //};
+            this.Controls.Add(backButton);
             List<QuestionDetails> questions = getQuestions();
 
             if (this.Controls.Contains(scrollablePanel))
@@ -474,7 +521,13 @@ namespace DBProject
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error: {ex.Message}");
+                    //MessageBox.Show($"Error: {ex.Message}");
+                    CustomMessageBox customMessageBox = new CustomMessageBox(
+$"Error: {ex.Message}", // Message
+"Error", // Title
+MessageBoxIcon.Warning // Icon
+);
+                    customMessageBox.ShowDialog();
                 }
             }
             return qId;
@@ -498,7 +551,13 @@ namespace DBProject
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error: {ex.Message}");
+                    CustomMessageBox customMessageBox = new CustomMessageBox(
+$"Error: {ex.Message}", // Message
+"Error", // Title
+MessageBoxIcon.Warning // Icon
+);
+                    customMessageBox.ShowDialog();
+                    //MessageBox.Show($"Error: {ex.Message}");
                 }
             }
         }
