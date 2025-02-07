@@ -13,7 +13,7 @@ namespace DBProject
     public partial class Instructor_Courses : Form
     {
         private int studentID;
-        string connectionString = "Server=DESKTOP-JGIQ4Q8\\MSSQLSERVER1;Database=ExaminationSystem;Integrated Security=True;TrustServerCertificate=True;";
+        string connectionString = "Server=localhost\\SQLEXPRESS;Database=ExaminationSystem;Integrated Security=True;TrustServerCertificate=True;";
 
         public Instructor_Courses(int studentID)
         {
