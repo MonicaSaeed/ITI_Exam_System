@@ -120,7 +120,7 @@ namespace DBProject
             // Add the "Return" button
             Button returnButton = new Button
             {
-                Text = "Return",
+                Text = "Back",
                 BackColor = Color.Black,
                 ForeColor = Color.White,
                 Width = 120,
