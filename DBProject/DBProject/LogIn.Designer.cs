@@ -149,14 +149,13 @@
             Controls.Add(textBox2);
             Controls.Add(textBox1);
             Controls.Add(label1);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
+            FormBorderStyle = FormBorderStyle.FixedDialog;         
             Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "LogIn";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Log In";
-            Load += LogIn_Load;
             ResumeLayout(false);
             PerformLayout();
         }

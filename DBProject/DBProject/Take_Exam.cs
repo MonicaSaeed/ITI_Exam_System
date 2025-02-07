@@ -1,6 +1,4 @@
 ﻿using Microsoft.Data.SqlClient;
-using Microsoft.VisualBasic.Devices;
-
 namespace DBProject
 {
     public partial class Take_Exam : Form
@@ -151,6 +149,8 @@ namespace DBProject
                         }
                     }
                 }
+                Random rand = new Random();
+                questions = questions.OrderBy(q => rand.Next()).ToList(); //to display questions in a different order for each student
                 foreach (var question in questions)
                 {
                     List<(string, int)> options = GetOptionsForQuestion(connection, question.QuestionId);

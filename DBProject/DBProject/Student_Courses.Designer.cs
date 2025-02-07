@@ -19,7 +19,7 @@ namespace DBProject
         private List<Button> courseButtons = new List<Button>();
         private Label label1;
         private Label label2;
-        private Size baseFormSize = new Size(1246, 450); // Initialize baseFormSize with the initial form size
+        private Size baseFormSize = new Size(875, 523); // Initialize baseFormSize with the initial form size
         private int ExamId;
         /// <summary>
         /// Clean up any resources being used.
@@ -74,7 +74,7 @@ namespace DBProject
             AllowDrop = true;
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.None; // Disable auto-scaling
-            ClientSize = baseFormSize; // Set initial form size
+            ClientSize = new Size(875, 523);
             scrollPanel.Controls.Add(label2);
             scrollPanel.Controls.Add(label1);
             Name = "Form1";

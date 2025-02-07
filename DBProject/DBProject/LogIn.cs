@@ -44,12 +44,23 @@ namespace DBProject
 
             if (string.IsNullOrWhiteSpace(enteredEmail))
             {
-                MessageBox.Show("Please enter an email.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                CustomMessageBox customMessageBox = new CustomMessageBox(
+                               "Please enter an email.",
+                               "Validation Error",
+                               MessageBoxIcon.Error);
+
+                customMessageBox.ShowDialog(); 
+               
                 return;
             }
             if (string.IsNullOrWhiteSpace(enteredPass))
             {
-                MessageBox.Show("Please enter an password.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                CustomMessageBox customMessageBox = new CustomMessageBox(
+                              "Please enter an password.",
+                              "Validation Error",
+                              MessageBoxIcon.Error);
+
+                customMessageBox.ShowDialog();
                 return;
             }
             if (IsEmailExistsAndMatchPass(enteredEmail, enteredPass))
@@ -102,7 +113,12 @@ namespace DBProject
             }
             else
             {
-                MessageBox.Show("Email does not exist or wrong password.", "Try Adain", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CustomMessageBox customMessageBox = new CustomMessageBox(
+               "Email does not exist or wrong password.",
+               "Validation Error",
+               MessageBoxIcon.Error);
+
+                customMessageBox.ShowDialog();
             }
 
         }
