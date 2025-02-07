@@ -27,7 +27,7 @@ namespace InstructorPart
 
             if (dt.Rows.Count > 0)
             {
-                   dataGridView2.DataSource = dt;
+                dataGridView2.DataSource = dt;
             }
             else
             {
@@ -66,6 +66,11 @@ namespace InstructorPart
         }
 
         private void GradesForm_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

@@ -35,28 +35,31 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(78, 42);
+            label1.Location = new Point(68, 32);
             label1.Name = "label1";
-            label1.Size = new Size(50, 20);
+            label1.Size = new Size(38, 15);
             label1.TabIndex = 5;
             label1.Text = "label1";
+            label1.Click += label1_Click_1;
             // 
             // button1
             // 
-            button1.Location = new Point(844, 510);
+            button1.Location = new Point(738, 382);
+            button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(94, 29);
+            button1.Size = new Size(82, 22);
             button1.TabIndex = 6;
             button1.Text = "button1";
             button1.UseVisualStyleBackColor = true;
             // 
             // Create_Questions
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(984, 577);
+            ClientSize = new Size(861, 433);
             Controls.Add(button1);
             Controls.Add(label1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Create_Questions";
             Text = "Create_Questions";
             Load += Create_Questions_Load;

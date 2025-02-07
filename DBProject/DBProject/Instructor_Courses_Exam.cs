@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using InstructorPart;
 using Microsoft.Data.SqlClient;
@@ -9,10 +10,12 @@ namespace DBProject
 {
     public partial class Instructor_Courses_Exam : Form
     {
+        // Database connection string
         string connectionString = "Server=DESKTOP-JGIQ4Q8\\MSSQLSERVER1;Database=ExaminationSystem;Integrated Security=True;TrustServerCertificate=True;";
         int course_id;
         int instructor_id;
 
+        // Constructor
         public Instructor_Courses_Exam(int _course_id, int _instructor_id)
         {
             course_id = _course_id;
@@ -22,9 +25,11 @@ namespace DBProject
             // Enable scrolling for the form
             this.AutoScroll = true;
 
+            // Load courses and exams
             LoadCourses();
         }
 
+        // Load courses and exams
         private void LoadCourses()
         {
             DataTable examsData = GetCourseExams(course_id, instructor_id); // Get exams with tracks
@@ -71,7 +76,7 @@ namespace DBProject
                     Height = 40,
                 };
                 viewGradesButton.Click += (sender, e) => {
-                    GradesForm gradesForm = new GradesForm(1);
+                    GradesForm gradesForm = new GradesForm(examId); // Pass the exam ID
                     gradesForm.ShowDialog();
                 };
 
@@ -85,7 +90,7 @@ namespace DBProject
                     Height = 40,
                 };
                 viewExamButton.Click += (sender, e) => {
-                    ExamDisplayForm examDisplayForm = new ExamDisplayForm(1);
+                    ExamDisplayForm examDisplayForm = new ExamDisplayForm(examId); // Pass the exam ID
                     examDisplayForm.ShowDialog();
                 };
 
@@ -112,6 +117,20 @@ namespace DBProject
 
             this.Controls.Add(panel);
 
+            // Add the "Return" button
+            Button returnButton = new Button
+            {
+                Text = "Return",
+                BackColor = Color.Black,
+                ForeColor = Color.White,
+                Width = 120,
+                Height = 40,
+            };
+
+            // Add the click event handler
+            returnButton.Click += (sender, e) => ReturnToPreviousPage();
+
+            // Add the "Add Exam" button
             Button addExamButton = new Button
             {
                 Text = "Add Exam",
@@ -119,17 +138,27 @@ namespace DBProject
                 ForeColor = Color.White,
                 Width = 120,
                 Height = 40,
-                Location = new Point(400, panel.Bottom + 20) // Below the last panel
             };
 
             addExamButton.Click += (sender, e) => {
+                this.Hide();
                 Create_Exam_SelectTracks examDisplayForm = new Create_Exam_SelectTracks(instructor_id);
                 examDisplayForm.ShowDialog();
             };
+
+            // Position both buttons at the same level with a gap
+            int buttonY = panel.Bottom + 20; // Y-coordinate for both buttons
+            int buttonGap = 20; // Distance between the buttons
+
+            returnButton.Location = new Point(160, buttonY); // Left side
+            addExamButton.Location = new Point(returnButton.Right + buttonGap, buttonY); // Right side with a gap
+
+            // Add the buttons to the form
+            this.Controls.Add(returnButton);
             this.Controls.Add(addExamButton);
         }
 
-        // Function to get course name by ID
+        // Get course name by ID
         private string GetCourseName(int course_id)
         {
             string courseName = "Unknown Course";
@@ -156,7 +185,7 @@ namespace DBProject
             return courseName;
         }
 
-        // Function to get exams and tracks for a course and instructor
+        // Get exams and tracks for a course and instructor
         private DataTable GetCourseExams(int course_id, int instructor_id)
         {
             DataTable examsTable = new DataTable();
@@ -201,7 +230,7 @@ namespace DBProject
 
                 try
                 {
-                    // Step 0: Check if the exam has started
+                    // Step 0: Check if the exam exists and has not started
                     string checkExamStartQuery = @"
                         SELECT 
                             e.start_date
@@ -223,6 +252,7 @@ namespace DBProject
 
                     DateTime startDate = (DateTime)result;
 
+                    // Check if the exam has already started
                     if (DateTime.Now >= startDate)
                     {
                         MessageBox.Show("Cannot delete the exam because it has already started.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -293,6 +323,19 @@ namespace DBProject
             }
         }
 
+        // Return to the previous form
+        private void ReturnToPreviousPage()
+        {
+            Instructor_Courses instructorCoursesForm = new Instructor_Courses(instructor_id); // Pass the instructor_id
+
+            // Show the Instructor_Courses form
+            instructorCoursesForm.Show();
+
+            // Close the current form
+            this.Close();
+        }
+
+        // Form load event
         private void Instructor_Courses_Exam_Load(object sender, EventArgs e)
         {
             // Fetch exams when the form loads
