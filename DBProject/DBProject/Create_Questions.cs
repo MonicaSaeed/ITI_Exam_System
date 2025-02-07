@@ -234,7 +234,13 @@ namespace DBProject
                             }
                             else
                             {
-                                MessageBox.Show($"Error: Option controls for index {i} were not found.");
+                                //MessageBox.Show($"Error: Option controls for index {i} were not found.");
+                                CustomMessageBox customMessageBox = new CustomMessageBox(
+$"Option controls for index {i} were not found.", // Message
+"Error", // Title
+MessageBoxIcon.Warning // Icon
+);
+                                customMessageBox.ShowDialog();
                             }
                         }
                     }
@@ -258,7 +264,16 @@ namespace DBProject
                         }
                         else
                         {
-                            MessageBox.Show(string.Join(", ", popup.Controls.Cast<Control>().Select(c => c.Name)));
+                            #region need_edit
+
+                            //MessageBox.Show(string.Join(", ", popup.Controls.Cast<Control>().Select(c => c.Name)));
+                            CustomMessageBox customMessageBox = new CustomMessageBox(
+string.Join(", ", popup.Controls.Cast<Control>().Select(c => c.Name)), // Message
+"Error", // Title
+MessageBoxIcon.Warning // Icon
+);
+                            customMessageBox.ShowDialog();
+                            #endregion
                         }
                     }
                     MessageBox.Show("Question and options saved successfully!");

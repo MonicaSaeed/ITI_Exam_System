@@ -150,7 +150,13 @@ namespace DBProject
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error fetching course name: " + ex.Message);
+                    CustomMessageBox customMessageBox = new CustomMessageBox(
+$"Error fetching course name: {ex.Message}", // Message
+"Error", // Title
+MessageBoxIcon.Warning // Icon
+);
+                    customMessageBox.ShowDialog();
+                    //MessageBox.Show("Error fetching course name: " + ex.Message);
                 }
             }
             return courseName;
@@ -185,7 +191,13 @@ namespace DBProject
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error fetching exams: " + ex.Message);
+                    CustomMessageBox customMessageBox = new CustomMessageBox(
+$"Error fetching exams: {ex.Message}", // Message
+"Error", // Title
+MessageBoxIcon.Warning // Icon
+);
+                    customMessageBox.ShowDialog();
+                    //MessageBox.Show("Error fetching exams: " + ex.Message);
                 }
             }
             return examsTable;
@@ -216,7 +228,13 @@ namespace DBProject
 
                     if (result == null || result == DBNull.Value)
                     {
-                        MessageBox.Show("Exam not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        CustomMessageBox customMessageBox = new CustomMessageBox(
+$"Exam not found", // Message
+"Error", // Title
+MessageBoxIcon.Warning // Icon
+);
+                        customMessageBox.ShowDialog();
+                        //MessageBox.Show("Exam not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         transaction.Rollback();
                         return;
                     }
@@ -225,7 +243,13 @@ namespace DBProject
 
                     if (DateTime.Now >= startDate)
                     {
-                        MessageBox.Show("Cannot delete the exam because it has already started.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        CustomMessageBox customMessageBox = new CustomMessageBox(
+$"Cannot delete the exam because it has already started.", // Message
+"Error", // Title
+MessageBoxIcon.Warning // Icon
+);
+                        customMessageBox.ShowDialog();
+                        //MessageBox.Show("Cannot delete the exam because it has already started.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         transaction.Rollback();
                         return;
                     }
