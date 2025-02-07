@@ -19,7 +19,7 @@ public partial class CustomMessageBox : Form
                 pictureBoxIcon.Image = LoadIconFromResources("1.png"); // Load custom info icon
                 break;
             case MessageBoxIcon.Warning:
-                pictureBoxIcon.Image = LoadIconFromResources("x.jpg"); // Load custom warning icon
+                pictureBoxIcon.Image = LoadIconFromResources("x2.png"); // Load custom warning icon
                 break;
             case MessageBoxIcon.Error:
                 pictureBoxIcon.Image = LoadIconFromResources("2.png"); // Load custom error icon

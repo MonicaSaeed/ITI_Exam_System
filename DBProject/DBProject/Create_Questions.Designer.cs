@@ -30,6 +30,7 @@
         {
             label1 = new Label();
             button1 = new Button();
+            backButton = new Button();
             SuspendLayout();
             // 
             // label1
@@ -43,12 +44,20 @@
             // 
             // button1
             // 
-            button1.Location = new Point(844, 510);
+            button1.Location = new Point(78, 510);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 6;
             button1.Text = "button1";
             button1.UseVisualStyleBackColor = true;
+
+            ////back button 
+            backButton.Location = new Point(544, 510);
+            backButton.Name = "back";
+            backButton.Size = new Size(94, 29);
+            backButton.TabIndex = 6;
+            backButton.Text = "back";
+            backButton.UseVisualStyleBackColor = true;
             // 
             // Create_Questions
             // 
@@ -57,6 +66,8 @@
             ClientSize = new Size(984, 577);
             Controls.Add(button1);
             Controls.Add(label1);
+            Controls.Add(backButton);
+
             Name = "Create_Questions";
             Text = "Create_Questions";
             Load += Create_Questions_Load;
@@ -68,5 +79,7 @@
         #endregion
         private Label label1;
         private Button button1;
+        private Button backButton;
+
     }
 }

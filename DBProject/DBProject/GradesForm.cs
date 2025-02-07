@@ -31,7 +31,13 @@ namespace InstructorPart
             }
             else
             {
-                MessageBox.Show("No data found.");
+                CustomMessageBox customMessageBox = new CustomMessageBox(
+$"No data found.", // Message
+"Error", // Title
+MessageBoxIcon.Warning // Icon
+);
+                customMessageBox.ShowDialog();
+                //MessageBox.Show("No data found.");
             }
 
             dataGridView2.ScrollBars = ScrollBars.Both;
