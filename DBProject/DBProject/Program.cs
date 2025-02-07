@@ -14,8 +14,8 @@ namespace DBProject
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             //Application.Run(new GradesForm(1)); //// this
-            //  Application.Run(new LogIn()); //// this
-              Application.Run(new Create_Exam_SelectTracks(1)); //// this
+              Application.Run(new LogIn()); //// this
+            //Application.Run(new Create_Exam_SelectTracks(1)); //// this
 
             //Application.Run(new Student_Courses(5));
             //     Application.Run(new CustomMessageBox("it's no date for it now \n\n, please prepare for it" , "UpComing Exam" , MessageBoxIcon.Information));

@@ -19,17 +19,17 @@ namespace DBProject
 
     {
         Form popup = new Form();
-
+        int insId;
         string connectionString = "Server=localhost\\SQLEXPRESS;Database=ExaminationSystem;Integrated Security=True;TrustServerCertificate=True;";
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int ExamIdInQuestion { get; set; }
-        public Create_Questions()
+        public Create_Questions(int insId)
         {
             InitializeComponent();
             button1.Click += new EventHandler(button1_Click);
-
-            ExamIdInQuestion = 10; // Setting ExamIdInQuestion to 10
+            this.insId = insId;
+            //ExamIdInQuestion = 10; // Setting ExamIdInQuestion to 10
         }
 
         private void Create_Questions_Load(object sender, EventArgs e)
@@ -396,11 +396,12 @@ MessageBoxIcon.Warning // Icon
             backButton.Width = 150;
             backButton.Height = 50;
            
-            //backButton.Click += (sender, e) => {
-            //    this.Hide();
-            //   Instructor_Courses_Exam CouresShow = new Instructor_Courses_Exam();
-            //    CouresShow.ShowDialog();
-            //};
+            backButton.Click += (sender, e) => {
+                this.Hide();
+               //Instructor_Courses_Exam CouresShow = new Instructor_Courses_Exam();
+               Instructor_Courses insCourse = new Instructor_Courses(insId);
+                insCourse.ShowDialog();
+            };
             this.Controls.Add(backButton);
             List<QuestionDetails> questions = getQuestions();
 

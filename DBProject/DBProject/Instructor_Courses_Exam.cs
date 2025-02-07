@@ -124,6 +124,7 @@ namespace DBProject
             };
 
             addExamButton.Click += (sender, e) => {
+                this.Hide();
                 Create_Exam_SelectTracks examDisplayForm = new Create_Exam_SelectTracks(instructor_id);
                 examDisplayForm.ShowDialog();
             };

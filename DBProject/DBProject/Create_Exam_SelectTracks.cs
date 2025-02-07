@@ -144,7 +144,7 @@ namespace DBProject
 
 
             /// to pass ExamIdInQuestion to Create_Questions
-            Create_Questions q = new Create_Questions();
+            Create_Questions q = new Create_Questions(instructorId);
             q.ExamIdInQuestion = newExamId;
             q.Show();
             this.Hide();
