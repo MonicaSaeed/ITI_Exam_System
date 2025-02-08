@@ -140,7 +140,7 @@ namespace DBProject
 
                     ComboBox tfComboBox = new ComboBox
                     {
-                        Name = "tfComboBox", 
+                        Name = "tfComboBox",
                         Location = new System.Drawing.Point(20, 290),
                         Width = 200
                     };
@@ -190,7 +190,7 @@ namespace DBProject
 
                             TextBox optionTextBox = new TextBox
                             {
-                                Name = $"optionTextBox{i}", 
+                                Name = $"optionTextBox{i}",
                                 Location = new System.Drawing.Point(100, startY + (i * 40)),
                                 Width = 300
                             };
@@ -198,7 +198,7 @@ namespace DBProject
 
                             ComboBox validityComboBox = new ComboBox
                             {
-                                Name = $"validityComboBox{i}", 
+                                Name = $"validityComboBox{i}",
                                 Location = new System.Drawing.Point(420, startY + (i * 40)),
                                 Width = 100
                             };
@@ -241,10 +241,10 @@ namespace DBProject
                             {
                                 //MessageBox.Show($"Error: Option controls for index {i} were not found.");
                                 CustomMessageBox customMessageBox1 = new CustomMessageBox(
-$"Option controls for index {i} were not found.", // Message
-"Error", // Title
-MessageBoxIcon.Warning // Icon
-);
+                                    $"Option controls for index {i} were not found.", // Message
+                                    "Error", // Title
+                                    MessageBoxIcon.Warning // Icon
+                                    );
                                 customMessageBox1.ShowDialog();
                             }
                         }
@@ -255,7 +255,7 @@ MessageBoxIcon.Warning // Icon
                         if (torf != null)
                         {
                             int isSelect = torf.SelectedIndex;
-                            if(isSelect == 0)
+                            if (isSelect == 0)
                             {
                                 insertOption("T", 1, questionId);
                                 insertOption("F", 0, questionId);
@@ -282,13 +282,13 @@ MessageBoxIcon.Warning // Icon
                         }
                     }
                     CustomMessageBox customMessageBox = new CustomMessageBox(
-$"Question and options saved successfully!", // Message
-"Question Added", // Title
-MessageBoxIcon.Question // Icon
-);
+                        $"Question and options saved successfully!", // Message
+                        "Question Added", // Title
+                        MessageBoxIcon.Question // Icon
+                        );
                     customMessageBox.ShowDialog();
                     //  MessageBox.Show("Question and options saved successfully!");
-                    popup.Hide();
+                    popup.Close();
                     clicked = true;
                     showQuestions();
                 }
@@ -359,12 +359,11 @@ MessageBoxIcon.Question // Icon
                 catch (Exception ex)
                 {
                     CustomMessageBox customMessageBox = new CustomMessageBox(
-$"Error: {ex.Message}", // Message
-"Error", // Title
-MessageBoxIcon.Warning // Icon
-);
+                        $"Error: {ex.Message}", // Message
+                        "Error", // Title
+                        MessageBoxIcon.Warning // Icon
+                        );
                     customMessageBox.ShowDialog();
-                    //MessageBox.Show($"Error: {ex.Message}");
                 }
             }
 
@@ -392,14 +391,13 @@ MessageBoxIcon.Warning // Icon
             backButton.ForeColor = Color.White;
             backButton.BackColor = Color.Black;
             backButton.Location = new Point(400, 20);
-            backButton.Text = "Back";
+            backButton.Text = "Done";
             backButton.Width = 150;
             backButton.Height = 50;
            
             backButton.Click += (sender, e) => {
-                this.Hide();
-               //Instructor_Courses_Exam CouresShow = new Instructor_Courses_Exam();
-               Instructor_Courses insCourse = new Instructor_Courses(insId);
+                this.Close();
+                Instructor_Courses insCourse = new Instructor_Courses(insId);
                 insCourse.ShowDialog();
             };
             this.Controls.Add(backButton);
@@ -533,7 +531,8 @@ MessageBoxIcon.Warning // Icon
             }
             return qId;
         }
-        private void insertOption(string op_text, int is_correct, int q_id){
+        private void insertOption(string op_text, int is_correct, int q_id)
+        {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
@@ -568,6 +567,10 @@ MessageBoxIcon.Warning // Icon
         {
         }
 
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 public class QuestionDetails

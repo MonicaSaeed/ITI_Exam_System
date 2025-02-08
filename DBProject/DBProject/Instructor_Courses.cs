@@ -43,5 +43,10 @@ namespace DBProject
         {
 
         }
+
+        private void label2_Click_2(object sender, EventArgs e)
+        {
+
+        }
     }
 }

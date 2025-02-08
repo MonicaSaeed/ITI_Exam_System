@@ -60,7 +60,13 @@ VALUES
 (5, 6), (5, 7), (5, 9);
 
 
-
+INSERT INTO Instructor_Track (ins_id, track_id)
+VALUES 
+(1, 1),
+(1, 2),
+(1, 3),
+(2, 1),
+(2, 2);  
 
 
 -- Insert data for Students

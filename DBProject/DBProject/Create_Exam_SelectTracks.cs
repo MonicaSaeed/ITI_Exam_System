@@ -69,6 +69,7 @@ namespace DBProject
         private void button1_Click(object sender, EventArgs e)
         {
             _tracksIdsSelected = new List<int>();
+
             foreach (var item in checkedListBox1.CheckedItems)
             {
                 _tracksIdsSelected.Add(GetTrackId(item.ToString()));
@@ -76,11 +77,6 @@ namespace DBProject
 
             var startDate = dateTimePicker1.Value;
             var duration = (int)numericUpDown1.Value;
-
-            //// Convert _tracksIdsSelected list to a comma-separated string
-            //string tracksIdsString = string.Join(", ", _tracksIdsSelected);
-            //// Show all values in a message box
-            //MessageBox.Show($"Selected Tracks: {tracksIdsString}, Start Date: {startDate:yyyy-MM-dd HH:mm:ss}, Duration: {duration} minutes, Selected Course ID: {_courseIdSelected}");
 
             using (var scope = new TransactionScope())
             {
@@ -101,56 +97,75 @@ namespace DBProject
                         }
                     }
 
-                    // Insert Course_Exam records for each selected track_id
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
                         connection.Open();
                         foreach (int trackId in _tracksIdsSelected)
                         {
+                            // Check if the exam already exists for the same course and track
+                            string checkDuplicateQuery = @"SELECT COUNT(*) FROM Course_Exam 
+                                                   WHERE co_id = @courseId AND track_id = @trackId";
+
+                            using (SqlCommand checkCommand = new SqlCommand(checkDuplicateQuery, connection))
+                            {
+                                checkCommand.Parameters.AddWithValue("@courseId", _courseIdSelected);
+                                checkCommand.Parameters.AddWithValue("@trackId", trackId);
+
+                                int count = Convert.ToInt32(checkCommand.ExecuteScalar());
+
+                                if (count > 0)
+                                {
+                                    // Show message and stop the process
+                                    CustomMessageBox customMessageBox = new CustomMessageBox(
+                                        $"An exam already exists for this Course.",
+                                        "Duplicate Exam",
+                                        MessageBoxIcon.Warning);
+                                    customMessageBox.ShowDialog();
+                                    return;
+                                }
+                            }
+
+                            // Insert into Course_Exam only if no duplicate is found
                             string insertCourseExamQuery = @"INSERT INTO Course_Exam (ex_id, co_id, track_id)
                                                      VALUES (@examId, @courseId, @trackId)";
 
                             using (SqlCommand command = new SqlCommand(insertCourseExamQuery, connection))
                             {
                                 command.Parameters.AddWithValue("@examId", newExamId);
-                                command.Parameters.AddWithValue("@courseId", _courseIdSelected); 
+                                command.Parameters.AddWithValue("@courseId", _courseIdSelected);
                                 command.Parameters.AddWithValue("@trackId", trackId);
                                 command.ExecuteNonQuery();
                             }
                         }
                     }
 
-                    // Commit the transaction
                     scope.Complete();
-                    //    MessageBox.Show("Exam created and tracks assigned successfully.");
-                    CustomMessageBox customMessageBox = new CustomMessageBox(
-                                  "Exam created and tracks assigned successfully.", // Message
-                                  "Exam Creation", // Title
-                                  MessageBoxIcon.Question // Icon
-   );
-                    customMessageBox.ShowDialog();
+                    CustomMessageBox successMessageBox = new CustomMessageBox(
+                        "Exam created and tracks assigned successfully.", "Exam Creation", MessageBoxIcon.Information);
+                    successMessageBox.ShowDialog();
+                }
+                catch (SqlException sqlEx)
+                {
+                    CustomMessageBox errorMessageBox = new CustomMessageBox(
+                        $"Database Error: {sqlEx.Message}", "Error", MessageBoxIcon.Error);
+                    errorMessageBox.ShowDialog();
                 }
                 catch (Exception ex)
                 {
-                    //  MessageBox.Show($"Error: {ex.Message}");
-                    CustomMessageBox customMessageBox = new CustomMessageBox(
-                                $"Error: {ex.Message}.", // Message
-                                "Error", // Title
-                                MessageBoxIcon.Warning // Icon
- );
-                    customMessageBox.ShowDialog();
+                    CustomMessageBox errorMessageBox = new CustomMessageBox(
+                        $"Unexpected Error: {ex.Message}", "Error", MessageBoxIcon.Error);
+                    errorMessageBox.ShowDialog();
                 }
             }
 
-
-            /// to pass ExamIdInQuestion to Create_Questions
+            // Open the next form
             Create_Questions q = new Create_Questions(instructorId);
             q.ExamIdInQuestion = newExamId;
             q.Show();
             this.Hide();
-
         }
-    
+
+
         // to show all courses in flowLayoutPanel1_Paint
         private List<string> coursessName()
         {

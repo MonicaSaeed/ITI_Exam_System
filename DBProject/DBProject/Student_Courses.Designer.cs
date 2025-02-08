@@ -323,10 +323,10 @@ MessageBoxIcon.Warning // Icon
                         //   courseButton.Enabled = false; // Disable the button
                         courseButton.Click += (sender, e) =>
                         {
-                            var (results, totalGrade) = GetExamResults(studentID, course.CourseID); // Replace courseID with the actual course ID
+                            var (results, totalGrade,actualTotal) = GetExamResults(studentID, course.CourseID); // Replace courseID with the actual course ID
 
                             // Show the exam results form
-                            ExamResultsForm examResultsForm = new ExamResultsForm(totalGrade, results);
+                            ExamResultsForm examResultsForm = new ExamResultsForm(totalGrade, results,actualTotal);
                             examResultsForm.ShowDialog();
                             //   MessageBox.Show($"You have already taken the {course.CourseName} exam.", "Exam Taken");
                         };
@@ -378,10 +378,10 @@ MessageBoxIcon.Warning // Icon
                         courseButton.Click += (sender, e) =>
                         {
                             // Fetch exam results
-                            var (results, totalGrade) = GetExamResults(studentID, course.CourseID); // Replace courseID with the actual course ID
+                            var (results, totalGrade,actual) = GetExamResults(studentID, course.CourseID); // Replace courseID with the actual course ID
 
                             // Show the exam results form
-                            ExamResultsForm examResultsForm = new ExamResultsForm(totalGrade, results);
+                            ExamResultsForm examResultsForm = new ExamResultsForm(totalGrade, results,actual);
                             examResultsForm.ShowDialog();
                         };
                         /*
@@ -520,11 +520,11 @@ MessageBoxIcon.Warning // Icon
         #endregion
 
         #region NEW_ONE
-        private (List<(string Question, List<string> Options, List<string> StudentAnswers, List<string> CorrectAnswers, int QuestionGrade)>, int TotalGrade)
+        private (List<(string Question, List<string> Options, List<string> StudentAnswers, List<string> CorrectAnswers, int QuestionGrade)>, int TotalGrade,int actual)
  GetExamResults(int studentID, int courseID)
         {
             var results = new List<(string Question, List<string> Options, List<string> StudentAnswers, List<string> CorrectAnswers, int QuestionGrade)>();
-            int totalGrade = 0;
+            int totalGrade = 0,actual=0;
             HashSet<string> uniqueQuestions = new HashSet<string>(); // To track unique questions
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -584,7 +584,7 @@ MessageBoxIcon.Warning // Icon
                             bool isCorrect = studentAnswers.All(sa => correctAnswers.Contains(sa)) && studentAnswers.Count == correctAnswers.Count;
 
                             results.Add((question.Question, options, studentAnswers, correctAnswers, question.QuestionGrade));
-
+                            actual += question.QuestionGrade;
                             if (isCorrect)
                             {
                                 totalGrade += question.QuestionGrade;
@@ -594,7 +594,7 @@ MessageBoxIcon.Warning // Icon
                 }
             }
 
-            return (results, totalGrade);
+            return (results, totalGrade,actual);
         }
 
         private List<string> GetStudentAnswers(SqlConnection connection, string question, int studentID)

@@ -49,7 +49,7 @@ namespace DBProject
             // Add a label for the total grade
             Label lblTotalGrade = new Label
             {
-                Text = $"Your Total Grade is   {totalGrade} degrees {(totalGrade>50 ?  " :)" :" :(" )}",
+                Text = $"Your Total Grade is   {totalGrade} degrees {(totalGrade>(actualTotal/2) ?  " :)" :" :(" )}",
                 Font = new Font("Showcard Gothic", 16, FontStyle.Bold),
                 ForeColor = Color.Teal,
                 AutoSize = true,
@@ -201,14 +201,17 @@ namespace DBProject
                     if (result.StudentAnswers.Contains(option))
                     {
                         btnOption.ForeColor = Color.White;
-                        btnOption.BackColor = result.CorrectAnswers.Contains(option) ? Color.DarkGreen : Color.DarkRed;
+                        btnOption.Font = new Font("Courier New", 12, FontStyle.Bold);
+                        btnOption.BackColor = result.CorrectAnswers.Contains(option) ? Color.Green : Color.DarkRed;
                     }
 
                     // Highlight the correct answers
                     if (result.CorrectAnswers.Contains(option))
                     {
                         btnOption.ForeColor = Color.White;
-                        btnOption.BackColor = Color.DarkGreen;
+                        btnOption.Font = new Font("Courier New", 12, FontStyle.Bold);
+
+                        btnOption.BackColor = Color.Green;
                     }
                     #endregion
                     questionGroup.Controls.Add(btnOption);

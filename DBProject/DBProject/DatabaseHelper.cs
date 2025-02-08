@@ -7,8 +7,7 @@ namespace InstructorPart
 {
     internal class DatabaseHelper
     {
-        string connectionString = "Server=localhost\\SQLEXPRESS;Database=ExaminationSystem;Integrated Security=True;TrustServerCertificate=True;";
-        public DataTable GetExamName(int examId)
+        string connectionString = "Server=localhost\\SQLEXPRESS;Database=ExaminationSystem;Integrated Security=True;TrustServerCertificate=True;"; public DataTable GetExamName(int examId)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {

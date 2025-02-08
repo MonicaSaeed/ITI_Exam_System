@@ -9,7 +9,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.0.20283.0</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-02-07T14:01:57.9859731Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-02-08T11:11:05.8309912Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
@@ -34,29 +34,59 @@
           </QueryParameter>
         </QueryParameters>
         <CommandText>SELECT 
-    C.co_name AS CourseName,
-    SUM(Q.grade) AS TotalGrade
+    c.co_name AS Course_Name,
+    SUM(CASE WHEN sa.q_id IS NOT NULL THEN q.grade ELSE 0 END) AS Student_Grade,
+    SUM(q.grade) AS Total_Grade,
+    CAST(
+        (SUM(CASE WHEN sa.q_id IS NOT NULL THEN q.grade ELSE 0 END) * 100.0) / SUM(q.grade) 
+        AS DECIMAL(5, 2)
+    ) AS Grade_Percentage
 FROM 
-    Student S
-    JOIN Student_Answer SA ON S.st_id = SA.st_id
-    JOIN [Option] O ON SA.op_id = O.op_id
-    JOIN Question Q ON SA.q_id = Q.q_id
-    JOIN Exam E ON Q.ex_id = E.ex_id
-    JOIN Course_Exam CE ON E.ex_id = CE.ex_id
-    JOIN Course C ON CE.co_id = C.co_id
+    Student_Exam_Attempt sea
+INNER JOIN 
+    Exam e ON sea.ex_id = e.ex_id
+INNER JOIN 
+    Course_Exam ce ON e.ex_id = ce.ex_id
+INNER JOIN 
+    Course c ON ce.co_id = c.co_id
+INNER JOIN 
+    Question q ON e.ex_id = q.ex_id
+LEFT JOIN 
+    Student_Answer sa ON q.q_id = sa.q_id AND sa.st_id = sea.st_id
 WHERE 
-    S.st_id = @StudentID AND O.is_correct = 1
-GROUP BY 
-    C.co_name;</CommandText>
+    sea.st_id = @StudentID 
+GROUP BY 
+    c.co_name;</CommandText>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
       <Fields>
-        <Field Name="CourseName">
-          <DataField>CourseName</DataField>
+        <Field Name="Course_Name">
+          <DataField>Course_Name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="TotalGrade">
-          <DataField>TotalGrade</DataField>
+        <Field Name="Student_Grade">
+          <DataField>Student_Grade</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Total_Grade">
+          <DataField>Total_Grade</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Grade_Percentage">
+          <DataField>Grade_Percentage</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="student_Id">
+      <Query>
+        <DataSourceName>Student_Grades</DataSourceName>
+        <CommandText>select st_id
+from Student</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="st_id">
+          <DataField>st_id</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
@@ -102,10 +132,16 @@ GROUP BY
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>54.73917mm</Width>
+                  <Width>72.83451mm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>40.76916mm</Width>
+                  <Width>37.80367mm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>35.37166mm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>37.80367mm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -147,7 +183,7 @@ GROUP BY
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox3">
+                        <Textbox Name="Textbox2">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -155,6 +191,39 @@ GROUP BY
                               <TextRuns>
                                 <TextRun>
                                   <Value>Total Grade</Value>
+                                  <Style>
+                                    <FontSize>12pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox2</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox3">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Student Grade</Value>
                                   <Style>
                                     <FontSize>12pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -178,6 +247,39 @@ GROUP BY
                         </Textbox>
                       </CellContents>
                     </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox5">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Grade Percentage</Value>
+                                  <Style>
+                                    <FontSize>12pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox5</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
@@ -185,14 +287,14 @@ GROUP BY
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="CourseName">
+                        <Textbox Name="Course_Name">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!CourseName.Value</Value>
+                                  <Value>=Fields!Course_Name.Value</Value>
                                   <Style>
                                     <FontSize>18pt</FontSize>
                                   </Style>
@@ -201,7 +303,7 @@ GROUP BY
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>CourseName</rd:DefaultName>
+                          <rd:DefaultName>Course_Name</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -217,14 +319,14 @@ GROUP BY
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="TotalGrade">
+                        <Textbox Name="Total_Grade">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!TotalGrade.Value</Value>
+                                  <Value>=Fields!Total_Grade.Value</Value>
                                   <Style>
                                     <FontSize>18pt</FontSize>
                                   </Style>
@@ -233,7 +335,71 @@ GROUP BY
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>TotalGrade</rd:DefaultName>
+                          <rd:DefaultName>Total_Grade</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Student_Grade">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Student_Grade.Value</Value>
+                                  <Style>
+                                    <FontSize>18pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Student_Grade</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Grade_Percentage">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Grade_Percentage.Value</Value>
+                                  <Style>
+                                    <FontSize>18pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Grade_Percentage</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -255,6 +421,8 @@ GROUP BY
               <TablixMembers>
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
@@ -271,7 +439,7 @@ GROUP BY
             <Top>19.177mm</Top>
             <Left>18.96533mm</Left>
             <Height>20.255mm</Height>
-            <Width>95.50833mm</Width>
+            <Width>183.81351mm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -287,7 +455,7 @@ GROUP BY
           </Border>
         </Style>
       </Body>
-      <Width>152.4mm</Width>
+      <Width>222.03832mm</Width>
       <Page>
         <PageFooter>
           <Height>11.43mm</Height>
@@ -312,7 +480,7 @@ GROUP BY
               </Paragraphs>
               <rd:DefaultName>ExecutionTime</rd:DefaultName>
               <Top>5.08mm</Top>
-              <Left>101.6mm</Left>
+              <Left>155.575mm</Left>
               <Height>6.35mm</Height>
               <Width>50.8mm</Width>
               <Style>
@@ -346,7 +514,20 @@ GROUP BY
   <ReportParameters>
     <ReportParameter Name="StudentID">
       <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>student_Id</DataSetName>
+          <ValueField>st_id</ValueField>
+        </DataSetReference>
+      </DefaultValue>
       <Prompt>Student ID</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>student_Id</DataSetName>
+          <ValueField>st_id</ValueField>
+          <LabelField>st_id</LabelField>
+        </DataSetReference>
+      </ValidValues>
     </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
