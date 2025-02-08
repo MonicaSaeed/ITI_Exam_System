@@ -19,7 +19,7 @@ namespace DBProject
         int instructorId , courseId1; // Replace with actual instructor ID
 
         private string _courseNameSelected;
-        private int _courseIdSelected;
+       // private int _courseIdSelected;
         private List<int> _tracksIdsSelected;
 
         int newExamId;
@@ -110,17 +110,16 @@ namespace DBProject
                         connection.Open();
                         foreach (int trackId in _tracksIdsSelected)
                         {
+
+
                             // Check if the exam already exists for the same course and track
                             string checkDuplicateQuery = @"SELECT COUNT(*) FROM Course_Exam 
                                                    WHERE co_id = @courseId AND track_id = @trackId";
-
                             using (SqlCommand checkCommand = new SqlCommand(checkDuplicateQuery, connection))
                             {
-                                checkCommand.Parameters.AddWithValue("@courseId", _courseIdSelected);
+                                checkCommand.Parameters.AddWithValue("@courseId", courseId1);
                                 checkCommand.Parameters.AddWithValue("@trackId", trackId);
-
                                 int count = Convert.ToInt32(checkCommand.ExecuteScalar());
-
                                 if (count > 0)
                                 {
                                     // Show message and stop the process
@@ -140,7 +139,7 @@ namespace DBProject
                             using (SqlCommand command = new SqlCommand(insertCourseExamQuery, connection))
                             {
                                 command.Parameters.AddWithValue("@examId", newExamId);
-                                command.Parameters.AddWithValue("@courseId", _courseIdSelected);
+                                command.Parameters.AddWithValue("@courseId", courseId1);
                                 command.Parameters.AddWithValue("@trackId", trackId);
                                 command.ExecuteNonQuery();
                             }

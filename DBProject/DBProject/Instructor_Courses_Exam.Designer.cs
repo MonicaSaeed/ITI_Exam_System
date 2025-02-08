@@ -36,7 +36,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(880, 450);
             Name = "Instructor_Courses_Exam";
             Text = "Instructor_Courses_Exam";
             Load += Instructor_Courses_Exam_Load;

@@ -435,13 +435,17 @@ MessageBoxIcon.Warning // Icon
                 };
                 scrollablePanel.Controls.Add(questionGroup);
 
+                Size textSize2 = TextRenderer.MeasureText($"Q{i}: {question.QuestionText} ({question.Grade} pts)", new System.Drawing.Font("Courier New", 12, FontStyle.Regular));
+                int factor2 = textSize2.Width / 500;
+                int optionHeight2 = (factor2 >= 1) ? 40 * (factor2 + 1) : 40; // Adjust height if text is long
                 // Add question text
                 Label questionLabel = new Label
                 {
                     Text = $"Q{i}: {question.QuestionText} ({question.Grade} pts)",
                     Font = new System.Drawing.Font("Courier New", 12, FontStyle.Bold),
                     ForeColor = Color.Black,
-                    AutoSize = true,
+                    AutoSize = false,
+                    Size= new Size(800,optionHeight2),
                     Location = new Point(20, 10)
                 };
                 questionGroup.Controls.Add(questionLabel);
