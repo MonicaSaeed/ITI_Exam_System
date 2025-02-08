@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace InstructorPart
 {
@@ -79,24 +81,45 @@ namespace InstructorPart
                 DataTable options = dbHelper.GetOptions(questionId);
                 bool isCorrectAnswerSelected = false;
 
+                int opNum = 0;
+
+                int FinalHight = 0;
+                foreach (DataRow optionRow in options.Rows)
+                {
+                    string optionText = optionRow["op_text"].ToString();
+
+                    Size textSize = TextRenderer.MeasureText(optionText, new Font("Courier New", 12, FontStyle.Regular));
+                    int factor = textSize.Width / (questionGroupBox.Width / 2);
+                    int optionHeight = (factor >= 1) ? 40 * (factor + 1) : 40;
+
+                    FinalHight = Math.Max(FinalHight, optionHeight);
+                }
+
                 foreach (DataRow optionRow in options.Rows)
                 {
                     bool isCorrect = Convert.ToBoolean(optionRow["is_correct"]);
                     string optionText = optionRow["op_text"].ToString();
+                    opNum++;
+
 
                     Button optionButton = new Button
                     {
                         Text = optionText,
-                        AutoSize = true,
+                        AutoSize = false,
+                        Size = new Size(questionGroupBox.Width / 2 - 10, FinalHight - 10),
                         Margin = new Padding(5),
                         BackColor = isCorrect ? Color.Green : Color.White,
                         ForeColor = isCorrect ? Color.White : Color.Black,
                         Font = new Font("Arial", 10, FontStyle.Regular),
                         Enabled = false // Disable buttons to indicate that this is a display screen
                     };
+                    if (opNum >= 2)
+                    {
+                        QuestionsFlowLayoutPanel.SetFlowBreak(optionButton, true);
+                        opNum = 0;
+                    }
 
                     optionsFlowLayoutPanel.Controls.Add(optionButton);
-
                    
                 }
 
