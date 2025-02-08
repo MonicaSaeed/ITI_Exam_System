@@ -36,7 +36,7 @@
             // 
             label1.Anchor = AnchorStyles.Top;
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 25.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Courier New", 25.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Teal;
             label1.Location = new Point(145, 20);
             label1.Name = "label1";
@@ -47,7 +47,7 @@
             // 
             // textBox1
             // 
-            textBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox1.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox1.Location = new Point(44, 150);
             textBox1.Margin = new Padding(3, 2, 3, 2);
             textBox1.Name = "textBox1";
@@ -58,7 +58,7 @@
             // 
             // textBox2
             // 
-            textBox2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox2.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox2.Location = new Point(44, 210);
             textBox2.Margin = new Padding(3, 2, 3, 2);
             textBox2.Name = "textBox2";
@@ -71,7 +71,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Black;
             label2.Location = new Point(44, 128);
             label2.Name = "label2";
@@ -82,7 +82,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Font = new Font("Courier New", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Black;
             label4.Location = new Point(44, 188);
             label4.Name = "label4";
@@ -95,7 +95,7 @@
             button1.BackColor = Color.Black;
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.Font = new Font("Courier New", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
             button1.Location = new Point(44, 262);
             button1.Margin = new Padding(3, 2, 3, 2);
@@ -110,7 +110,7 @@
             // 
             buttonStudent.BackColor = Color.Teal;
             buttonStudent.FlatStyle = FlatStyle.Flat;
-            buttonStudent.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            buttonStudent.Font = new Font("Courier New", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             buttonStudent.ForeColor = Color.White;
             buttonStudent.Location = new Point(44, 90);
             buttonStudent.Margin = new Padding(3, 2, 3, 2);
@@ -125,7 +125,7 @@
             // 
             buttonInstructor.BackColor = Color.White;
             buttonInstructor.FlatStyle = FlatStyle.Flat;
-            buttonInstructor.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            buttonInstructor.Font = new Font("Courier New", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             buttonInstructor.ForeColor = Color.Teal;
             buttonInstructor.Location = new Point(236, 90);
             buttonInstructor.Margin = new Padding(3, 2, 3, 2);

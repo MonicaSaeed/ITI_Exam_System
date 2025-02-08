@@ -36,6 +36,7 @@ namespace InstructorPart
             if (examName.Rows.Count > 0)
             {
                 ExamTitleLabel.Text = $"{examName.Rows[0]["examName"].ToString()} Exam";
+                ExamTitleLabel.ForeColor = Color.Teal;
             }
 
             QuestionsFlowLayoutPanel.SetFlowBreak(ExamTitleLabel, true);
@@ -50,7 +51,7 @@ namespace InstructorPart
                 GroupBox questionGroupBox = new GroupBox
                 {
                     Text = $"Q{questionNumber}: {questionRow["text"]}",
-                    Font = new Font("Arial", 10, FontStyle.Bold),
+                    Font = new Font("Courier New", 10, FontStyle.Bold),
                     AutoSize = true,
                     Width = QuestionsFlowLayoutPanel.Width - 50,
                     AutoSizeMode = AutoSizeMode.GrowOnly,
@@ -106,12 +107,12 @@ namespace InstructorPart
                     {
                         Text = optionText,
                         AutoSize = false,
-                        Size = new Size(questionGroupBox.Width / 2 - 10, FinalHight - 10),
+                        Size = new Size(questionGroupBox.Width / 2 - 10, FinalHight+10),
                         Margin = new Padding(5),
                         BackColor = isCorrect ? Color.Green : Color.White,
                         ForeColor = isCorrect ? Color.White : Color.Black,
-                        Font = new Font("Arial", 10, FontStyle.Regular),
-                        Enabled = false // Disable buttons to indicate that this is a display screen
+                        Font = new Font("Courier New", 10, FontStyle.Regular),
+                       // Enabled = false // Disable buttons to indicate that this is a display screen
                     };
                     if (opNum >= 2)
                     {
@@ -130,7 +131,7 @@ namespace InstructorPart
                 {
                     Text = $"Grade: {questionRow["grade"]}",
                     AutoSize = true,
-                    Font = new Font("Arial", 10, FontStyle.Bold),
+                    Font = new Font("Courier New", 10, FontStyle.Bold),
                     Margin = new Padding(5)
                 };
 

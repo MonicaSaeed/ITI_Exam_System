@@ -50,7 +50,7 @@ namespace DBProject
             Label lblTotalGrade = new Label
             {
                 Text = $"Your Total Grade is   {totalGrade} degrees {(totalGrade>(actualTotal/2) ?  " :)" :" :(" )}",
-                Font = new Font("Showcard Gothic", 16, FontStyle.Bold),
+                Font = new Font("Comic Sans MS", 16, FontStyle.Bold),
                 ForeColor = Color.Teal,
                 AutoSize = true,
                 //TextAlign=ContentAlignment.TopCenter,
@@ -252,7 +252,7 @@ namespace DBProject
                     ForeColor = iscorrect ? Color.Green : Color.Red,
                     Location = new Point(this.ClientSize.Width / 2, optionY-10),
                     AutoSize = true,
-                    Font = new Font("Arial", 16, FontStyle.Bold)
+                    Font = new Font("Courier New", 16, FontStyle.Bold)
                 };
                 questionGroup.Controls.Add(iconLabel);
                 //Label newlabel = new Label { };

@@ -85,7 +85,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 16F);
+            label1.Font = new Font("Courier New", 16F);
             label1.ForeColor = Color.FromArgb(7, 62, 64);
             label1.Location = new Point(39, 48);
             label1.Name = "label1";
@@ -98,7 +98,7 @@
             // 
             label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F);
+            label2.Font = new Font("Courier New", 12F);
             label2.Location = new Point(524, 226);
             label2.Name = "label2";
             label2.Size = new Size(205, 28);
@@ -116,7 +116,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F);
+            label3.Font = new Font("Courier New", 12F);
             label3.Location = new Point(524, 355);
             label3.Name = "label3";
             label3.Size = new Size(273, 28);

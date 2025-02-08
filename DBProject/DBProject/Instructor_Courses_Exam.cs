@@ -51,7 +51,7 @@ namespace DBProject
 
                 Panel coursePanel = new Panel
                 {
-                    Width = 700, // Full width minus padding
+                    Width = 850, // Full width minus padding
                     Height = 80, // Increased height for better spacing
                     BackColor = Color.Teal,
                     Margin = new Padding(5) // Adds spacing between panels
@@ -61,7 +61,7 @@ namespace DBProject
                 {
                     Text = $"{courseName}",
                     ForeColor = Color.White,
-                    Font = new Font("Arial", 10, FontStyle.Bold),
+                    Font = new Font("Courier New", 12, FontStyle.Bold),
                     Location = new Point(10, 15),
                     AutoSize = true
                 };
@@ -69,7 +69,7 @@ namespace DBProject
                 {
                     Text = $"{trackName}",
                     ForeColor = Color.White,
-                    Font = new Font("Arial", 8, FontStyle.Regular),
+                    Font = new Font("Courier New", 10, FontStyle.Regular),
                     Location = new Point(15, 50),
                     AutoSize = true
                 };
@@ -79,7 +79,7 @@ namespace DBProject
                     Text = "Grades",
                     BackColor = Color.Black,
                     ForeColor = Color.White,
-                    Location = new Point(400, 10),
+                    Location = new Point(500, 10),
                     Width = 90,
                     Height = 40,
                 };
@@ -93,7 +93,7 @@ namespace DBProject
                     Text = "View Exam",
                     BackColor = Color.Black,
                     ForeColor = Color.White,
-                    Location = new Point(500, 10),
+                    Location = new Point(600, 10),
                     Width = 90,
                     Height = 40,
                 };
@@ -107,7 +107,7 @@ namespace DBProject
                     Text = "Delete",
                     BackColor = Color.Red,
                     ForeColor = Color.White,
-                    Location = new Point(600, 10),
+                    Location = new Point(700, 10),
                     Width = 80,
                     Height = 40,
                     Tag = examId // Store the exam ID in the button's Tag property

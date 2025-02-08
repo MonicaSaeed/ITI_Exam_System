@@ -38,11 +38,13 @@
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.button1.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold);
             this.button1.Location = new System.Drawing.Point(771, 30);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(96, 39);
             this.button1.TabIndex = 0;
+            button1.BackColor = Color.Black;
+            button1.ForeColor = Color.White;
             this.button1.Text = "Back";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -50,7 +52,7 @@
             // TitleLabel
             // 
             this.TitleLabel.AutoSize = true;
-            this.TitleLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15F, System.Drawing.FontStyle.Bold);
+            this.TitleLabel.Font = new System.Drawing.Font("Comic Sans MS", 15F, System.Drawing.FontStyle.Bold);
             this.TitleLabel.Location = new System.Drawing.Point(38, 40);
             this.TitleLabel.Name = "TitleLabel";
             this.TitleLabel.Size = new System.Drawing.Size(94, 29);

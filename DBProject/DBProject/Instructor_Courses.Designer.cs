@@ -39,7 +39,7 @@ namespace DBProject
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Showcard Gothic", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Comic Sans MS", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Teal;
             label1.Location = new Point(25, 18);
             label1.Name = "label1";
@@ -177,26 +177,35 @@ MessageBoxIcon.Warning // Icon
 
             // Starting Y position for the first button
             int startY = (this.ClientSize.Height / 3) + 10;
+            int finalHight = 0;
+            for (int i = 0; i < courses.Count; i++)
+            {
+                var course = courses[i];
 
+                Size textSize = TextRenderer.MeasureText(course.CourseName, new Font("Courier New", 12, FontStyle.Regular));
+                int factor = textSize.Width / 250;
+                int optionHeight = (factor >= 1) ? 40 * (factor + 1) : 40;
+                finalHight = Math.Max(finalHight, optionHeight);
+                // Create new button
+            };
             // Loop through the courses and create buttons
             for (int i = 0; i < courses.Count; i++)
             {
                 // Calculate the position of the button
                 int row = i / buttonsPerRow;
                 int col = i % buttonsPerRow;
-
                 int x = startX + col * (buttonWidth + spacingX);
                 int y = startY + row * (buttonHeight + spacingY);
 
                 // Get course details
                 var course = courses[i];
-
+               
                 // Create new button
                 Button courseButton = new Button
                 {
                     Text = course.CourseName,
                     Location = new Point(x, y),
-                    Size = new Size(buttonWidth, buttonHeight),
+                    Size = new Size(buttonWidth, finalHight),
                     Font = new Font("Courier New", 12, FontStyle.Regular, GraphicsUnit.Point, 0),
                     BackColor = Color.Teal,
                     ForeColor = Color.White,

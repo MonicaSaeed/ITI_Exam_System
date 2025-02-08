@@ -175,85 +175,85 @@ namespace DBProject
 
 
         // to show all courses in flowLayoutPanel1_Paint
-        private List<string> coursessName()
-        {
-            var courses = new List<string>();
+//        private List<string> coursessName()
+//        {
+//            var courses = new List<string>();
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    string query = @"SELECT c.co_name
-                                    FROM Course c
-                                    INNER JOIN Instructor_Course IC ON c.co_id = @crs_id
-                                    WHERE IC.ins_id = @ins_id";
-                    using (SqlCommand command = new SqlCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@ins_id", instructorId);
-                        command.Parameters.AddWithValue("@crs_id", courseId1);
+//            using (SqlConnection connection = new SqlConnection(connectionString))
+//            {
+//                try
+//                {
+//                    connection.Open();
+//                    string query = @"SELECT c.co_name
+//                                    FROM Course c
+//                                    INNER JOIN Instructor_Course IC ON c.co_id = @crs_id
+//                                    WHERE IC.ins_id = @ins_id";
+//                    using (SqlCommand command = new SqlCommand(query, connection))
+//                    {
+//                        command.Parameters.AddWithValue("@ins_id", instructorId);
+//                        command.Parameters.AddWithValue("@crs_id", courseId1);
 
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                courses.Add(reader["co_name"].ToString());
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    //MessageBox.Show($"Error: {ex.Message}");
-                    CustomMessageBox customMessageBox = new CustomMessageBox(
-            $"Error: {ex.Message}.", // Message
-            "Error", // Title
-            MessageBoxIcon.Warning // Icon
-);
-                    customMessageBox.ShowDialog();
-                }
-            }
+//                        using (SqlDataReader reader = command.ExecuteReader())
+//                        {
+//                            while (reader.Read())
+//                            {
+//                                courses.Add(reader["co_name"].ToString());
+//                            }
+//                        }
+//                    }
+//                }
+//                catch (Exception ex)
+//                {
+//                    //MessageBox.Show($"Error: {ex.Message}");
+//                    CustomMessageBox customMessageBox = new CustomMessageBox(
+//            $"Error: {ex.Message}.", // Message
+//            "Error", // Title
+//            MessageBoxIcon.Warning // Icon
+//);
+//                    customMessageBox.ShowDialog();
+//                }
+//            }
 
-            return courses;
-        }
-        private void courseId(string courseName)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    string query = @"SELECT co_id
-                                    FROM Course
-                                    WHERE co_name = @courseName";
+//            return courses;
+//        }
+//        private void courseId(string courseName)
+//        {
+//            using (SqlConnection connection = new SqlConnection(connectionString))
+//            {
+//                try
+//                {
+//                    connection.Open();
+//                    string query = @"SELECT co_id
+//                                    FROM Course
+//                                    WHERE co_name = @courseName";
 
-                    using (SqlCommand command = new SqlCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@courseName", courseName);
+//                    using (SqlCommand command = new SqlCommand(query, connection))
+//                    {
+//                        command.Parameters.AddWithValue("@courseName", courseName);
 
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
+//                        using (SqlDataReader reader = command.ExecuteReader())
+//                        {
 
-                            if (reader.Read())
-                            {
-                                _courseIdSelected = (int)reader["co_id"];
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    //  MessageBox.Show($"Error: {ex.Message}");
-                    CustomMessageBox customMessageBox = new CustomMessageBox(
-              $"Error: {ex.Message}.", // Message
-              "Error", // Title
-              MessageBoxIcon.Warning // Icon
-);
-                    customMessageBox.ShowDialog();
-                }
-            }
+//                            if (reader.Read())
+//                            {
+//                                _courseIdSelected = (int)reader["co_id"];
+//                            }
+//                        }
+//                    }
+//                }
+//                catch (Exception ex)
+//                {
+//                    //  MessageBox.Show($"Error: {ex.Message}");
+//                    CustomMessageBox customMessageBox = new CustomMessageBox(
+//              $"Error: {ex.Message}.", // Message
+//              "Error", // Title
+//              MessageBoxIcon.Warning // Icon
+//);
+//                    customMessageBox.ShowDialog();
+//                }
+//            }
 
-        }
+//        }
         private List<string> tracksName()
         {
             var tracks = new List<string>();

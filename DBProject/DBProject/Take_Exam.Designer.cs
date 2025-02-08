@@ -36,7 +36,7 @@
             lblTimer = new Label
             {
                 Text = "Time Remaining: 00:00:00",
-                Font = new Font("Segoe UI", 14, FontStyle.Bold),
+                Font = new Font("Courier New", 14, FontStyle.Bold),
                 ForeColor = Color.Red,
                 BackColor = Color.White,
                 AutoSize = true,
@@ -87,7 +87,7 @@
             foreach (var ed in examData)
             {
 
-                Size questionTextSize = TextRenderer.MeasureText(ed.Value.QuestionText, new Font("Segoe UI", 12, FontStyle.Regular));
+                Size questionTextSize = TextRenderer.MeasureText(ed.Value.QuestionText, new Font("Courier New", 12, FontStyle.Regular));
                 int factorQ = questionTextSize.Width / 1060;
                 int questionTextHeight = (factorQ >= 1) ? 40*(factorQ+1) : 40; // Adjust height if the question is long
 
@@ -96,7 +96,7 @@
                 GroupBox questionGroup = new GroupBox
                 {
                     Text = $"Q{q_num}: {ed.Value.QuestionText}",
-                    Font = new Font("Segoe UI", 12, FontStyle.Bold),
+                    Font = new Font("Courier New", 12, FontStyle.Bold),
                     ForeColor = Color.Black,
                     BackColor = Color.White,
                     AutoSize = false,
@@ -136,7 +136,7 @@
                         CheckBox optionCheckBox = new CheckBox
                         {
                             Text = option.Item1,
-                            Font = new Font("Segoe UI", 12, FontStyle.Regular),
+                            Font = new Font("Courier New", 12, FontStyle.Regular),
                             ForeColor = Color.White,
                             BackColor = Color.Teal,
                             FlatStyle = FlatStyle.Flat,
@@ -156,7 +156,7 @@
                         RadioButton optionButton = new RadioButton
                         {
                             Text = option.Item1,
-                            Font = new Font("Segoe UI", 12, FontStyle.Regular),
+                            Font = new Font("Courier New", 12, FontStyle.Regular),
                             ForeColor = Color.White,
                             BackColor = Color.Teal,
                             FlatStyle = FlatStyle.Flat,
@@ -200,7 +200,7 @@
             Button btnSubmit = new Button
             {
                 Text = "Submit",
-                Font = new Font("Segoe UI", 12, FontStyle.Regular),
+                Font = new Font("Courier New", 12, FontStyle.Regular),
                 BackColor = Color.Black,
                 ForeColor = Color.White,
                 FlatStyle = FlatStyle.Flat,

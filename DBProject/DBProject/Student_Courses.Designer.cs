@@ -49,7 +49,7 @@ namespace DBProject
             SuspendLayout();
 
             // Label1
-            label1.Font = new Font("Showcard Gothic", 20, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Comic Sans MS", 20, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Teal;
             label1.Location = new Point(25, 18);
             label1.Name = "label1";

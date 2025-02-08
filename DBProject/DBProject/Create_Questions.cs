@@ -380,7 +380,7 @@ MessageBoxIcon.Warning // Icon
             label1.Text = "Create Exam: Step Two";
             label1.ForeColor = Color.Teal;
             label1.Location = new Point(20, 20);
-            label1.Font = new System.Drawing.Font("Arial", 12, FontStyle.Bold);
+            label1.Font = new System.Drawing.Font("Courier New", 12, FontStyle.Bold);
             button1.ForeColor = Color.White;
             button1.BackColor = Color.Black;
             button1.Location = new Point(800, 20);
@@ -425,7 +425,7 @@ MessageBoxIcon.Warning // Icon
                 // Create a GroupBox for better visual separation
                 CustomGroupBox questionGroup = new CustomGroupBox
                 {
-                    Font = new System.Drawing.Font("Arial", 12, FontStyle.Bold),
+                    Font = new System.Drawing.Font("Courier New", 12, FontStyle.Bold),
                     ForeColor = Color.Black,
                     AutoSize = false,
                     Size = new Size(900, 100), // Default height, adjusted later
@@ -439,7 +439,7 @@ MessageBoxIcon.Warning // Icon
                 Label questionLabel = new Label
                 {
                     Text = $"Q{i}: {question.QuestionText} ({question.Grade} pts)",
-                    Font = new System.Drawing.Font("Arial", 12, FontStyle.Bold),
+                    Font = new System.Drawing.Font("Courier New", 12, FontStyle.Bold),
                     ForeColor = Color.Black,
                     AutoSize = true,
                     Location = new Point(20, 10)
@@ -450,7 +450,7 @@ MessageBoxIcon.Warning // Icon
                 Label questionTypeLabel = new Label
                 {
                     Text = question.QuestionType,
-                    Font = new System.Drawing.Font("Arial", 12, FontStyle.Italic),
+                    Font = new System.Drawing.Font("Courier New", 12, FontStyle.Italic),
                     AutoSize = true,
                     ForeColor = Color.Gray,
                     Location = new Point(questionGroup.Width - 150, 10)
@@ -474,7 +474,7 @@ MessageBoxIcon.Warning // Icon
                     Label optionLabel = new Label
                     {
                         Text = option.OptionText,
-                        Font = new System.Drawing.Font("Arial", 12, FontStyle.Regular),
+                        Font = new System.Drawing.Font("Courier New", 12, FontStyle.Regular),
                         //ForeColor = Color.Black,
                         Size = new Size(500, finalHeight),
                         Location = new Point(40, optionYOffset),
