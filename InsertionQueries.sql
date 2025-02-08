@@ -1046,3 +1046,11 @@ VALUES
 
 -- Past Exam 3 (OOP for Track 3)
 (17, 3), (18, 3), (19, 3), (20, 3), (21, 3), (22, 3), (23, 3), (24, 3);
+
+
+
+----------------------------
+INSERT INTO Instructor_Track (ins_id, track_id)
+SELECT DISTINCT ic.ins_id, tc.track_id
+FROM Instructor_Course ic
+JOIN Track_Course tc ON ic.co_id = tc.co_id;
