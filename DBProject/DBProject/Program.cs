@@ -15,7 +15,8 @@ namespace DBProject
             ApplicationConfiguration.Initialize();
 
             //Application.Run(new GradesForm(1)); //// this
-              Application.Run(new LogIn()); //// this
+            //Application.Run(new ExamDisplayForm(1));
+            Application.Run(new LogIn()); //// this
             //Application.Run(new Create_Exam_SelectTracks(1)); //// this
 
             //Application.Run(new Student_Courses(5));

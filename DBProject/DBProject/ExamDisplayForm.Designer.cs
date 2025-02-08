@@ -28,61 +28,65 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.QuestionsFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.BackButton = new System.Windows.Forms.Button();
-            this.ExamTitleLabel = new System.Windows.Forms.Label();
-            this.QuestionsFlowLayoutPanel.SuspendLayout();
-            this.SuspendLayout();
+            QuestionsFlowLayoutPanel = new FlowLayoutPanel();
+            ExamTitleLabel = new Label();
+            BackButton = new Button();
+            QuestionsFlowLayoutPanel.SuspendLayout();
+            SuspendLayout();
             // 
             // QuestionsFlowLayoutPanel
             // 
-            this.QuestionsFlowLayoutPanel.AutoScroll = true;
-            this.QuestionsFlowLayoutPanel.Controls.Add(this.ExamTitleLabel);
-            this.QuestionsFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.QuestionsFlowLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.QuestionsFlowLayoutPanel.Name = "QuestionsFlowLayoutPanel";
-            this.QuestionsFlowLayoutPanel.Size = new System.Drawing.Size(800, 450);
-            this.QuestionsFlowLayoutPanel.TabIndex = 1;
-            this.QuestionsFlowLayoutPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
-            // 
-            // BackButton
-            // 
-            this.BackButton.Font = new System.Drawing.Font("Bookman Old Style", 12F, System.Drawing.FontStyle.Bold);
-            this.BackButton.Location = new System.Drawing.Point(651, 18);
-            this.BackButton.Name = "BackButton";
-            this.BackButton.Size = new System.Drawing.Size(108, 45);
-            this.BackButton.TabIndex = 2;
-            this.BackButton.Text = "Back";
-            this.BackButton.UseVisualStyleBackColor = true;
-            this.BackButton.Click += new System.EventHandler(this.button1_Click);
+            QuestionsFlowLayoutPanel.AutoScroll = true;
+            QuestionsFlowLayoutPanel.Controls.Add(ExamTitleLabel);
+            QuestionsFlowLayoutPanel.Dock = DockStyle.Fill;
+            QuestionsFlowLayoutPanel.Location = new Point(0, 0);
+            QuestionsFlowLayoutPanel.Margin = new Padding(3, 4, 3, 4);
+            QuestionsFlowLayoutPanel.Name = "QuestionsFlowLayoutPanel";
+            QuestionsFlowLayoutPanel.Size = new Size(914, 562);
+            QuestionsFlowLayoutPanel.TabIndex = 1;
+            QuestionsFlowLayoutPanel.Paint += flowLayoutPanel1_Paint;
             // 
             // ExamTitleLabel
             // 
-            this.ExamTitleLabel.AutoSize = true;
-            this.QuestionsFlowLayoutPanel.SetFlowBreak(this.ExamTitleLabel, true);
-            this.ExamTitleLabel.Font = new System.Drawing.Font("Comic Sans MS", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExamTitleLabel.Location = new System.Drawing.Point(20, 20);
-            this.ExamTitleLabel.Margin = new System.Windows.Forms.Padding(20, 20, 0, 0);
-            this.ExamTitleLabel.Name = "ExamTitleLabel";
-            this.ExamTitleLabel.Size = new System.Drawing.Size(99, 39);
-            this.ExamTitleLabel.TabIndex = 0;
-            this.ExamTitleLabel.Text = "label1";
-            this.ExamTitleLabel.Click += new System.EventHandler(this.ExamTitleLabel_Click);
+            ExamTitleLabel.AutoSize = true;
+            QuestionsFlowLayoutPanel.SetFlowBreak(ExamTitleLabel, true);
+            ExamTitleLabel.Font = new Font("Comic Sans MS", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ExamTitleLabel.Location = new Point(23, 25);
+            ExamTitleLabel.Margin = new Padding(23, 25, 0, 0);
+            ExamTitleLabel.Name = "ExamTitleLabel";
+            ExamTitleLabel.Size = new Size(99, 39);
+            ExamTitleLabel.TabIndex = 0;
+            ExamTitleLabel.Text = "label1";
+            ExamTitleLabel.Click += ExamTitleLabel_Click;
+            // 
+            // BackButton
+            // 
+            BackButton.BackColor = Color.Black;
+            BackButton.Font = new Font("Bookman Old Style", 12F, FontStyle.Bold);
+            BackButton.ForeColor = Color.Cornsilk;
+            BackButton.Location = new Point(744, 22);
+            BackButton.Margin = new Padding(3, 4, 3, 4);
+            BackButton.Name = "BackButton";
+            BackButton.Size = new Size(97, 42);
+            BackButton.TabIndex = 2;
+            BackButton.Text = "Back";
+            BackButton.UseVisualStyleBackColor = false;
+            BackButton.Click += button1_Click;
             // 
             // ExamDisplayForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.BackButton);
-            this.Controls.Add(this.QuestionsFlowLayoutPanel);
-            this.Name = "ExamDisplayForm";
-            this.Text = "ExamDisplayForm";
-            this.QuestionsFlowLayoutPanel.ResumeLayout(false);
-            this.QuestionsFlowLayoutPanel.PerformLayout();
-            this.StartPosition = FormStartPosition.CenterScreen;
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(914, 562);
+            Controls.Add(BackButton);
+            Controls.Add(QuestionsFlowLayoutPanel);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "ExamDisplayForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "ExamDisplayForm";
+            QuestionsFlowLayoutPanel.ResumeLayout(false);
+            QuestionsFlowLayoutPanel.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion

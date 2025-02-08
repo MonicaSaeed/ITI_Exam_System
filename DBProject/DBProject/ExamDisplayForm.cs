@@ -45,87 +45,92 @@ namespace InstructorPart
             DataTable questions = dbHelper.GetQuestions(examId);
             foreach (DataRow questionRow in questions.Rows)
             {
-                // Create a GroupBox for the question
-                GroupBox questionGroupBox = new GroupBox();
-                questionGroupBox.Text = $"Question {questionNumber}"; // Set the question number as the GroupBox text
-                questionGroupBox.Font = new System.Drawing.Font("Arial", 10, System.Drawing.FontStyle.Bold);
-                questionGroupBox.AutoSize = true; // Allow the Panel to resize
-                questionGroupBox.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-                questionGroupBox.Width = QuestionsFlowLayoutPanel.Width - 100;
+                GroupBox questionGroupBox = new GroupBox
+                {
+                    Text = $"Q{questionNumber}: {questionRow["text"]}",
+                    Font = new Font("Arial", 10, FontStyle.Bold),
+                    AutoSize = true,
+                    Width = QuestionsFlowLayoutPanel.Width - 50,
+                    AutoSizeMode = AutoSizeMode.GrowOnly,
+                    Padding = new Padding(10),
+                    Margin = new Padding(5)
+                };
 
-                // Create a Panel inside the GroupBox to hold the question text and options
-                FlowLayoutPanel questionPanel = new FlowLayoutPanel();
-                questionPanel.AutoSize = true; // Allow the Panel to resize
-                questionPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-                questionPanel.Dock = DockStyle.Fill; // Fill the GroupBox
-                questionPanel.Padding = new Padding(10); // Add padding inside the Panel
+                FlowLayoutPanel questionPanel = new FlowLayoutPanel
+                {
+                    AutoSize = true,
+                    AutoSizeMode = AutoSizeMode.GrowOnly,
+                    FlowDirection = FlowDirection.TopDown,
+                    Dock = DockStyle.Fill,
+                    MinimumSize = new Size(QuestionsFlowLayoutPanel.Width - 50, 0)
+                };
 
-                // Create a Label for the question text
-                Label questionLabel = new Label();
-                questionLabel.Text = questionRow["text"].ToString(); // Set the question text
-                questionLabel.AutoSize = true; // Allow the Label to resize
-                questionLabel.Font = new System.Drawing.Font("Arial", 10, System.Drawing.FontStyle.Regular);
-                questionLabel.Dock = DockStyle.Top; // Place the Label at the top of the Panel
+                FlowLayoutPanel optionsFlowLayoutPanel = new FlowLayoutPanel
+                {
+                    FlowDirection = FlowDirection.LeftToRight,
+                    AutoSize = true,
+                    AutoSizeMode = AutoSizeMode.GrowOnly,
+                    WrapContents = true,
+                    Dock = DockStyle.Top,
+                    Padding = new Padding(5)
+                };
 
-                // Add the Label to the Panel
-                questionPanel.Controls.Add(questionLabel);
-
-                // Create a FlowLayoutPanel inside the Panel to hold the options
-                FlowLayoutPanel optionsFlowLayoutPanel = new FlowLayoutPanel();
-                optionsFlowLayoutPanel.FlowDirection = FlowDirection.TopDown; // Arrange options vertically
-                optionsFlowLayoutPanel.AutoSize = true; // Allow the FlowLayoutPanel to resize
-                optionsFlowLayoutPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-                optionsFlowLayoutPanel.WrapContents = true; // Wrap options to a new line if they overflow
-                optionsFlowLayoutPanel.Dock = DockStyle.Fill; // Fill the remaining space in the Panel
-
-                // Fetch options for the question
                 int questionId = Convert.ToInt32(questionRow["q_id"]);
                 DataTable options = dbHelper.GetOptions(questionId);
+                bool isCorrectAnswerSelected = false;
+
                 foreach (DataRow optionRow in options.Rows)
                 {
-                    // Check if the option is correct
                     bool isCorrect = Convert.ToBoolean(optionRow["is_correct"]);
+                    string optionText = optionRow["op_text"].ToString();
 
-                    if (isCorrect)
+                    Button optionButton = new Button
                     {
-                        // Use a Label for the correct option
-                        Label correctOptionLabel = new Label();
-                        correctOptionLabel.Text = $"✔ {optionRow["op_text"].ToString()}"; // Add a checkmark
-                        correctOptionLabel.AutoSize = true;
-                        correctOptionLabel.ForeColor = Color.Green; // Highlight the correct option in green
-                        correctOptionLabel.Font = new System.Drawing.Font("Arial", 10, System.Drawing.FontStyle.Bold);
-                        correctOptionLabel.Margin = new Padding(5); // Add margin around the Label
-                        optionsFlowLayoutPanel.Controls.Add(correctOptionLabel);
-                    }
-                    else
-                    {
-                        // Use a CheckBox for incorrect options
-                        CheckBox optionCheckBox = new CheckBox();
-                        optionCheckBox.Text = optionRow["op_text"].ToString();
-                        optionCheckBox.AutoSize = true;
-                        optionCheckBox.Margin = new Padding(5); // Add margin around each CheckBox
-                        optionsFlowLayoutPanel.Controls.Add(optionCheckBox);
-                    }
+                        Text = optionText,
+                        AutoSize = true,
+                        Margin = new Padding(5),
+                        BackColor = isCorrect ? Color.Green : Color.White,
+                        ForeColor = isCorrect ? Color.White : Color.Black,
+                        Font = new Font("Arial", 10, FontStyle.Regular),
+                        Enabled = false // Disable buttons to indicate that this is a display screen
+                    };
+
+                    optionsFlowLayoutPanel.Controls.Add(optionButton);
+
+                   
                 }
 
-                // Add the FlowLayoutPanel to the Panel
                 questionPanel.Controls.Add(optionsFlowLayoutPanel);
 
-                // Add the Panel to the GroupBox
+                // Add grade and status
+                Label gradeLabel = new Label
+                {
+                    Text = $"Grade: {questionRow["grade"]}",
+                    AutoSize = true,
+                    Font = new Font("Arial", 10, FontStyle.Bold),
+                    Margin = new Padding(5)
+                };
+
+                
+
+                FlowLayoutPanel gradeStatusPanel = new FlowLayoutPanel
+                {
+                    FlowDirection = FlowDirection.LeftToRight,
+                    AutoSize = true,
+                    AutoSizeMode = AutoSizeMode.GrowAndShrink,
+                    Dock = DockStyle.Bottom,
+                    Margin = new Padding(10)
+                };
+
+                gradeStatusPanel.Controls.Add(gradeLabel);
+
+                questionPanel.Controls.Add(gradeStatusPanel);
                 questionGroupBox.Controls.Add(questionPanel);
-
-                // Add the GroupBox to the main FlowLayoutPanel
                 QuestionsFlowLayoutPanel.Controls.Add(questionGroupBox);
-
-                // Set a flow break to ensure the next GroupBox starts on a new line
                 QuestionsFlowLayoutPanel.SetFlowBreak(questionGroupBox, true);
 
-                // Increment the question number for the next question
                 questionNumber++;
             }
-
-            // Enable scrolling if content exceeds the panel size
-            QuestionsFlowLayoutPanel.AutoScroll = true;
         }
         private void BackButton_Click(object sender, EventArgs e)
         {
