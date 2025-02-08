@@ -16,7 +16,7 @@ namespace DBProject
 {
     public partial class Create_Exam_SelectTracks : Form
     {
-        int instructorId; // Replace with actual instructor ID
+        int instructorId , courseId1; // Replace with actual instructor ID
 
         private string _courseNameSelected;
         private int _courseIdSelected;
@@ -26,10 +26,10 @@ namespace DBProject
 
         string connectionString = "Server=localhost\\SQLEXPRESS;Database=ExaminationSystem;Integrated Security=True;TrustServerCertificate=True;";
 
-        public Create_Exam_SelectTracks(int insId)
+        public Create_Exam_SelectTracks(int insId,int crs_id)
         {
             instructorId = insId;
-             
+            courseId1 = crs_id;
             InitializeComponent();
         }
 
@@ -42,30 +42,38 @@ namespace DBProject
             dateTimePicker1.Value = DateTime.Now; // Current date as default
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            #region course_button
+            //var courses = coursessName();
+            //foreach (var course in courses)
+            //{
+            //    var courseButton = new Button()
+            //    {
+            //        Text = course,
+            //        AutoSize = true,
+            //        BackColor = Color.LightGray,
+            //        Tag = course // Store course name in Tag
+            //    };
 
-            var courses = coursessName();
-            foreach (var course in courses)
-            {
-                var courseButton = new Button()
-                {
-                    Text = course,
-                    AutoSize = true,
-                    BackColor = Color.LightGray,
-                    Tag = course // Store course name in Tag
-                };
+            //    courseButton.Click += (s, args) =>
+            //    {
+            //        _courseNameSelected = courseButton.Text;
+            //        courseId(_courseNameSelected);
+            //        //MessageBox.Show($"Selected Course: {_courseNameSelected}, ID: {_courseIdSelected}");
+            //    };
 
-                courseButton.Click += (s, args) =>
-                {
-                    _courseNameSelected = courseButton.Text;
-                    courseId(_courseNameSelected);
-                    //MessageBox.Show($"Selected Course: {_courseNameSelected}, ID: {_courseIdSelected}");
-                };
-
-                flowLayoutPanel1.Controls.Add(courseButton);
-            }
+            //    flowLayoutPanel1.Controls.Add(courseButton);
+            // }
+            #endregion
 
         }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Instructor_Courses_Exam instructorCoursesExamForm = new Instructor_Courses_Exam(courseId1,instructorId); // Pass the instructor_id
 
+            this.Hide();
+            instructorCoursesExamForm.ShowDialog();
+            this.Close();
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             _tracksIdsSelected = new List<int>();
@@ -141,7 +149,7 @@ namespace DBProject
 
                     scope.Complete();
                     CustomMessageBox successMessageBox = new CustomMessageBox(
-                        "Exam created and tracks assigned successfully.", "Exam Creation", MessageBoxIcon.Information);
+                        "Exam created and tracks assigned successfully.", "Exam Creation", MessageBoxIcon.Question);
                     successMessageBox.ShowDialog();
                 }
                 catch (SqlException sqlEx)
@@ -178,12 +186,12 @@ namespace DBProject
                     connection.Open();
                     string query = @"SELECT c.co_name
                                     FROM Course c
-                                    INNER JOIN Instructor_Course IC ON c.co_id = IC.co_id
+                                    INNER JOIN Instructor_Course IC ON c.co_id = @crs_id
                                     WHERE IC.ins_id = @ins_id";
-
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@ins_id", instructorId);
+                        command.Parameters.AddWithValue("@crs_id", courseId1);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -264,7 +272,7 @@ namespace DBProject
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@ins_id", instructorId);
-                        command.Parameters.AddWithValue("@co_id", _courseIdSelected);
+                        command.Parameters.AddWithValue("@co_id", courseId1);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {

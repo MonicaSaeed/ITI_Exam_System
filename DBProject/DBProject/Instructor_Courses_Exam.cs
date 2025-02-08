@@ -52,17 +52,25 @@ namespace DBProject
                 Panel coursePanel = new Panel
                 {
                     Width = 700, // Full width minus padding
-                    Height = 60, // Increased height for better spacing
+                    Height = 80, // Increased height for better spacing
                     BackColor = Color.Teal,
                     Margin = new Padding(5) // Adds spacing between panels
                 };
 
                 Label courseLabel = new Label
                 {
-                    Text = $"{courseName}\n{trackName}",
+                    Text = $"{courseName}",
                     ForeColor = Color.White,
-                    Font = new Font("Arial", 8, FontStyle.Bold),
+                    Font = new Font("Arial", 10, FontStyle.Bold),
                     Location = new Point(10, 15),
+                    AutoSize = true
+                };
+                Label trackLabel = new Label
+                {
+                    Text = $"{trackName}",
+                    ForeColor = Color.White,
+                    Font = new Font("Arial", 8, FontStyle.Regular),
+                    Location = new Point(15, 50),
                     AutoSize = true
                 };
 
@@ -108,6 +116,8 @@ namespace DBProject
 
                 // Add controls to panel
                 coursePanel.Controls.Add(courseLabel);
+                coursePanel.Controls.Add(trackLabel);
+
                 coursePanel.Controls.Add(viewGradesButton);
                 coursePanel.Controls.Add(viewExamButton);
                 coursePanel.Controls.Add(deleteButton);
@@ -142,7 +152,7 @@ namespace DBProject
 
             addExamButton.Click += (sender, e) => {
                 this.Hide();
-                Create_Exam_SelectTracks examDisplayForm = new Create_Exam_SelectTracks(instructor_id);
+                Create_Exam_SelectTracks examDisplayForm = new Create_Exam_SelectTracks(instructor_id,course_id);
                 examDisplayForm.ShowDialog();
             };
 
@@ -341,7 +351,7 @@ namespace DBProject
             DataTable exams = GetCourseExams(course_id, instructor_id);
             foreach (DataRow row in exams.Rows)
             {
-                Console.WriteLine($"Exam ID: {row["ExamID"]}, Track: {row["TrackName"]}");
+               Console.WriteLine($"Exam ID: {row["ExamID"]}, Track: {row["TrackName"]}");
             }
         }
     }

@@ -37,6 +37,8 @@
             numericUpDown1 = new NumericUpDown();
             flowLayoutPanel1 = new FlowLayoutPanel();
             button2 = new Button();
+            button3 = new Button();
+
             label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
@@ -54,6 +56,18 @@
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
+            //button 3
+            button3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            button3.BackColor = Color.FromArgb(2, 2, 2);
+            button3.ForeColor = Color.White;
+            button3.Location = new Point(200, 482);
+            button3.Name = "button2";
+            button3.Size = new Size(213, 47);
+            button3.TabIndex = 0;
+            button3.Text = "Back";
+            button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
+            ///
             // checkedListBox1
             // 
             checkedListBox1.BackColor = Color.White;
@@ -132,7 +146,7 @@
             button2.Name = "button2";
             button2.Size = new Size(218, 37);
             button2.TabIndex = 8;
-            button2.Text = "Select Course to continue";
+            button2.Text = "Select Tracks to continue";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
@@ -153,6 +167,8 @@
             ClientSize = new Size(982, 553);
             Controls.Add(label4);
             Controls.Add(button2);
+            Controls.Add(button3);
+
             Controls.Add(flowLayoutPanel1);
             Controls.Add(numericUpDown1);
             Controls.Add(label3);
@@ -175,6 +191,8 @@
         #endregion
 
         private Button button1;
+        private Button button3;
+
         private CheckedListBox checkedListBox1;
         private Label label1;
         private Label label2;
