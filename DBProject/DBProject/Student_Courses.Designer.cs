@@ -532,20 +532,39 @@ MessageBoxIcon.Warning // Icon
                 connection.Open();
 
                 // Fetch questions, student answers, and correct answers
-                string query = @"
-        SELECT 
-            q.text AS Question,
-            q.grade AS QuestionGrade,
-            sa.op_id AS StudentAnswerID,
-            correct_op.op_id AS CorrectAnswerID
-        FROM 
-            Question q
-        LEFT JOIN 
-            Student_Answer sa ON q.q_id = sa.q_id AND sa.st_id = @StudentID
-        LEFT JOIN 
-            [Option] correct_op ON q.q_id = correct_op.q_id AND correct_op.is_correct = 1
-        WHERE 
-            q.ex_id IN (SELECT ex_id FROM Course_Exam WHERE co_id = @CourseID);";
+                /* string query = @"
+         SELECT 
+             q.text AS Question,
+             q.grade AS QuestionGrade,
+             sa.op_id AS StudentAnswerID,
+             correct_op.op_id AS CorrectAnswerID
+         FROM 
+             Question q
+         LEFT JOIN 
+             Student_Answer sa ON q.q_id = sa.q_id AND sa.st_id = @StudentID
+         LEFT JOIN 
+             [Option] correct_op ON q.q_id = correct_op.q_id AND correct_op.is_correct = 1
+         WHERE 
+             q.ex_id IN (SELECT ex_id FROM Course_Exam WHERE co_id = @CourseID);";*/
+                string query = @"SELECT 
+    q.text AS Question,
+    q.grade AS QuestionGrade,
+    sa.op_id AS StudentAnswerID,
+    correct_op.op_id AS CorrectAnswerID,
+    q.ex_id
+FROM 
+    Question q
+LEFT JOIN 
+    Student_Answer sa ON q.q_id = sa.q_id AND sa.st_id = @StudentID -- Filter by student ID
+LEFT JOIN 
+    [Option] correct_op ON q.q_id = correct_op.q_id AND correct_op.is_correct = 1
+JOIN 
+    Course_Exam ce ON q.ex_id = ce.ex_id
+JOIN 
+    Student s ON ce.track_id = s.track_id
+WHERE 
+    q.ex_id IN (SELECT ex_id FROM Course_Exam WHERE co_id = @CourseID) -- Filter by course ID
+    AND s.st_id = @StudentID;";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
