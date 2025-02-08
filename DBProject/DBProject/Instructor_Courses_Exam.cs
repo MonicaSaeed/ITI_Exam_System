@@ -11,7 +11,7 @@ namespace DBProject
     public partial class Instructor_Courses_Exam : Form
     {
         // Database connection string
-        string connectionString = "Server=localhost\\SQLEXPRESS;Database=ExaminationSystem;Integrated Security=True;TrustServerCertificate=True;";
+        string connectionString = "Server=DESKTOP-JGIQ4Q8\\MSSQLSERVER1;Database=ExaminationSystem;Integrated Security=True;TrustServerCertificate=True;";
         int course_id;
         int instructor_id;
 
@@ -120,7 +120,7 @@ namespace DBProject
             // Add the "Return" button
             Button returnButton = new Button
             {
-                Text = "Return",
+                Text = "Back",
                 BackColor = Color.Black,
                 ForeColor = Color.White,
                 Width = 120,
