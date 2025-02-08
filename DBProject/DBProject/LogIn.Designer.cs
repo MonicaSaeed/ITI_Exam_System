@@ -66,6 +66,7 @@
             textBox2.PlaceholderText = "Enter your password";
             textBox2.Size = new Size(350, 29);
             textBox2.TabIndex = 2;
+            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // label2
             // 

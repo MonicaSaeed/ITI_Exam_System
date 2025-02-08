@@ -140,7 +140,7 @@ namespace DBProject
 
                     ComboBox tfComboBox = new ComboBox
                     {
-                        Name = "tfComboBox", 
+                        Name = "tfComboBox",
                         Location = new System.Drawing.Point(20, 290),
                         Width = 200
                     };
@@ -190,7 +190,7 @@ namespace DBProject
 
                             TextBox optionTextBox = new TextBox
                             {
-                                Name = $"optionTextBox{i}", 
+                                Name = $"optionTextBox{i}",
                                 Location = new System.Drawing.Point(100, startY + (i * 40)),
                                 Width = 300
                             };
@@ -198,7 +198,7 @@ namespace DBProject
 
                             ComboBox validityComboBox = new ComboBox
                             {
-                                Name = $"validityComboBox{i}", 
+                                Name = $"validityComboBox{i}",
                                 Location = new System.Drawing.Point(420, startY + (i * 40)),
                                 Width = 100
                             };
@@ -255,7 +255,7 @@ MessageBoxIcon.Warning // Icon
                         if (torf != null)
                         {
                             int isSelect = torf.SelectedIndex;
-                            if(isSelect == 0)
+                            if (isSelect == 0)
                             {
                                 insertOption("T", 1, questionId);
                                 insertOption("F", 0, questionId);
@@ -533,7 +533,8 @@ MessageBoxIcon.Warning // Icon
             }
             return qId;
         }
-        private void insertOption(string op_text, int is_correct, int q_id){
+        private void insertOption(string op_text, int is_correct, int q_id)
+        {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
@@ -568,6 +569,10 @@ MessageBoxIcon.Warning // Icon
         {
         }
 
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 public class QuestionDetails
