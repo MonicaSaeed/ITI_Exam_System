@@ -7,11 +7,11 @@ The ITI Exam System is a comprehensive platform designed to manage exams. It int
 
 ## Key Resources
 ### 2. ERD (Entity-Relationship Diagram)
-- **Link**: [ERD](https://github.com/user-attachments/assets/53feee66-b71d-4de7-9bf6-ea69e7ce4dbc)
+- **Link**: [ERD](https://github.com/user-attachments/assets/007abf49-8a15-4406-8c17-043ba2972308)
 - **Purpose**: The ERD defines the database structure, showing relationships between entities like Students, Courses, Exams, Tracks, and Instructors. It is the foundation for building and maintaining the system’s database.
 
 ### 3. Mapping Document
-- **Link**: [Mapping](https://github.com/user-attachments/assets/98adb96e-5e59-479f-a174-431dc8809018)
+- **Link**: [Mapping](https://github.com/user-attachments/assets/dd12f09c-c501-4a84-8520-1d0b40f089a4)
 - **Purpose**: The mapping document provides detailed relationships and data flow between the database tables. It specifies how tables interact and what keys are used to establish these connections.
 
 ---
