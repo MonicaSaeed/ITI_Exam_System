@@ -74,8 +74,8 @@ The system includes the following reports:
 3. Run the `insertdata.sql` script to populate the database with initial data.
 
 ### 2. Run the Application
-1. Navigate to the folder where the executable (`DBProject.exe`) file of the ITI Exam System is located.
-2. Double-click the `DBProject.exe` file to launch the application.
+1. Navigate to the folder where the executable (`setup.exe`) file of the ITI Exam System is located.
+2. Double-click the `setup.exe` file to launch the application.
 3. Log in using the provided credentials to access the system features.
 
 ---
