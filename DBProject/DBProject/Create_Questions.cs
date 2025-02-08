@@ -241,10 +241,10 @@ namespace DBProject
                             {
                                 //MessageBox.Show($"Error: Option controls for index {i} were not found.");
                                 CustomMessageBox customMessageBox1 = new CustomMessageBox(
-$"Option controls for index {i} were not found.", // Message
-"Error", // Title
-MessageBoxIcon.Warning // Icon
-);
+                                    $"Option controls for index {i} were not found.", // Message
+                                    "Error", // Title
+                                    MessageBoxIcon.Warning // Icon
+                                    );
                                 customMessageBox1.ShowDialog();
                             }
                         }
@@ -282,13 +282,13 @@ MessageBoxIcon.Warning // Icon
                         }
                     }
                     CustomMessageBox customMessageBox = new CustomMessageBox(
-$"Question and options saved successfully!", // Message
-"Question Added", // Title
-MessageBoxIcon.Question // Icon
-);
+                        $"Question and options saved successfully!", // Message
+                        "Question Added", // Title
+                        MessageBoxIcon.Question // Icon
+                        );
                     customMessageBox.ShowDialog();
                     //  MessageBox.Show("Question and options saved successfully!");
-                    popup.Hide();
+                    popup.Close();
                     clicked = true;
                     showQuestions();
                 }
@@ -359,12 +359,11 @@ MessageBoxIcon.Question // Icon
                 catch (Exception ex)
                 {
                     CustomMessageBox customMessageBox = new CustomMessageBox(
-$"Error: {ex.Message}", // Message
-"Error", // Title
-MessageBoxIcon.Warning // Icon
-);
+                        $"Error: {ex.Message}", // Message
+                        "Error", // Title
+                        MessageBoxIcon.Warning // Icon
+                        );
                     customMessageBox.ShowDialog();
-                    //MessageBox.Show($"Error: {ex.Message}");
                 }
             }
 
@@ -392,14 +391,13 @@ MessageBoxIcon.Warning // Icon
             backButton.ForeColor = Color.White;
             backButton.BackColor = Color.Black;
             backButton.Location = new Point(400, 20);
-            backButton.Text = "Back";
+            backButton.Text = "Done";
             backButton.Width = 150;
             backButton.Height = 50;
            
             backButton.Click += (sender, e) => {
-                this.Hide();
-               //Instructor_Courses_Exam CouresShow = new Instructor_Courses_Exam();
-               Instructor_Courses insCourse = new Instructor_Courses(insId);
+                this.Close();
+                Instructor_Courses insCourse = new Instructor_Courses(insId);
                 insCourse.ShowDialog();
             };
             this.Controls.Add(backButton);

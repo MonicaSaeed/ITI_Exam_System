@@ -328,11 +328,10 @@ namespace DBProject
         {
             Instructor_Courses instructorCoursesForm = new Instructor_Courses(instructor_id); // Pass the instructor_id
 
-            // Show the Instructor_Courses form
-            instructorCoursesForm.Show();
+            this.Hide(); 
+            instructorCoursesForm.ShowDialog();
+            this.Close(); 
 
-            // Close the current form
-            this.Close();
         }
 
         // Form load event

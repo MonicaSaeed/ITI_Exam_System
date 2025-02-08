@@ -53,10 +53,10 @@
 
             ////back button 
             backButton.Location = new Point(544, 510);
-            backButton.Name = "back";
+            backButton.Name = "Done";
             backButton.Size = new Size(94, 29);
             backButton.TabIndex = 6;
-            backButton.Text = "back";
+            backButton.Text = "Done";
             backButton.UseVisualStyleBackColor = true;
             // 
             // Create_Questions
