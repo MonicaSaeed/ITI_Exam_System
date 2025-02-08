@@ -827,206 +827,207 @@ VALUES
 
 
 
---Exam2 (SQL for Track1)
+-- Exam2 (SQL for Track1) 
 INSERT INTO Student_Answer (st_id, q_id, op_id)
 VALUES 
 -- Student 1's answers
-(1, 21, 31),  -- Correct
-(1, 22, 35),  -- Correct
-(1, 23, 40),  -- Incorrect
-(1, 24, 43),  -- Correct
-(1, 25, 47),  -- Correct
-(1, 26, 51),  -- Correct
-(1, 27, 54),  -- Correct
-(1, 28, 55),  -- Correct
-(1, 29, 58),  -- Correct
-(1, 30, 59),  -- Correct
+(1, 11, 31),  -- Correct 
+(1, 12, 35),  -- Correct
+(1, 13, 40),  -- Incorrect
+(1, 14, 43),  -- Correct
+(1, 15, 47),  -- Correct
+(1, 16, 51),  -- Correct
+(1, 17, 54),  -- Correct
+(1, 18, 55),  -- Correct
+(1, 19, 58),  -- Correct
+(1, 20, 59),  -- Correct
 
 -- Student 2's answers
-(2, 21, 32),  -- Incorrect
-(2, 22, 35),  -- Correct
-(2, 23, 39),  -- Correct
-(2, 24, 44),  -- Incorrect
-(2, 25, 49),  -- Correct
-(2, 26, 51),  -- Correct
-(2, 27, 53),  -- Incorrect
-(2, 28, 56),  -- Incorrect
-(2, 29, 57),  -- Incorrect
-(2, 30, 59),  -- Correct
+(2, 11, 32),  -- Incorrect
+(2, 12, 35),  -- Correct
+(2, 13, 39),  -- Correct
+(2, 14, 44),  -- Incorrect
+(2, 15, 49),  -- Correct
+(2, 16, 51),  -- Correct
+(2, 17, 53),  -- Incorrect
+(2, 18, 56),  -- Incorrect
+(2, 19, 57),  -- Incorrect
+(2, 20, 59),  -- Correct
 
 -- Student 3's answers
-(3, 21, 31),  -- Correct
-(3, 22, 38),  -- Incorrect
-(3, 23, 39),  -- Correct
-(3, 24, 45),  -- Incorrect
-(3, 25, 47),  -- Correct
-(3, 26, 51),  -- Correct
-(3, 27, 54),  -- Correct
-(3, 28, 55),  -- Correct
-(3, 29, 57),  -- Incorrect
-(3, 30, 60),  -- Incorrect
+(3, 11, 31),  -- Correct
+(3, 12, 38),  -- Incorrect
+(3, 13, 39),  -- Correct
+(3, 14, 45),  -- Incorrect
+(3, 15, 47),  -- Correct
+(3, 16, 51),  -- Correct
+(3, 17, 54),  -- Correct
+(3, 18, 55),  -- Correct
+(3, 19, 57),  -- Incorrect
+(3, 20, 60),  -- Incorrect
 
 -- Student 4's answers
-(4, 21, 33),  -- Incorrect
-(4, 22, 35),  -- Correct
-(4, 23, 39),  -- Correct
-(4, 24, 46),  -- Incorrect
-(4, 25, 49),  -- Correct
-(4, 26, 52),  -- Incorrect
-(4, 27, 53),  -- Incorrect
-(4, 28, 55),  -- Correct
-(4, 29, 58),  -- Correct
-(4, 30, 59),  -- Correct
+(4, 11, 33),  -- Incorrect
+(4, 12, 35),  -- Correct
+(4, 13, 39),  -- Correct
+(4, 14, 46),  -- Incorrect
+(4, 15, 49),  -- Correct
+(4, 16, 52),  -- Incorrect
+(4, 17, 53),  -- Incorrect
+(4, 18, 55),  -- Correct
+(4, 19, 58),  -- Correct
+(4, 20, 59),  -- Correct
 
 -- Student 5's answers
-(5, 21, 31),  -- Correct
-(5, 22, 37),  -- Incorrect
-(5, 23, 42),  -- Incorrect
-(5, 24, 43),  -- Correct
-(5, 25, 48),  -- Correct
-(5, 26, 51),  -- Correct
-(5, 27, 54),  -- Correct
-(5, 28, 55),  -- Correct
-(5, 29, 57),  -- Incorrect
-(5, 30, 59),  -- Correct
+(5, 11, 31),  -- Correct
+(5, 12, 37),  -- Incorrect
+(5, 13, 42),  -- Incorrect
+(5, 14, 43),  -- Correct
+(5, 15, 48),  -- Correct
+(5, 16, 51),  -- Correct
+(5, 17, 54),  -- Correct
+(5, 18, 55),  -- Correct
+(5, 19, 57),  -- Incorrect
+(5, 20, 59),  -- Correct
 
 -- Student 6's answers
-(6, 21, 31),  -- Correct
-(6, 22, 35),  -- Correct
-(6, 23, 41),  -- Incorrect
-(6, 24, 43),  -- Correct
-(6, 25, 50),  -- Incorrect
-(6, 26, 52),  -- Incorrect
-(6, 27, 54),  -- Correct
-(6, 28, 56),  -- Incorrect
-(6, 29, 57),  -- Incorrect
-(6, 30, 59),  -- Correct
+(6, 11, 31),  -- Correct
+(6, 12, 35),  -- Correct
+(6, 13, 41),  -- Incorrect
+(6, 14, 43),  -- Correct
+(6, 15, 50),  -- Incorrect
+(6, 16, 52),  -- Incorrect
+(6, 17, 54),  -- Correct
+(6, 18, 56),  -- Incorrect
+(6, 19, 57),  -- Incorrect
+(6, 20, 59),  -- Correct
 
 -- Student 7's answers
-(7, 21, 34),  -- Incorrect
-(7, 22, 36),  -- Incorrect
-(7, 23, 39),  -- Correct
-(7, 24, 43),  -- Correct
-(7, 25, 48),  -- Correct
-(7, 26, 51),  -- Correct
-(7, 27, 53),  -- Incorrect
-(7, 28, 55),  -- Correct
-(7, 29, 58),  -- Correct
-(7, 30, 59),  -- Correct
+(7, 11, 34),  -- Incorrect
+(7, 12, 36),  -- Incorrect
+(7, 13, 39),  -- Correct
+(7, 14, 43),  -- Correct
+(7, 15, 48),  -- Correct
+(7, 16, 51),  -- Correct
+(7, 17, 53),  -- Incorrect
+(7, 18, 55),  -- Correct
+(7, 19, 58),  -- Correct
+(7, 20, 59),  -- Correct
 
 -- Student 8's answers
-(8, 21, 31),  -- Correct
-(8, 22, 35),  -- Correct
-(8, 23, 40),  -- Incorrect
-(8, 24, 44),  -- Incorrect
-(8, 25, 47),  -- Correct
-(8, 26, 52),  -- Incorrect
-(8, 27, 54),  -- Correct
-(8, 28, 55),  -- Correct
-(8, 29, 58),  -- Correct
-(8, 30, 60);  -- Incorrect
+(8, 11, 31),  -- Correct
+(8, 12, 35),  -- Correct
+(8, 13, 40),  -- Incorrect
+(8, 14, 44),  -- Incorrect
+(8, 15, 47),  -- Correct
+(8, 16, 52),  -- Incorrect
+(8, 17, 54),  -- Correct
+(8, 18, 55),  -- Correct
+(8, 19, 58),  -- Correct
+(8, 20, 60);  -- Incorrect
 
 
 
---Exam3 (SQL for Track3) :
+
+--Exam3 (OOP for Track3) :
 
 INSERT INTO Student_Answer (st_id, q_id, op_id)
 VALUES 
 -- Student 17's answers
-(17, 61, 62),  -- Correct
-(17, 62, 65),  -- Correct
-(17, 63, 69),  -- Correct
-(17, 64, 74),  -- Incorrect
-(17, 65, 77),  -- Correct
-(17, 66, 81),  -- Correct
-(17, 67, 83),  -- Incorrect
-(17, 68, 86),  -- Correct
-(17, 69, 87),  -- Correct
-(17, 70, 89),  -- Correct
+(17, 21, 61),  -- Correct
+(17, 22, 65),  -- Correct
+(17, 23, 69),  -- Correct
+(17, 24, 74),  -- Incorrect
+(17, 25, 77),  -- Correct
+(17, 26, 81),  -- Correct
+(17, 27, 83),  -- Incorrect
+(17, 28, 86),  -- Correct
+(17, 29, 87),  -- Correct
+(17, 30, 89),  -- Correct
 
 -- Student 18's answers
-(18, 61, 63),  -- Correct
-(18, 62, 66),  -- Incorrect
-(18, 63, 70),  -- Incorrect
-(18, 64, 73),  -- Correct
-(18, 65, 77),  -- Correct
-(18, 66, 81),  -- Correct
-(18, 67, 84),  -- Correct
-(18, 68, 85),  -- Incorrect
-(18, 69, 88),  -- Incorrect
-(18, 70, 90),  -- Incorrect
+(18, 21, 63),  -- Correct
+(18, 22, 66),  -- Incorrect
+(18, 23, 70),  -- Incorrect
+(18, 24, 73),  -- Correct
+(18, 25, 77),  -- Correct
+(18, 26, 81),  -- Correct
+(18, 27, 84),  -- Correct
+(18, 28, 85),  -- Incorrect
+(18, 29, 88),  -- Incorrect
+(18, 30, 90),  -- Incorrect
 
 -- Student 19's answers
-(19, 61, 61),  -- Correct
-(19, 62, 65),  -- Correct
-(19, 63, 72),  -- Incorrect
-(19, 64, 73),  -- Correct
-(19, 65, 80),  -- Incorrect
-(19, 66, 82),  -- Incorrect
-(19, 67, 84),  -- Correct
-(19, 68, 86),  -- Correct
-(19, 69, 87),  -- Correct
-(19, 70, 90),  -- Incorrect
+(19, 21, 61),  -- Correct
+(19, 22, 65),  -- Correct
+(19, 23, 72),  -- Incorrect
+(19, 24, 73),  -- Correct
+(19, 25, 80),  -- Incorrect
+(19, 26, 82),  -- Incorrect
+(19, 27, 84),  -- Correct
+(19, 28, 86),  -- Correct
+(19, 29, 87),  -- Correct
+(19, 30, 90),  -- Incorrect
 
 -- Student 20's answers
-(20, 61, 62),  -- Correct
-(20, 62, 67),  -- Incorrect
-(20, 63, 69),  -- Correct
-(20, 64, 75),  -- Incorrect
-(20, 65, 77),  -- Correct
-(20, 66, 82),  -- Incorrect
-(20, 67, 84),  -- Correct
-(20, 68, 86),  -- Correct
-(20, 69, 87),  -- Correct
-(20, 70, 89),  -- Correct
+(20, 21, 62),  -- Correct
+(20, 22, 67),  -- Incorrect
+(20, 23, 69),  -- Correct
+(20, 24, 75),  -- Incorrect
+(20, 25, 77),  -- Correct
+(20, 26, 82),  -- Incorrect
+(20, 27, 84),  -- Correct
+(20, 28, 86),  -- Correct
+(20, 29, 87),  -- Correct
+(20, 30, 89),  -- Correct
 
 -- Student 21's answers
-(21, 61, 64),  -- Incorrect
-(21, 62, 65),  -- Correct
-(21, 63, 71),  -- Incorrect
-(21, 64, 73),  -- Correct
-(21, 65, 79),  -- Incorrect
-(21, 66, 81),  -- Correct
-(21, 67, 83),  -- Incorrect
-(21, 68, 85),  -- Incorrect
-(21, 69, 88),  -- Incorrect
-(21, 70, 89),  -- Correct
+(21, 21, 64),  -- Incorrect
+(21, 22, 65),  -- Correct
+(21, 23, 71),  -- Incorrect
+(21, 24, 73),  -- Correct
+(21, 25, 79),  -- Incorrect
+(21, 26, 81),  -- Correct
+(21, 27, 83),  -- Incorrect
+(21, 28, 85),  -- Incorrect
+(21, 29, 88),  -- Incorrect
+(21, 30, 89),  -- Correct
 
 -- Student 22's answers
-(22, 61, 61),  -- Correct
-(22, 62, 65),  -- Correct
-(22, 63, 69),  -- Correct
-(22, 64, 73),  -- Correct
-(22, 65, 77),  -- Correct
-(22, 66, 82),  -- Incorrect
-(22, 67, 84),  -- Correct
-(22, 68, 85),  -- Incorrect
-(22, 69, 87),  -- Correct
-(22, 70, 89),  -- Correct
+(22, 21, 61),  -- Correct
+(22, 22, 65),  -- Correct
+(22, 23, 69),  -- Correct
+(22, 24, 73),  -- Correct
+(22, 25, 77),  -- Correct
+(22, 26, 82),  -- Incorrect
+(22, 27, 84),  -- Correct
+(22, 28, 85),  -- Incorrect
+(22, 29, 87),  -- Correct
+(22, 30, 89),  -- Correct
 
 -- Student 23's answers
-(23, 61, 62),  -- Correct
-(23, 62, 68),  -- Incorrect
-(23, 63, 70),  -- Incorrect
-(23, 64, 76),  -- Incorrect
-(23, 65, 77),  -- Correct
-(23, 66, 81),  -- Correct
-(23, 67, 84),  -- Correct
-(23, 68, 86),  -- Correct
-(23, 69, 88),  -- Incorrect
-(23, 70, 90),  -- Incorrect
+(23, 21, 62),  -- Correct
+(23, 22, 68),  -- Incorrect
+(23, 23, 70),  -- Incorrect
+(23, 24, 76),  -- Incorrect
+(23, 25, 77),  -- Correct
+(23, 26, 81),  -- Correct
+(23, 27, 84),  -- Correct
+(23, 28, 86),  -- Correct
+(23, 29, 88),  -- Incorrect
+(23, 30, 90),  -- Incorrect
 
 -- Student 24's answers
-(24, 61, 63),  -- Correct
-(24, 62, 65),  -- Correct
-(24, 63, 69),  -- Correct
-(24, 64, 73),  -- Correct
-(24, 65, 77),  -- Correct
-(24, 66, 81),  -- Correct
-(24, 67, 84),  -- Correct
-(24, 68, 86),  -- Correct
-(24, 69, 87),  -- Correct
-(24, 70, 89);  -- Correct
+(24, 21, 63),  -- Correct
+(24, 22, 65),  -- Correct
+(24, 23, 69),  -- Correct
+(24, 24, 73),  -- Correct
+(24, 25, 77),  -- Correct
+(24, 26, 81),  -- Correct
+(24, 27, 84),  -- Correct
+(24, 28, 86),  -- Correct
+(24, 29, 87),  -- Correct
+(24, 30, 89);  -- Correct
 
 
 
