@@ -69,14 +69,12 @@ The system includes the following reports:
 ## How to Run the ITI Exam System
 
 ### 1. Set Up the Database
-1. Create a new database named `ExaminationSystem` in your SQL Server.
-2. Run the `tableCreation.sql` script to create the necessary tables.
-3. Run the `insertdata.sql` script to populate the database with initial data.
-
+1. Navigate to the installation folder then open Database Script folder.
+2. Double click on the `script.sql` to create the database and tables.
 ### 2. Run the Application
-1. Navigate to the folder where the executable (`setup.exe`) file of the ITI Exam System is located.
-2. Double-click the `setup.exe` file to launch the application.
-3. Log in using the provided credentials to access the system features.
+1. Navigate to the installation folder where then open Project EXE folder.
+2. Double click on the `setup.exe` to run the application.
+3. The application will open, and you can start using it.
 
 ---
 
